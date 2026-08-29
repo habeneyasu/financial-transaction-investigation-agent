@@ -1,36 +1,34 @@
-from app.core.exceptions import CustomerNotFoundError
+
+from app.core.exceptions import CustomerNotFoundError, DatabaseError
 from app.core.logging import get_logger
 from app.data.database import Database
 from app.models.customer import Customer
+
+logger = get_logger(__name__)
 
 
 class CustomerService:
     def __init__(self, database: Database):
         self.database = database
-        self.logger = get_logger(__name__)
 
     def get_customer(self, customer_id: str) -> Customer:
-        """Retrieve customer by ID.
-        
-        Args:
-            customer_id: The customer ID to retrieve.
-            
-        Returns:
-            The customer object.
-            
-        Raises:
-            CustomerNotFoundError: If customer is not found.
-        """
         try:
             customer = self.database.get_customer(customer_id)
+
             if customer is None:
-                self.logger.error(f"Customer not found: {customer_id}")
-                raise CustomerNotFoundError(f"Customer with ID {customer_id} not found")
-            
-            self.logger.info(f"Retrieved customer: {customer_id}")
+                logger.warning("Customer not found: %s", customer_id)
+                raise CustomerNotFoundError(
+                    f"Customer with ID {customer_id} not found"
+                )
+
+            logger.info("Retrieved customer: %s", customer_id)
             return customer
+
+        except CustomerNotFoundError:
+            raise
         except Exception as exc:
-            if isinstance(exc, CustomerNotFoundError):
-                raise
-            self.logger.error(f"Failed to retrieve customer {customer_id}: {exc}")
-            raise CustomerNotFoundError(f"Failed to retrieve customer {customer_id}") from exc
+            logger.exception("Failed to retrieve customer: %s", customer_id)
+            raise DatabaseError(
+                f"Failed to retrieve customer {customer_id}"
+            ) from exc
+
