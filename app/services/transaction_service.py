@@ -34,3 +34,23 @@ class TransactionService:
             raise DatabaseError(
                 f"Failed to retrieve transaction {transaction_id}"
             ) from exc
+
+    def get_transactions_for_account(self, account_id: str) -> list[Transaction]:
+        """Retrieve all transactions associated with an account."""
+        try:
+            transactions = self.database.get_transactions(account_id)
+            logger.info(
+                "Retrieved %d transactions for account: %s",
+                len(transactions),
+                account_id,
+            )
+            return transactions
+
+        except Exception as exc:
+            logger.exception(
+                "Failed to retrieve transactions for account: %s",
+                account_id,
+            )
+            raise DatabaseError(
+                f"Failed to retrieve transactions for account {account_id}"
+            ) from exc

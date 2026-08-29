@@ -59,3 +59,33 @@ class TestTransactionService:
 
         with pytest.raises(TransactionNotFoundError):
             service.get_transaction("TXN-001")
+
+    def test_get_transactions_for_account_returns_transactions(self, sample_transaction):
+        database = type(
+            "DB",
+            (),
+            {"get_transactions": lambda self, account_id: [sample_transaction]},
+        )()
+        service = TransactionService(database)
+
+        result = service.get_transactions_for_account("ACC-001")
+
+        assert result == [sample_transaction]
+
+    def test_get_transactions_for_account_returns_empty_list(self):
+        database = type("DB", (), {"get_transactions": lambda self, account_id: []})()
+        service = TransactionService(database)
+
+        result = service.get_transactions_for_account("ACC-999")
+
+        assert result == []
+
+    def test_get_transactions_for_account_raises_database_error(self):
+        def raise_error(self, account_id):
+            raise RuntimeError("boom")
+
+        database = type("DB", (), {"get_transactions": raise_error})()
+        service = TransactionService(database)
+
+        with pytest.raises(DatabaseError):
+            service.get_transactions_for_account("ACC-001")
