@@ -1,0 +1,35 @@
+name: financial-investigation-agent
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: financial-transaction-investigation-agent:latest
+    container_name: financial-investigation-api
+    restart: unless-stopped
+    environment:
+      DATABASE_PATH: /app/data/core_banking.db
+      API_HOST: 0.0.0.0
+      API_PORT: 8001
+      MCP_SERVER_HOST: localhost
+      MCP_SERVER_PORT: 8000
+      DEBUG: "false"
+    env_file:
+      - path: .env
+        required: false
+    ports:
+      - "8001:8001"
+    volumes:
+      - banking-data:/app/data
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8001/health', timeout=3)"]
+      interval: 30s
+      timeout: 5s
+      start_period: 15s
+      retries: 3
+    init: true
+
+volumes:
+  banking-data:
+    name: financial-investigation-data

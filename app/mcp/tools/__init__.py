@@ -5,8 +5,6 @@ service dependencies they need. The :func:`register_tools` helper wires the
 full set of tools onto an MCP server.
 """
 
-from typing import Optional
-
 from mcp.server.mcpserver import MCPServer
 
 from app.data.database import Database, db
@@ -32,7 +30,7 @@ __all__ = [
 
 def register_tools(
     server: MCPServer,
-    database: Optional[Database] = None,
+    database: Database | None = None,
 ) -> MCPServer:
     """Register all investigation MCP tools onto the given server.
 
@@ -63,12 +61,13 @@ def register_tools(
         description="Retrieve account information by account ID.",
     )
     server.add_tool(
-        compare_account_balance_tool(account_service, ledger_service),
+        compare_account_balance_tool(account_service, ledger_service, transaction_service),
         name="compare_account_balance",
         title="Compare Account Balance",
         description=(
-            "Deterministically compare the reported account balance against "
-            "the expected balance derived from its posted ledger entries."
+            "Deterministically report whether the reported account balance "
+            "matches the expected balance derived from its posted ledger entries, "
+            "and flag any suspected duplicate debit as advisory evidence."
         ),
     )
     server.add_tool(

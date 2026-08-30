@@ -50,6 +50,8 @@ def create_app() -> FastAPI:
     register_exception_handlers(app)
     
     # Include routers
+    from app.api.routes.mcp import router as mcp_router
+    app.include_router(mcp_router, prefix="/api/v1")
     # from app.api.routes.investigation import router as investigation_router
     # app.include_router(investigation_router, prefix="/api/v1", tags=["investigation"])
     
