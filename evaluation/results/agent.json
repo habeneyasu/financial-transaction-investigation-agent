@@ -1,0 +1,554 @@
+[
+  {
+    "case_id": "CASE-001",
+    "passed": 7,
+    "total": 7,
+    "score": 1.0,
+    "criteria": [
+      {
+        "name": "Identifies TX-1001",
+        "passed": true
+      },
+      {
+        "name": "Identifies TX-1004",
+        "passed": true
+      },
+      {
+        "name": "Identifies both transfers as 5,000 ETB",
+        "passed": true
+      },
+      {
+        "name": "Identifies successful transactions",
+        "passed": true
+      },
+      {
+        "name": "Identifies suspected duplicate",
+        "passed": true
+      },
+      {
+        "name": "Identifies balance inconsistency",
+        "passed": true
+      },
+      {
+        "name": "Does not claim confirmed fraud",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "case_id": "CASE-002",
+    "passed": 5,
+    "total": 5,
+    "score": 1.0,
+    "criteria": [
+      {
+        "name": "Identifies TX-1005",
+        "passed": true
+      },
+      {
+        "name": "Identifies 10,000 ETB disputed amount",
+        "passed": true
+      },
+      {
+        "name": "Identifies failed transaction",
+        "passed": true
+      },
+      {
+        "name": "Identifies no ledger debit for TX-1005",
+        "passed": true
+      },
+      {
+        "name": "Identifies balance discrepancy",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "case_id": "CASE-003",
+    "passed": 5,
+    "total": 5,
+    "score": 1.0,
+    "criteria": [
+      {
+        "name": "Identifies TX-1007",
+        "passed": true
+      },
+      {
+        "name": "Identifies reversed transaction",
+        "passed": true
+      },
+      {
+        "name": "Identifies 1,000 ETB reversal",
+        "passed": true
+      },
+      {
+        "name": "Identifies debit and reversal credit",
+        "passed": true
+      },
+      {
+        "name": "Identifies balance discrepancy",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "case_id": "CASE-004",
+    "passed": 4,
+    "total": 4,
+    "score": 1.0,
+    "criteria": [
+      {
+        "name": "Identifies TX-1001",
+        "passed": true
+      },
+      {
+        "name": "Identifies 5,000 ETB transaction",
+        "passed": true
+      },
+      {
+        "name": "Identifies successful transaction",
+        "passed": true
+      },
+      {
+        "name": "Identifies account balance discrepancy",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "case_id": "CASE-005",
+    "passed": 3,
+    "total": 4,
+    "score": 0.75,
+    "criteria": [
+      {
+        "name": "Identifies TX-1002",
+        "passed": false
+      },
+      {
+        "name": "Identifies 2,000 ETB transaction",
+        "passed": true
+      },
+      {
+        "name": "Identifies successful transaction",
+        "passed": true
+      },
+      {
+        "name": "Identifies balance discrepancy",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "case_id": "CASE-006",
+    "passed": 4,
+    "total": 4,
+    "score": 1.0,
+    "criteria": [
+      {
+        "name": "Identifies TX-1002",
+        "passed": true
+      },
+      {
+        "name": "Identifies 2,000 ETB transaction",
+        "passed": true
+      },
+      {
+        "name": "Identifies successful transaction",
+        "passed": true
+      },
+      {
+        "name": "Identifies balance discrepancy",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "case_id": "CASE-007",
+    "passed": 4,
+    "total": 4,
+    "score": 1.0,
+    "criteria": [
+      {
+        "name": "Identifies TX-1003",
+        "passed": true
+      },
+      {
+        "name": "Identifies 1,500 ETB transaction",
+        "passed": true
+      },
+      {
+        "name": "Identifies successful transaction",
+        "passed": true
+      },
+      {
+        "name": "Identifies balance discrepancy",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "case_id": "CASE-008",
+    "passed": 4,
+    "total": 4,
+    "score": 1.0,
+    "criteria": [
+      {
+        "name": "Identifies TX-1003",
+        "passed": true
+      },
+      {
+        "name": "Identifies 1,500 ETB transaction",
+        "passed": true
+      },
+      {
+        "name": "Identifies successful transaction",
+        "passed": true
+      },
+      {
+        "name": "Identifies balance discrepancy",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "case_id": "CASE-009",
+    "passed": 4,
+    "total": 5,
+    "score": 0.8,
+    "criteria": [
+      {
+        "name": "Identifies TX-1001",
+        "passed": true
+      },
+      {
+        "name": "Identifies TX-1004",
+        "passed": true
+      },
+      {
+        "name": "Identifies both transactions as successful",
+        "passed": true
+      },
+      {
+        "name": "Identifies suspected duplicate",
+        "passed": false
+      },
+      {
+        "name": "Identifies 5,000 ETB amount",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "case_id": "CASE-010",
+    "passed": 5,
+    "total": 5,
+    "score": 1.0,
+    "criteria": [
+      {
+        "name": "Identifies TX-1005",
+        "passed": true
+      },
+      {
+        "name": "Identifies failed status",
+        "passed": true
+      },
+      {
+        "name": "Identifies 10,000 ETB amount",
+        "passed": true
+      },
+      {
+        "name": "Identifies absence of ledger debit",
+        "passed": true
+      },
+      {
+        "name": "Identifies balance discrepancy",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "case_id": "CASE-011",
+    "passed": 4,
+    "total": 4,
+    "score": 1.0,
+    "criteria": [
+      {
+        "name": "Identifies TX-1005",
+        "passed": true
+      },
+      {
+        "name": "Identifies failed transaction",
+        "passed": true
+      },
+      {
+        "name": "Identifies 10,000 ETB amount",
+        "passed": true
+      },
+      {
+        "name": "Identifies no ledger debit",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "case_id": "CASE-012",
+    "passed": 4,
+    "total": 4,
+    "score": 1.0,
+    "criteria": [
+      {
+        "name": "Identifies TX-1006",
+        "passed": true
+      },
+      {
+        "name": "Identifies 2,000 ETB transaction",
+        "passed": true
+      },
+      {
+        "name": "Identifies successful transaction",
+        "passed": true
+      },
+      {
+        "name": "Identifies balance discrepancy",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "case_id": "CASE-013",
+    "passed": 4,
+    "total": 4,
+    "score": 1.0,
+    "criteria": [
+      {
+        "name": "Identifies TX-1006",
+        "passed": true
+      },
+      {
+        "name": "Identifies successful transaction",
+        "passed": true
+      },
+      {
+        "name": "Identifies 2,000 ETB amount",
+        "passed": true
+      },
+      {
+        "name": "Identifies account balance is consistent",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "case_id": "CASE-014",
+    "passed": 5,
+    "total": 5,
+    "score": 1.0,
+    "criteria": [
+      {
+        "name": "Identifies TX-1007",
+        "passed": true
+      },
+      {
+        "name": "Identifies reversed status",
+        "passed": true
+      },
+      {
+        "name": "Identifies reversal",
+        "passed": true
+      },
+      {
+        "name": "Identifies debit and credit",
+        "passed": true
+      },
+      {
+        "name": "Identifies 1,000 ETB amount",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "case_id": "CASE-015",
+    "passed": 5,
+    "total": 5,
+    "score": 1.0,
+    "criteria": [
+      {
+        "name": "Identifies TX-1007",
+        "passed": true
+      },
+      {
+        "name": "Identifies reversed transaction",
+        "passed": true
+      },
+      {
+        "name": "Identifies debit and reversal credit",
+        "passed": true
+      },
+      {
+        "name": "Identifies reversal amount",
+        "passed": true
+      },
+      {
+        "name": "Identifies balance discrepancy",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "case_id": "CASE-016",
+    "passed": 4,
+    "total": 4,
+    "score": 1.0,
+    "criteria": [
+      {
+        "name": "Identifies TX-1008",
+        "passed": true
+      },
+      {
+        "name": "Identifies 2,500 ETB amount",
+        "passed": true
+      },
+      {
+        "name": "Identifies successful transaction",
+        "passed": true
+      },
+      {
+        "name": "Identifies balance discrepancy",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "case_id": "CASE-017",
+    "passed": 4,
+    "total": 4,
+    "score": 1.0,
+    "criteria": [
+      {
+        "name": "Identifies TX-1008",
+        "passed": true
+      },
+      {
+        "name": "Identifies 2,500 ETB amount",
+        "passed": true
+      },
+      {
+        "name": "Identifies successful transaction",
+        "passed": true
+      },
+      {
+        "name": "Identifies balance discrepancy",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "case_id": "CASE-018",
+    "passed": 8,
+    "total": 8,
+    "score": 1.0,
+    "criteria": [
+      {
+        "name": "Identifies TX-1001",
+        "passed": true
+      },
+      {
+        "name": "Identifies TX-1002",
+        "passed": true
+      },
+      {
+        "name": "Identifies TX-1003",
+        "passed": true
+      },
+      {
+        "name": "Identifies TX-1004",
+        "passed": true
+      },
+      {
+        "name": "Identifies TX-1006",
+        "passed": true
+      },
+      {
+        "name": "Identifies successful transactions",
+        "passed": true
+      },
+      {
+        "name": "Identifies duplicate pair",
+        "passed": true
+      },
+      {
+        "name": "Identifies balance discrepancy",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "case_id": "CASE-019",
+    "passed": 4,
+    "total": 7,
+    "score": 0.5714285714285714,
+    "criteria": [
+      {
+        "name": "Identifies TX-1001",
+        "passed": false
+      },
+      {
+        "name": "Identifies TX-1003",
+        "passed": false
+      },
+      {
+        "name": "Identifies TX-1007",
+        "passed": true
+      },
+      {
+        "name": "Identifies TX-1008",
+        "passed": false
+      },
+      {
+        "name": "Identifies reversed transaction",
+        "passed": true
+      },
+      {
+        "name": "Identifies reversal debit and credit",
+        "passed": true
+      },
+      {
+        "name": "Identifies balance discrepancy",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "case_id": "CASE-020",
+    "passed": 5,
+    "total": 6,
+    "score": 0.8333333333333334,
+    "criteria": [
+      {
+        "name": "Identifies TX-1001",
+        "passed": true
+      },
+      {
+        "name": "Identifies TX-1004",
+        "passed": true
+      },
+      {
+        "name": "Identifies 5,000 ETB amount",
+        "passed": true
+      },
+      {
+        "name": "Identifies successful status",
+        "passed": true
+      },
+      {
+        "name": "Identifies suspected duplicate",
+        "passed": false
+      },
+      {
+        "name": "Identifies balance discrepancy",
+        "passed": true
+      }
+    ]
+  }
+]
