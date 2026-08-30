@@ -6,7 +6,6 @@ tools, and provides entry points to run over stdio or streamable HTTP.
 
 from mcp.server.mcpserver import MCPServer
 
-from app.config.settings import settings
 from app.data.database import Database, db
 from app.mcp.tools import register_tools
 

@@ -4,6 +4,9 @@ from decimal import Decimal
 from pathlib import Path
 from typing import Optional
 
+sqlite3.register_adapter(date, lambda d: d.isoformat())
+sqlite3.register_adapter(datetime, lambda dt: dt.isoformat())
+
 from app.data.seed import (
     CUSTOMERS,
     ACCOUNTS,
@@ -263,22 +266,38 @@ class Database:
         rows = cursor.fetchall()
         transactions = []
         for row in rows:
-            transactions.append(
-                Transaction(
-                    transaction_id=row["transaction_id"],
-                    from_account_id=row["from_account_id"],
-                    to_account_id=row["to_account_id"],
-                    amount=Decimal(row["amount"]),
-                    currency=row["currency"],
-                    transaction_type=row["transaction_type"],
-                    transaction_date=datetime.fromisoformat(row["transaction_date"]),
-                    status=row["status"],
-                    reference=row["reference"],
-                    created_at=datetime.fromisoformat(row["created_at"]),
-                    completed_at=datetime.fromisoformat(row["completed_at"]) if row["completed_at"] else None,
-                )
-            )
+            transactions.append(self._row_to_transaction(row))
         return transactions
+
+    def get_transaction(self, transaction_id: str) -> Optional[Transaction]:
+        """Retrieve a single transaction by ID."""
+        conn = self.connect()
+        cursor = conn.cursor()
+        cursor.execute(
+            "SELECT * FROM transactions WHERE transaction_id = ?",
+            (transaction_id,),
+        )
+        row = cursor.fetchone()
+        if row:
+            return self._row_to_transaction(row)
+        return None
+
+    @staticmethod
+    def _row_to_transaction(row) -> Transaction:
+        """Convert a sqlite row into a Transaction model."""
+        return Transaction(
+            transaction_id=row["transaction_id"],
+            from_account_id=row["from_account_id"],
+            to_account_id=row["to_account_id"],
+            amount=Decimal(row["amount"]),
+            currency=row["currency"],
+            transaction_type=row["transaction_type"],
+            transaction_date=datetime.fromisoformat(row["transaction_date"]),
+            status=row["status"],
+            reference=row["reference"],
+            created_at=datetime.fromisoformat(row["created_at"]),
+            completed_at=datetime.fromisoformat(row["completed_at"]) if row["completed_at"] else None,
+        )
 
     def get_ledger_entries(self, account_id: str) -> list[LedgerEntry]:
         """Retrieve ledger entries for an account."""
