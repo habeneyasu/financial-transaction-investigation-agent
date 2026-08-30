@@ -4,7 +4,7 @@ Builds an :class:`MCPServer`, registers the controlled read-only investigation
 tools, and provides entry points to run over stdio or streamable HTTP.
 """
 
-from mcp.server.mcpserver import MCPServer
+from mcp.server import MCPServer
 
 from app.data.database import Database, db
 from app.mcp.tools import register_tools

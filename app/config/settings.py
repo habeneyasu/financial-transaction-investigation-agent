@@ -6,16 +6,14 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 class Settings(BaseSettings):
     """Application settings loaded from environment variables."""
-    
+
     # Database
     database_path: str = "core_banking.db"
-    
+
     # LLM Configuration
-    openai_api_key: Optional[str] = None
-    anthropic_api_key: Optional[str] = None
-    google_api_key: Optional[str] = None
-    default_llm_provider: str = "openai"  # openai, anthropic, google
-    default_model: str = "gpt-4o-mini"
+    default_llm_provider: str = "gemini"
+    gemini_api_key: Optional[str] = None
+    gemini_model: str = "gemini-2.5-flash"
     
     # MCP Configuration
     mcp_server_host: str = "localhost"
