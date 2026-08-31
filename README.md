@@ -311,16 +311,19 @@ The goal is not simply to produce plausible investigation narratives.
 
 ## Evaluation Results
 
-| System                 |     Correct | Accuracy |
-| ---------------------- | ----------: | -------: |
+| System                 | Correct | Accuracy |
+| ---------------------- | ------: | -------: |
 | Deterministic baseline | **20 / 20** | **100%** |
-| Investigation agent    | **15 / 20** |  **75%** |
+| Investigation agent    | **15 / 20** | **75%** |
 
-The criteria-level result is:
+Across the 98 evaluated criteria, the agent satisfied 93 criteria, achieving an overall criteria-level score of **95%**.
 
-**93 / 98 (95%)**
+At the case level, it produced the expected investigation outcome for **15 of 20 cases (75%)**.
 
-across all 20 cases.
+These are two different evaluation views:
+
+- **Criteria level:** 93 / 98 (95%) measures individual evaluation criteria across all 20 cases.
+- **Case level:** 15 / 20 (75%) measures whether the complete investigation outcome for each case was correct.
 
 ## Agent Failure Cases
 
