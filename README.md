@@ -546,7 +546,7 @@ uv run python evaluation/compare.py
 
 # User-Facing Demo
 
-The project includes an operations investigation console built with **Gradio**.
+The project includes an **operations investigation console** built with **Gradio**.
 
 The evaluator can enter a case ID such as:
 
@@ -556,19 +556,35 @@ CASE-001
 
 or select an evaluation case from the catalogue.
 
-The interface displays:
+The interface presents:
 
 * investigation status;
-* confidence;
+* confidence level;
 * complaint context;
 * evidence-based findings;
 * conclusion;
 * advisory recommendation; and
-* human-review requirement.
+* mandatory human-review status.
 
-The UI is designed as an **operations investigation console**, not a generic chatbot.
+### CASE-001 — Evidence Findings
 
-The purpose is to show how an operations officer could use the system as an investigation assistant while retaining decision-making authority.
+The first screen presents the initial evidence collected during the investigation, including the deterministic balance comparison and the two successful 5,000 ETB transfers identified in the transaction records.
+
+
+![CASE-001 Evidence Findings](docs/screenshots/case-001/case-001-page-1.png)
+
+### CASE-001 — Ledger Correlation and Recommendation
+
+The second screen continues the investigation by correlating the ledger entries with the transactions, identifying a suspected duplicate debit, and presenting the conclusion, advisory recommendation, and mandatory human-review requirement.
+
+
+![CASE-001 Investigation Results](docs/screenshots/case-001/case-001-page-2.png)
+
+The UI is intentionally designed as an **operations investigation console**, not a generic chatbot.
+
+The purpose is to demonstrate how an operations officer can use the system as an investigation assistant while retaining decision-making authority.
+
+> **The agent investigates and recommends. It does not execute consequential financial actions.**
 
 ---
 
