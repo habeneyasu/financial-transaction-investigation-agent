@@ -6,8 +6,11 @@ class EvaluationCriterion:
     """A deterministic criterion used to evaluate an investigation result."""
 
     name: str
-    required_terms: tuple[str, ...]
+
+    required_terms: tuple[str, ...] = ()
+
     forbidden_terms: tuple[str, ...] = ()
+
     match_any_terms: tuple[str, ...] = ()
 
 
@@ -16,6 +19,7 @@ class EvaluationCase:
     """Expected evaluation criteria for an investigation case."""
 
     case_id: str
+
     criteria: tuple[EvaluationCriterion, ...]
 
 
@@ -47,13 +51,12 @@ EVALUATION_CASES = (
                 name="Identifies suspected duplicate",
                 required_terms=("suspected duplicate",),
             ),
-           EvaluationCriterion(
+            EvaluationCriterion(
                 name="Identifies balance discrepancy",
                 required_terms=("balance", "discrepancy"),
             ),
             EvaluationCriterion(
                 name="Does not claim confirmed fraud",
-                required_terms=(),
                 forbidden_terms=("confirmed fraud",),
             ),
         ),
@@ -89,6 +92,7 @@ EVALUATION_CASES = (
         ),
     ),
 
+
     # ============================================================
     # CASE-003
     # Reversed transaction with debit and reversal credit
@@ -100,35 +104,54 @@ EVALUATION_CASES = (
                 name="Identifies TX-1007",
                 required_terms=("TX-1007",),
             ),
+
             EvaluationCriterion(
                 name="Identifies reversed transaction",
                 required_terms=("REVERSED",),
             ),
+
             EvaluationCriterion(
                 name="Identifies 1,000 ETB reversal",
                 required_terms=("reversal",),
                 match_any_terms=(
                     "1,000 ETB",
                     "1000 ETB",
-                    "difference of -1000",
-                    "debit of 1000",
                 ),
             ),
+
             EvaluationCriterion(
                 name="Identifies debit and reversal credit",
                 required_terms=("debit", "credit"),
             ),
+
             EvaluationCriterion(
-                name="Identifies balance discrepancy",
-                required_terms=("balance", "discrepancy"),
+                name="Identifies balance was restored",
+                required_terms=("restored",),
+                match_any_terms=(
+                    "fully reversed",
+                    "fully restored",
+                    "net effect of 0",
+                    "net effect is 0",
+                    "balance was restored",
+                ),
+            ),
+
+            EvaluationCriterion(
+                name="Does not claim balance discrepancy",
+                required_terms=(),
+                forbidden_terms=(
+                    "balance discrepancy",
+                    "balance was not restored",
+                ),
             ),
         ),
     ),
 
     # ============================================================
     # CASE-004
-    # Incoming successful transfer
+    # Successful incoming 5,000 ETB transfer
     # ============================================================
+
     EvaluationCase(
         case_id="CASE-004",
         criteria=(
@@ -136,17 +159,58 @@ EVALUATION_CASES = (
                 name="Identifies TX-1001",
                 required_terms=("TX-1001",),
             ),
+
             EvaluationCriterion(
                 name="Identifies 5,000 ETB transaction",
                 required_terms=("5,000 ETB",),
             ),
+
             EvaluationCriterion(
                 name="Identifies successful transaction",
                 required_terms=("SUCCESS",),
             ),
+
             EvaluationCriterion(
-                name="Identifies account balance discrepancy",
-                required_terms=("balance", "discrepancy"),
+                name="Identifies incoming credit",
+                required_terms=("credit",),
+                match_any_terms=(
+                    "incoming",
+                    "credited",
+                    "received",
+                ),
+            ),
+
+            EvaluationCriterion(
+                name="Identifies 5,000 ETB credited",
+                required_terms=("5,000 ETB",),
+                match_any_terms=(
+                    "credited",
+                    "credit",
+                    "received",
+                ),
+            ),
+
+            EvaluationCriterion(
+                name="Identifies balance increase",
+                required_terms=("balance",),
+                match_any_terms=(
+                    "8,000 ETB",
+                    "13,000 ETB",
+                    "increased",
+                    "increase",
+                    "8000",
+                    "13000",
+                ),
+            ),
+
+            EvaluationCriterion(
+                name="Does not claim balance discrepancy",
+                forbidden_terms=(
+                    "balance discrepancy",
+                    "balance was wrong",
+                    "missing 2,500 ETB",
+                    "2,500 ETB discrepancy",
+                ),
             ),
         ),
     ),
@@ -155,6 +219,7 @@ EVALUATION_CASES = (
     # CASE-005
     # Successful outgoing 2,000 ETB transfer
     # ============================================================
+
     EvaluationCase(
         case_id="CASE-005",
         criteria=(
@@ -162,25 +227,54 @@ EVALUATION_CASES = (
                 name="Identifies TX-1002",
                 required_terms=("TX-1002",),
             ),
+
             EvaluationCriterion(
                 name="Identifies 2,000 ETB transaction",
                 required_terms=("2,000 ETB",),
             ),
+
             EvaluationCriterion(
                 name="Identifies successful transaction",
                 required_terms=("SUCCESS",),
             ),
+
             EvaluationCriterion(
-                name="Identifies balance discrepancy",
-                required_terms=("balance", "discrepancy"),
+                name="Identifies outgoing transfer",
+                required_terms=("outgoing",),
+                match_any_terms=(
+                    "outgoing",
+                    "sent",
+                    "debited",
+                ),
+            ),
+
+            EvaluationCriterion(
+                name="Identifies account debit",
+                required_terms=("debit",),
+            ),
+
+            EvaluationCriterion(
+                name="Identifies 2,000 ETB debit",
+                required_terms=("2,000 ETB", "debit"),
+            ),
+
+            EvaluationCriterion(
+                name="Does not claim balance discrepancy",
+                forbidden_terms=(
+                    "balance discrepancy",
+                    "balance was wrong",
+                    "balance mismatch",
+                ),
             ),
         ),
     ),
 
     # ============================================================
     # CASE-006
-    # Incoming 2,000 ETB transfer
+    # Successful incoming 2,000 ETB transfer with account balance
+    # inconsistency
     # ============================================================
+
     EvaluationCase(
         case_id="CASE-006",
         criteria=(
@@ -188,17 +282,50 @@ EVALUATION_CASES = (
                 name="Identifies TX-1002",
                 required_terms=("TX-1002",),
             ),
+
             EvaluationCriterion(
                 name="Identifies 2,000 ETB transaction",
                 required_terms=("2,000 ETB",),
             ),
+
             EvaluationCriterion(
                 name="Identifies successful transaction",
                 required_terms=("SUCCESS",),
             ),
+
             EvaluationCriterion(
-                name="Identifies balance discrepancy",
+                name="Identifies incoming credit",
+                required_terms=("credit",),
+                match_any_terms=(
+                    "incoming",
+                    "credited",
+                    "received",
+                ),
+            ),
+
+            EvaluationCriterion(
+                name="Identifies 2,000 ETB credited",
+                required_terms=("2,000 ETB",),
+                match_any_terms=(
+                    "credited",
+                    "credit",
+                    "received",
+                ),
+            ),
+
+            EvaluationCriterion(
+                name="Identifies account balance discrepancy",
                 required_terms=("balance", "discrepancy"),
+            ),
+
+            EvaluationCriterion(
+                name="Does not claim TX-1002 credit was missing",
+                forbidden_terms=(
+                    "2,000 ETB was not credited",
+                    "2,000 ETB missing",
+                    "credit was missing",
+                    "TX-1002 was not credited",
+                ),
             ),
         ),
     ),
@@ -388,7 +515,6 @@ EVALUATION_CASES = (
             ),
             EvaluationCriterion(
                 name="Identifies account balance is consistent",
-                required_terms=(),
                 forbidden_terms=("discrepancy", "inconsisten"),
             ),
         ),
@@ -624,4 +750,3 @@ EVALUATION_CASES = (
         ),
     ),
 )
-

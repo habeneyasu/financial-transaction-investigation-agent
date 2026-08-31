@@ -1,241 +1,59 @@
 # Financial Transaction Investigation Agent
 
-> An agentic workflow that helps banking and financial operations officers investigate customer transaction complaints by reasoning over evidence from core banking systems through controlled MCP tools and producing an evidence-based investigation report and recommendation for human review.
+> An agentic workflow for helping financial operations officers investigate customer transaction complaints by gathering and correlating evidence through controlled MCP capabilities, while keeping financial logic deterministic and final decisions under human authority.
 
-## Problem
+## Overview
 
-Financial operations officers investigate customer complaints such as:
+Financial transaction complaints often require evidence from multiple sources: customers, accounts, transactions, ledger entries, and account balances.
 
-> "I transferred 5,000 ETB, but my account balance is incorrect."
+The challenge is not simply retrieving this information. An investigator must determine **which evidence is relevant, correlate it, identify inconsistencies, and decide what should be investigated next**.
 
-The information required to investigate is distributed across multiple core banking data sources, including customer records, account information, transaction history, ledger entries, and account balances.
+This project explores whether an LLM-powered investigation agent can reduce that effort while maintaining:
 
-An officer must manually identify the relevant records, correlate information across these sources, determine whether the records are consistent, and establish what actually happened.
+* controlled access to financial capabilities;
+* deterministic financial calculations;
+* structured investigation results;
+* auditable investigation trajectories; and
+* mandatory human review for consequential decisions.
 
-The bottleneck is therefore not simply **data retrieval**. It is **correlating evidence and determining what should be investigated next**.
+### Core principle
 
----
-
-## Core Approach
-
-The system is designed around four principles:
-
-> **Intent guides the search → Evidence proves the claim → MCP defines the boundaries → Human oversight owns the outcome.**
-
-The agent does not directly access the core banking database and does not make consequential financial decisions.
-
-Instead:
-
-* The **LLM** interprets the complaint, determines investigation intent, selects appropriate tools, analyzes evidence, and decides what information is still required.
-* **MCP** provides controlled access to permitted investigation capabilities.
-* **Business services** perform deterministic financial and business calculations.
-* **Pydantic** provides structured boundaries for API inputs, agent actions, and investigation results.
-* The **operations officer** reviews the investigation result and remains responsible for the final decision and any consequential action.
-
-The architecture intentionally uses **one investigation agent** rather than multiple specialized agents or LangGraph. The flexibility comes from evidence-driven investigation rather than unnecessary orchestration complexity.
+> **Intent guides the search → Evidence supports the finding → MCP defines the boundary → Human oversight owns the outcome.**
 
 ---
 
-## Example Investigation
-
-### Customer Complaint
-
-> "I transferred 5,000 ETB yesterday, but my account balance is wrong."
-
-### Investigation
-
-The agent may determine that the complaint requires transaction and balance investigation.
-
-It could then:
-
-```text
-Complaint
-   ↓
-Understand intent
-   ↓
-Retrieve relevant transactions
-   ↓
-Analyze transaction evidence
-   ↓
-Identify possible anomaly
-   ↓
-Retrieve additional ledger evidence
-   ↓
-Compare account and ledger balances
-   ↓
-Determine whether the evidence supports the finding
-   ↓
-Produce investigation report
-```
-
-The important point is that this is **not a fixed sequence**.
-
-The next investigation step depends on the evidence returned by the previous step.
-
-For example, if transaction data suggests a possible duplicate, the agent may request ledger evidence to determine whether both transactions were actually posted. If the ledger and account balance disagree, it may then request a deterministic balance comparison.
-
-### Example Result
-
-```text
-Finding:
-A potential duplicate debit of 5,000 ETB was identified.
-
-Evidence:
-- Two transactions have the same sender, recipient, amount and date.
-- Only one corresponding recipient credit exists.
-- The ledger and reported account balance are inconsistent.
-- The balance difference equals 5,000 ETB.
-
-Recommendation:
-Escalate for reconciliation and verify the settlement status
-of the suspected duplicate transaction.
-
-Human decision required:
-Yes
-```
-
-The recommendation is advisory. The system does not automatically perform a refund, reversal, balance adjustment, or other consequential action.
-
----
-
-## Architecture
-
-```text
-                    ┌──────────────────────────┐
-                    │    Operations Officer    │
-                    │                          │
-                    │ Review result            │
-                    │ Make final decision      │
-                    └────────────▲─────────────┘
-                                 │
-                                 │ Investigation Report
-                                 │ + Evidence
-                                 │ + Recommendation
-                                 │
-                    ┌────────────┴─────────────┐
-                    │   Investigation Agent    │
-                    │                          │
-                    │ Intent → Evidence →      │
-                    │ Next Investigation Step  │
-                    └────────────▲─────────────┘
-                                 │
-                                 │ Tool Calls
-                                 │
-                    ┌────────────┴─────────────┐
-                    │       MCP Client         │
-                    └────────────▲─────────────┘
-                                 │
-                                 │ MCP
-                                 │
-                    ┌────────────┴─────────────┐
-                    │       MCP Server         │
-                    │                          │
-                    │ get_customer             │
-                    │ get_account              │
-                    │ get_transactions         │
-                    │ get_ledger_entries       │
-                    │ compare_account_balance  │
-                    └────────────▲─────────────┘
-                                 │
-                                 │
-                    ┌────────────┴─────────────┐
-                    │   Core Banking Data      │
-                    │                          │
-                    │ Customers                │
-                    │ Accounts                 │
-                    │ Transactions             │
-                    │ Ledger Entries           │
-                    └──────────────────────────┘
-```
-
-### Investigation Flow
+## How It Works
 
 ```text
 Customer Complaint
-        ↓
+        │
+        ▼
 Investigation Agent
-        ↓
-Interpret Intent
-        ↓
-Select Evidence Required
-        ↓
-MCP Tool
-        ↓
-Structured Tool Result
-        ↓
-Analyze Evidence
-        ↓
-Is more evidence required?
-       / \
-     Yes  No
-      │    │
-      │    └──────────────┐
-      ↓                   ↓
-Next Investigation      Final Finding
-Step                       ↓
-      │                 Recommendation
-      │                       ↓
-      └──────→ Agent         ↓
-                          Operations
-                            Officer
+        │
+        │ interprets intent
+        │ selects required evidence
+        │ analyzes returned evidence
+        │ determines next step
+        ▼
+MCP Client
+        │
+        ▼
+MCP Server
+        │
+        ├── get_customer
+        ├── get_account
+        ├── get_transactions
+        ├── get_ledger_entries
+        └── compare_account_balance
+        │
+        ▼
+Deterministic Business Services
+        │
+        ▼
+Synthetic Core-Banking Data
 ```
 
----
-
-## Agentic Investigation Model
-
-The agent maintains investigation context throughout the execution.
-
-Conceptually:
-
-```text
-Complaint
-   ↓
-Investigation Intent
-   ↓
-Evidence Collected
-   ↓
-Current Findings / Hypotheses
-   ↓
-Unresolved Questions
-   ↓
-Next Investigation Action
-   ↓
-Additional Evidence
-   ↓
-Final Finding
-```
-
-After each MCP call, the returned evidence becomes part of the investigation context.
-
-The agent evaluates:
-
-* What does this evidence establish?
-* Does it support or contradict the current hypothesis?
-* What remains unknown?
-* Is additional evidence required?
-* Which permitted capability can provide that evidence?
-* Is there enough evidence to produce a defensible finding?
-
-This allows the agent to adapt its investigation path to the complaint and the evidence discovered during execution.
-
----
-
-## Controlled MCP Capabilities
-
-The initial MCP capabilities are intentionally limited to read-only investigation operations:
-
-| Tool                      | Purpose                                  |
-| ------------------------- | ---------------------------------------- |
-| `get_customer`            | Retrieve customer information            |
-| `get_account`             | Retrieve account information             |
-| `get_transactions`        | Retrieve relevant transaction records    |
-| `get_ledger_entries`      | Retrieve ledger evidence                 |
-| `compare_account_balance` | Perform deterministic balance comparison |
-
-The agent cannot bypass these interfaces to access the underlying database directly.
-
-This creates a clear separation:
+The agent does **not** access the database directly.
 
 ```text
 Agent reasoning
@@ -244,65 +62,176 @@ MCP capability
       ↓
 Business service
       ↓
-Core banking data
+Financial data
 ```
 
-MCP therefore acts as the **capability and access boundary** between agent reasoning and financial data.
+This separates probabilistic reasoning from deterministic financial logic.
 
 ---
 
-## LLM and Deterministic Logic
+## Investigation Workflow
 
-The LLM is used where interpretation and reasoning are required:
-
-* understanding the complaint;
-* identifying investigation intent;
-* selecting appropriate tools;
-* interpreting tool results;
-* correlating evidence;
-* identifying inconsistencies;
-* determining whether additional evidence is required;
-* forming an evidence-based finding; and
-* generating a recommendation.
-
-Financial calculations and business rules remain deterministic.
-
-For example:
+The investigation is evidence-driven rather than a fixed sequence.
 
 ```text
-Agent:
-"Check whether the account balance is consistent."
-
+Complaint
+   ↓
+Interpret intent
+   ↓
+Determine required evidence
+   ↓
+Select MCP capability
+   ↓
+Gather evidence
+   ↓
+Analyze evidence
+   ↓
+More evidence required?
+   ├── Yes → Select next step
+   └── No
         ↓
-
-MCP
+     Finding
         ↓
-
-compare_account_balance()
-
+  Recommendation
         ↓
-
-Deterministic Result
-
-expected_balance = 20,000
-reported_balance = 15,000
-difference = 5,000
-consistent = false
-
+ Human review
         ↓
-
-Agent interprets the evidence
+ PENDING_REVIEW
 ```
 
-The LLM therefore does not become the authority for financial calculations.
+The agent can determine:
+
+* what the complaint is asking;
+* which evidence is relevant;
+* which permitted capability should be used;
+* whether the evidence supports or contradicts the investigation;
+* whether more evidence is required; and
+* when there is sufficient evidence for a finding.
 
 ---
 
-## Structured Agent Decisions
+## Example
 
-Pydantic schemas constrain the LLM-facing interfaces.
+**Complaint**
 
-Agent decisions are represented as structured data containing information such as:
+> "I transferred 5,000 ETB yesterday, but my account balance is wrong."
+
+The agent can investigate the relevant transactions, retrieve ledger evidence, and use the deterministic balance-comparison capability.
+
+A resulting investigation may contain:
+
+```text
+Finding:
+Potential duplicate debit of 5,000 ETB.
+
+Evidence:
+- Two matching transaction records were identified.
+- Ledger evidence indicates inconsistent posting.
+- Reported and expected balances differ.
+
+Recommendation:
+Escalate for reconciliation and verify the settlement status
+of the suspected duplicate transaction.
+
+Status:
+PENDING_REVIEW
+```
+
+The recommendation is advisory. The system does not automatically refund, reverse, adjust, or otherwise modify a customer's financial state.
+
+---
+
+## Architecture
+
+```text
+┌──────────────────────────────┐
+│      Operations Officer      │
+│                              │
+│ Review evidence              │
+│ Make final decision          │
+└──────────────▲───────────────┘
+               │
+               │ Finding + Evidence
+               │ + Recommendation
+               │
+┌──────────────┴───────────────┐
+│     Investigation Agent      │
+│                              │
+│ Intent → Evidence → Finding  │
+└──────────────▲───────────────┘
+               │
+               │ Tool calls
+               │
+┌──────────────┴───────────────┐
+│          MCP Client          │
+└──────────────▲───────────────┘
+               │
+               │ MCP
+               │
+┌──────────────┴───────────────┐
+│          MCP Server           │
+│                               │
+│ get_customer                  │
+│ get_account                   │
+│ get_transactions              │
+│ get_ledger_entries            │
+│ compare_account_balance       │
+└──────────────▲────────────────┘
+               │
+┌──────────────┴───────────────┐
+│     Synthetic Core Banking   │
+│                              │
+│ Customers                    │
+│ Accounts                     │
+│ Transactions                 │
+│ Ledger Entries               │
+└──────────────────────────────┘
+```
+
+### Component responsibilities
+
+| Component               | Responsibility                                                                                 |
+| ----------------------- | ---------------------------------------------------------------------------------------------- |
+| **LLM**                 | Interpret complaints, select evidence, correlate information, and generate structured findings |
+| **Investigation Agent** | Coordinate the investigation workflow                                                          |
+| **MCP**                 | Define and enforce the permitted tool boundary                                                 |
+| **Business Services**   | Perform deterministic financial and business logic                                             |
+| **Pydantic**            | Constrain agent actions and investigation results                                              |
+| **Operations Officer**  | Make the final consequential decision                                                          |
+
+### Financial authority
+
+The LLM is **not** responsible for:
+
+* financial calculations;
+* balance reconciliation;
+* transaction posting;
+* refunds;
+* reversals;
+* account modifications; or
+* final consequential decisions.
+
+---
+
+## MCP Capabilities
+
+The investigation agent currently uses read-only capabilities:
+
+| Tool                      | Purpose                                  |
+| ------------------------- | ---------------------------------------- |
+| `get_customer`            | Retrieve customer information            |
+| `get_account`             | Retrieve account information             |
+| `get_transactions`        | Retrieve transaction records             |
+| `get_ledger_entries`      | Retrieve ledger evidence                 |
+| `compare_account_balance` | Perform deterministic balance comparison |
+
+The agent cannot bypass the MCP boundary to access the underlying database.
+
+---
+
+## Structured Interfaces
+
+Agent actions and investigation results use structured Pydantic schemas.
 
 ```text
 InvestigationAction
@@ -312,8 +241,6 @@ InvestigationAction
 ├── parameters
 └── expected_evidence
 ```
-
-The final investigation result is also structured:
 
 ```text
 InvestigationResult
@@ -327,139 +254,266 @@ InvestigationResult
 └── requires_human_review
 ```
 
-This reduces reliance on free-form LLM output and provides predictable interfaces between the agent, MCP layer, and API.
+This provides a predictable contract between the LLM, agent, MCP layer, and application.
 
 ---
 
-## Human Oversight
+## Human Review
 
-The system is an **investigation assistant**, not an autonomous financial decision-maker.
-
-The agent produces:
+Human review is a required boundary of the system.
 
 ```text
-Finding
-   +
-Evidence
-   +
-Confidence
-   +
+Investigation
+      ↓
+Finding + Evidence
+      ↓
 Recommendation
+      ↓
+Human Checkpoint
+      ↓
+PENDING_REVIEW
+      ↓
+Qualified Operations Officer
+      ↓
+Final Decision
 ```
 
-The operations officer reviews the result and decides what action, if any, should be taken.
+The agent cannot approve, reject, refund, reverse, or otherwise execute a consequential financial action.
 
-The system does not automatically perform:
+The final decision belongs to the qualified operations officer.
 
-* refunds;
-* transaction reversals;
-* balance adjustments;
-* account changes; or
-* other consequential financial actions.
+---
+
+## Investigation Trajectories
+
+Each investigation can produce a trajectory describing the workflow execution.
+
+Trajectories provide an auditable record of:
+
+* investigation steps;
+* MCP tool interactions;
+* evidence gathered;
+* retries when they actually occur;
+* human checkpoints; and
+* final investigation state.
+
+MCP retries are recorded only when a genuine retry occurs.
+
+Trajectory recording is covered by automated tests for successful investigations, genuine retries, multiple retries, ordering, and retry timestamps.
 
 ---
 
 ## Evaluation
 
-The project will be evaluated against a simple baseline using the **same investigation cases and underlying synthetic data**.
+The project evaluates the agent against a deterministic baseline using the same synthetic dataset and **20 investigation cases**.
 
-The evaluation will contain 10+ cases covering scenarios such as:
+The cases cover normal transactions, failed and reversed transactions, incoming and outgoing transfers, duplicate-looking transfers, and inconsistent account/ledger states.
 
-* normal transactions;
-* duplicate transactions;
-* missing recipient credits;
-* balance discrepancies;
-* missing ledger entries;
-* reversed transactions;
-* unexpected fees;
-* ledger duplication; and
-* multiple simultaneous anomalies.
+### Current results
 
-### Primary Metric
+| System              |     Correct | Accuracy |
+| ------------------- | ----------: | -------: |
+| Simple baseline     | **20 / 20** | **100%** |
+| Investigation agent | **19 / 20** |  **95%** |
 
-**Investigation Accuracy**
+The baseline therefore remains more accurate on the current deterministic evaluation.
 
-> Whether the system reaches the expected investigation finding for a given case.
+This is an intentional part of the experiment: adding an LLM does not automatically improve correctness.
 
-Supporting measurements include:
+The goal is to evaluate whether an agent provides value through **adaptive investigation, evidence correlation, and reduced manual effort**, while deterministic services remain authoritative for financial logic.
 
-| Metric                   | What it measures                                             |
-| ------------------------ | ------------------------------------------------------------ |
-| Investigation Accuracy   | Whether the expected issue is correctly identified           |
-| Evidence Accuracy        | Whether relevant supporting evidence is correctly identified |
-| Unsupported Claims       | Whether conclusions are made without supporting evidence     |
-| Human Investigation Time | Reduction in manual investigation effort                     |
-| Cost per Investigation   | Approximate execution cost                                   |
+Detailed case-level ground truth and evaluation outputs are maintained under:
 
-The same cases and evaluation criteria will be used for both the baseline and the agent.
+```text
+evaluation/results/
+```
 
 ---
 
-## Improvement Changelog
+## Key Insight
 
-The project will document the evolution of the workflow through measurable experiments.
+> **Use agents where adaptation and evidence correlation matter; use deterministic software where correctness can be explicitly defined.**
 
-| Stage       | Experiment                             | Evidence          | Decision                   |
-| ----------- | -------------------------------------- | ----------------- | -------------------------- |
-| Baseline    | Simple investigation approach          | Evaluation result | Establish starting point   |
-| Iteration 1 | Introduce MCP investigation tools      | Evaluation result | Keep / revise / remove     |
-| Iteration 2 | Introduce intent-driven tool selection | Evaluation result | Keep / revise / remove     |
-| Iteration 3 | Introduce structured agent decisions   | Evaluation result | Keep / revise / remove     |
-| Iteration 4 | Introduce evidence-driven next steps   | Evaluation result | Keep / revise / remove     |
-| Final       | Combine successful changes             | Final evaluation  | Identify main contribution |
+Financial calculations and reconciliation should remain deterministic and verifiable.
 
-Actual measurements will be added as experiments are completed.
-
-Experiments that fail to improve the workflow will also be documented.
+The agent is most useful as an **investigation coordinator and reasoning layer** that can interpret an unstructured complaint, determine what evidence is needed, select permitted capabilities, and correlate evidence across financial sources.
 
 ---
 
-## Reproducibility
+## Project Structure
 
-The project uses synthetic financial data so that the complete workflow can be reproduced without exposing private customer information.
+```text
+app/
+├── agent/          # Investigation agent, schemas and trajectories
+├── api/            # API endpoints
+├── data/           # Database and synthetic data
+├── llm/            # LLM provider abstraction
+├── mcp/            # MCP client, server and tools
+├── models/         # Domain models
+└── services/       # Deterministic business logic
 
-A clean environment will be able to:
+evaluation/
+├── agent/          # Agent evaluation
+├── baseline/       # Baseline evaluation
+├── cases/          # Evaluation cases
+├── results/        # Evaluation outputs and trajectories
+└── compare.py      # Baseline/agent comparison
 
-1. Start the application.
-2. Initialize the SQLite database.
-3. Load the synthetic core banking data.
-4. Start the MCP server.
-5. Submit a customer complaint.
-6. Run the investigation agent.
-7. Observe the investigation trajectory.
-8. Inspect the final investigation report.
-9. Run the baseline.
-10. Run the evaluation cases.
-11. Compare the results.
+tests/
+├── unit/
+├── integration/
+└── evaluation/
+```
 
-The repository will provide the required setup commands, configuration, versions, expected outputs, evaluation procedure, and approximate runtime and cost.
+---
+
+## Quick Start
+
+### 1. Configure the LLM
+
+```bash
+cp .env.example .env
+```
+
+Configure the required provider credentials in `.env`.
+
+Example:
+
+```env
+DEFAULT_LLM_PROVIDER=your_llm_provider
+GEMINI_API_KEY=your_api_key
+GEMINI_MODEL=your_model
+```
+
+### 2. Start the application
+
+```bash
+docker compose up --build
+```
+
+### 3. Run an investigation
+
+Submit a transaction complaint through the available API/UI.
+
+The system will:
+
+```text
+Complaint
+   ↓
+Agent
+   ↓
+MCP evidence gathering
+   ↓
+Evidence correlation
+   ↓
+Finding
+   ↓
+Recommendation
+   ↓
+Human review
+```
+
+### 4. Run tests
+
+```bash
+uv run pytest tests/unit -v
+```
+
+Current unit-test status:
+
+```text
+46 passed
+```
+
+### 5. Run the evaluation
+
+The evaluation runners are available under:
+
+```text
+evaluation/
+```
+
+The baseline and agent are evaluated against the same cases.
 
 ---
 
 ## Technology
 
-* **Python**
-* **FastAPI**
-* **Pydantic**
-* **SQLite** — synthetic core banking dataset
-* **Model Context Protocol (MCP)** — controlled tool access
-* **LLM provider abstraction** — OpenAI, Anthropic, Gemini, or compatible providers
-* **Docker / Docker Compose**
-* **Chat UI**
-* **Pytest** — testing and evaluation
+* Python
+* FastAPI
+* Pydantic
+* SQLite
+* Model Context Protocol (MCP)
+* LLM provider abstraction
+* Docker / Docker Compose
+* Pytest
+* uv
 
-The architecture intentionally avoids LangGraph and multi-agent orchestration.
+The project intentionally uses:
 
-The core design is:
+> **One investigation agent + controlled MCP capabilities + deterministic business logic + structured results + mandatory human review.**
 
-> **One investigation agent + controlled MCP capabilities + deterministic business logic + structured LLM decisions + human review.**
+It does not depend on LangGraph or multi-agent orchestration.
 
 ---
 
-## Status
+## Project Status
 
 🚧 **Active Development**
 
-The project is being implemented incrementally.
+### Implemented
 
-The README will be updated with actual evaluation results, investigation trajectories, improvement experiments, known failure modes, and final findings as the implementation progresses.
+* Investigation domain and data models
+* Deterministic service layer
+* MCP server and client
+* Read-only financial investigation tools
+* Investigation agent
+* Structured agent interfaces
+* Synthetic evaluation dataset
+* Deterministic baseline
+* Agent evaluation
+* Investigation trajectories
+* MCP retry recording
+* Automated tests
+
+### Current evidence
+
+```text
+Unit tests:        46 / 46 passing
+Baseline:          20 / 20 (100%)
+Agent:             19 / 20 (95%)
+```
+
+### Next Priority
+
+The immediate priority is to **integrate the investigation agent with the application frontend/API and demonstrate the complete user-facing workflow**.
+
+After that, remaining time should be used to:
+
+1. investigate the current agent failure;
+2. make targeted improvements where justified;
+3. rerun the evaluation;
+4. finalize evaluation artifacts; and
+5. prepare the final hackathon demo.
+
+---
+
+## Safety Boundary
+
+This project is an **investigation assistant**, not an autonomous financial decision-maker.
+
+```text
+INVESTIGATE
+     ↓
+CORRELATE EVIDENCE
+     ↓
+EXPLAIN FINDINGS
+     ↓
+RECOMMEND
+     ↓
+REQUEST HUMAN REVIEW
+```
+
+The system does not autonomously make or execute consequential financial decisions.
+
+The final authority remains with the qualified human operations officer.

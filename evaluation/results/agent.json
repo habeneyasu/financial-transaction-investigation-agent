@@ -14,7 +14,7 @@
         "passed": true
       },
       {
-        "name": "Identifies both transfers as 5,000 ETB",
+        "name": "Identifies 5,000 ETB transfers",
         "passed": true
       },
       {
@@ -26,7 +26,7 @@
         "passed": true
       },
       {
-        "name": "Identifies balance inconsistency",
+        "name": "Identifies balance discrepancy",
         "passed": true
       },
       {
@@ -65,9 +65,9 @@
   },
   {
     "case_id": "CASE-003",
-    "passed": 5,
+    "passed": 4,
     "total": 5,
-    "score": 1.0,
+    "score": 0.8,
     "criteria": [
       {
         "name": "Identifies TX-1007",
@@ -79,7 +79,7 @@
       },
       {
         "name": "Identifies 1,000 ETB reversal",
-        "passed": true
+        "passed": false
       },
       {
         "name": "Identifies debit and reversal credit",
@@ -141,9 +141,9 @@
   },
   {
     "case_id": "CASE-006",
-    "passed": 4,
+    "passed": 3,
     "total": 4,
-    "score": 1.0,
+    "score": 0.75,
     "criteria": [
       {
         "name": "Identifies TX-1002",
@@ -155,7 +155,7 @@
       },
       {
         "name": "Identifies successful transaction",
-        "passed": true
+        "passed": false
       },
       {
         "name": "Identifies balance discrepancy",
@@ -189,9 +189,9 @@
   },
   {
     "case_id": "CASE-008",
-    "passed": 4,
+    "passed": 3,
     "total": 4,
-    "score": 1.0,
+    "score": 0.75,
     "criteria": [
       {
         "name": "Identifies TX-1003",
@@ -203,7 +203,7 @@
       },
       {
         "name": "Identifies successful transaction",
-        "passed": true
+        "passed": false
       },
       {
         "name": "Identifies balance discrepancy",
@@ -485,17 +485,17 @@
   },
   {
     "case_id": "CASE-019",
-    "passed": 4,
+    "passed": 7,
     "total": 7,
-    "score": 0.5714285714285714,
+    "score": 1.0,
     "criteria": [
       {
         "name": "Identifies TX-1001",
-        "passed": false
+        "passed": true
       },
       {
         "name": "Identifies TX-1003",
-        "passed": false
+        "passed": true
       },
       {
         "name": "Identifies TX-1007",
@@ -503,7 +503,7 @@
       },
       {
         "name": "Identifies TX-1008",
-        "passed": false
+        "passed": true
       },
       {
         "name": "Identifies reversed transaction",
@@ -521,9 +521,9 @@
   },
   {
     "case_id": "CASE-020",
-    "passed": 5,
+    "passed": 6,
     "total": 6,
-    "score": 0.8333333333333334,
+    "score": 1.0,
     "criteria": [
       {
         "name": "Identifies TX-1001",
@@ -543,7 +543,7 @@
       },
       {
         "name": "Identifies suspected duplicate",
-        "passed": false
+        "passed": true
       },
       {
         "name": "Identifies balance discrepancy",

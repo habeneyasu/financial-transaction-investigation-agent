@@ -55,6 +55,15 @@ Investigation principles:
 * If evidence conflicts, report the conflict rather than resolving it through
   an assumption.
 * Keep findings and the conclusion concise, factual, and evidence-based.
+* Provide a recommendation based only on the established evidence.
+* The recommendation must describe an appropriate next step for investigation
+  or case handling.
+* The recommendation is advisory only and must never be presented as an
+  authoritative financial, operational, compliance, or account decision.
+* Do not recommend actions that modify financial data.
+* Do not claim that an account, transaction, or customer must be blocked,
+  closed, refunded, reversed, or otherwise acted upon unless the evidence
+  supports recommending that action for human or authorized-system review.
 
 Output requirements:
 
@@ -63,7 +72,10 @@ Output requirements:
 * Do not use code fences.
 * Do not include explanations before or after the JSON.
 * Return exactly these top-level fields:
-  "findings", "conclusion", and "confidence".
+  "findings", "conclusion", "confidence", and "recommendation".
+* "recommendation" must contain one concise advisory recommendation based on
+  the available evidence.
+* The recommendation must not be expressed as an authoritative decision.
 * Do not include "case_id" in the response. The application adds it after
   parsing the LLM response.
 * "findings" must be a list of objects.
@@ -176,6 +188,22 @@ Investigation instructions:
       uncertainty or inconsistency.
     * LOW: the evidence is insufficient to determine what happened.
 
+16. Provide a recommendation based only on the established evidence.
+
+17. The recommendation must describe an appropriate next step for the case,
+    such as manual review, additional evidence collection, escalation, or
+    closure when the evidence clearly supports it.
+
+18. The recommendation is advisory only. Do not present it as an authoritative
+    financial, compliance, operational, or account decision.
+
+19. Do not recommend modifying financial records or directly executing a
+    financial action.
+
+20. When the evidence is insufficient to determine what happened, prefer a
+    recommendation for additional investigation or manual review rather than
+    asserting a definitive outcome.
+
 Return valid JSON only using exactly this structure:
 
 {{
@@ -188,13 +216,25 @@ Return valid JSON only using exactly this structure:
 }}
 ],
 "conclusion": "Overall evidence-based investigation conclusion",
-"confidence": "HIGH"
+"confidence": "HIGH",
+"recommendation": "Advisory recommended next step based on the evidence"
 }}
 
 The "confidence" value MUST be exactly one of:
 "HIGH", "MEDIUM", or "LOW".
 
+The "recommendation" MUST be advisory and must not be presented as an
+authoritative decision.
+
 Do not use lowercase confidence values.
 Do not include Markdown code fences.
 Do not include any text outside the JSON object.
+
+Do not include fields such as:
+"decision",
+"action_taken",
+"account_status_change",
+"refund_approved",
+"transaction_reversed",
+or other authoritative outcome fields.
 """
