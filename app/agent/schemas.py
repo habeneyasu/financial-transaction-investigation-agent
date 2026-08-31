@@ -44,3 +44,23 @@ class InvestigationResult(BaseModel):
         ...,
         description="Confidence level based on the available evidence.",
     )
+
+    recommendation: str = Field(
+        ...,
+        description=(
+            "Recommended next step based on the evidence. "
+            "This is advisory and is not an authoritative decision."
+        ),
+    )
+
+    requires_human_review: bool = Field(
+        True,
+        description=(
+            "Human review is mandatory before any consequential action."
+        ),
+    )
+
+    status: Literal["PENDING_REVIEW"] = Field(
+        "PENDING_REVIEW",
+        description="Investigation is awaiting mandatory human review.",
+    )

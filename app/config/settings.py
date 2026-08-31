@@ -18,6 +18,10 @@ class Settings(BaseSettings):
     # MCP Configuration
     mcp_server_host: str = "localhost"
     mcp_server_port: int = 8000
+
+    mcp_read_timeout_seconds: float = 30.0
+    mcp_max_retries: int = 2
+    mcp_retry_delay_seconds: float = 0.5
     
     # API Configuration
     api_host: str = "0.0.0.0"
