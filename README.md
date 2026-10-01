@@ -508,6 +508,40 @@ docker compose up --build
 
 # Running Tests
 
+## Coding Agent Instructions
+
+This repository adopts [AGENTS.md](https://agents.md/), the open Markdown format
+for coding-agent instructions stewarded by the Agentic AI Foundation. Read the
+root [repository instructions](AGENTS.md) before making changes. They cover
+architecture, development checks, financial safety, and evaluation integrity.
+
+These instructions guide development assistants, not the running financial
+investigation agent. They do not enforce security or imply AAIF certification.
+The existing MCP integration remains unchanged; agentgateway is not yet integrated.
+
+AGENTS.md has no required fields or YAML frontmatter. Our root file follows the
+official format and includes scoped guidance and task-specific validation.
+Instruction discovery depends on the coding agent and its configuration; when
+testing adoption, have the agent identify the instructions it loaded and report
+the checks it actually performed.
+
+### Adoption Smoke Test
+
+On 2026-10-01, a separate GitHub Copilot coding-agent session explicitly discovered
+and read AGENTS.md, preserved the existing MCP/database architecture in its review,
+and distinguished planned gateway support from implemented behavior. It ran:
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 uv run --offline --no-sync pytest tests/unit/tools/test_client.py::TestMcpClient::test_lists_all_tools -v -p no:cacheprovider
+```
+
+Result: **1 passed**. No source files were changed and no external LLM provider
+calls were made by the test. This is a limited instruction-following smoke test,
+not proof of automatic discovery across tools, future compliance, gateway
+security, or full-suite correctness.
+
+## Regression Suite
+
 Run the complete test suite:
 
 ```bash
