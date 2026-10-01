@@ -151,6 +151,7 @@ def trajectory_dir(monkeypatch, tmp_path):
 
 @pytest.mark.asyncio
 async def test_successful_investigation_does_not_record_mcp_retry(
+    investigation_case,
     investigation_service,
     mcp_client,
     llm_client,
@@ -193,6 +194,19 @@ async def test_successful_investigation_does_not_record_mcp_retry(
     ]
 
     assert retry_steps == []
+
+    mcp_client.get_transactions.assert_awaited_once_with(
+        "ACC-1001",
+        as_of=investigation_case.submitted_at,
+    )
+    mcp_client.get_ledger_entries.assert_awaited_once_with(
+        "ACC-1001",
+        as_of=investigation_case.submitted_at,
+    )
+    mcp_client.compare_account_balance.assert_awaited_once_with(
+        "ACC-1001",
+        as_of=investigation_case.submitted_at,
+    )
 
     
 @pytest.mark.asyncio

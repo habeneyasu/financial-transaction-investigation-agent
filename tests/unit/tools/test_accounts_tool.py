@@ -1,4 +1,5 @@
 import pytest
+from datetime import datetime
 from decimal import Decimal
 
 from app.mcp.tools.accounts import (
@@ -24,6 +25,47 @@ class TestGetAccountTool:
 
 @pytest.mark.asyncio
 class TestCompareAccountBalanceTool:
+    async def test_as_of_uses_latest_posted_ledger_balance(self, sample_account):
+        early_entry = type(
+            "E",
+            (),
+            {
+                "status": "POSTED",
+                "entry_type": "DEBIT",
+                "amount": Decimal("5000"),
+                "transaction_id": "TX-1",
+                "created_at": datetime(2026, 8, 27, 9, 0),
+                "balance_after": Decimal("20000"),
+            },
+        )()
+        account_service = type(
+            "S", (), {"get_account": lambda self, aid: sample_account}
+        )()
+        ledger_service = type(
+            "S",
+            (),
+            {"get_ledger_entries": lambda self, aid, as_of: [early_entry]},
+        )()
+        transaction_service = type(
+            "S",
+            (),
+            {"get_transactions_for_account": lambda self, aid, as_of: []},
+        )()
+        tool = compare_account_balance_tool(
+            account_service,
+            ledger_service,
+            transaction_service,
+        )
+
+        result = await tool("ACC-001", "2026-08-28T09:00:00")
+
+        assert result["reported_balance"] == "20000"
+        assert result["reported_balance_source"] == (
+            "latest_posted_ledger_balance"
+        )
+        assert result["as_of"] == "2026-08-28T09:00:00"
+        assert result["consistent"] is True
+
     async def test_consistent_when_balances_match(self, sample_account):
         account = sample_account
         entries = [

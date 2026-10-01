@@ -2,8 +2,8 @@
   "case_id": "CASE-013",
   "agent": "financial_investigation_agent",
   "workflow_version": "1.0",
-  "started_at": "2026-08-31T06:51:53.035030+00:00",
-  "completed_at": "2026-08-31T06:51:56.492708+00:00",
+  "started_at": "2026-09-25T19:51:34.474790+00:00",
+  "completed_at": "2026-09-25T19:51:37.396318+00:00",
   "steps": [
     {
       "step": "workflow_start",
@@ -15,7 +15,7 @@
         "instructions": "Collect relevant case, account, transaction and ledger evidence. Use deterministic checks where available. Produce an evidence-backed investigation result. Do not execute consequential actions without human approval.",
         "evaluation_case": true
       },
-      "timestamp": "2026-08-31T06:51:53.035049+00:00"
+      "timestamp": "2026-09-25T19:51:34.474822+00:00"
     },
     {
       "step": "case_retrieval",
@@ -28,7 +28,7 @@
         "submitted_at": "2026-08-28T12:00:00",
         "status": "OPEN"
       },
-      "timestamp": "2026-08-31T06:51:53.036231+00:00"
+      "timestamp": "2026-09-25T19:51:34.477190+00:00"
     },
     {
       "step": "customer_evidence_request",
@@ -37,7 +37,7 @@
         "customer_id": "CUST-004",
         "source": "MCP"
       },
-      "timestamp": "2026-08-31T06:51:53.036244+00:00"
+      "timestamp": "2026-09-25T19:51:34.477216+00:00"
     },
     {
       "step": "customer_evidence_response",
@@ -52,16 +52,17 @@
           "status": "ACTIVE"
         }
       },
-      "timestamp": "2026-08-31T06:51:53.037717+00:00"
+      "timestamp": "2026-09-25T19:51:34.480398+00:00"
     },
     {
       "step": "account_evidence_request",
       "action": "get_account",
       "details": {
         "account_id": "ACC-1004",
+        "as_of": "2026-08-28T12:00:00",
         "source": "MCP"
       },
-      "timestamp": "2026-08-31T06:51:53.037726+00:00"
+      "timestamp": "2026-09-25T19:51:34.480425+00:00"
     },
     {
       "step": "account_evidence_response",
@@ -81,7 +82,7 @@
           "status": "ACTIVE"
         }
       },
-      "timestamp": "2026-08-31T06:51:53.038980+00:00"
+      "timestamp": "2026-09-25T19:51:34.483429+00:00"
     },
     {
       "step": "transaction_evidence_request",
@@ -90,7 +91,7 @@
         "account_id": "ACC-1004",
         "source": "MCP"
       },
-      "timestamp": "2026-08-31T06:51:53.038990+00:00"
+      "timestamp": "2026-09-25T19:51:34.483454+00:00"
     },
     {
       "step": "transaction_evidence_response",
@@ -128,16 +129,17 @@
           }
         ]
       },
-      "timestamp": "2026-08-31T06:51:53.040461+00:00"
+      "timestamp": "2026-09-25T19:51:34.487075+00:00"
     },
     {
       "step": "ledger_evidence_request",
       "action": "get_ledger_entries",
       "details": {
         "account_id": "ACC-1004",
+        "as_of": "2026-08-28T12:00:00",
         "source": "MCP"
       },
-      "timestamp": "2026-08-31T06:51:53.040471+00:00"
+      "timestamp": "2026-09-25T19:51:34.487102+00:00"
     },
     {
       "step": "ledger_evidence_response",
@@ -161,17 +163,18 @@
           }
         ]
       },
-      "timestamp": "2026-08-31T06:51:53.041937+00:00"
+      "timestamp": "2026-09-25T19:51:34.490560+00:00"
     },
     {
       "step": "balance_comparison_request",
       "action": "compare_account_balance",
       "details": {
         "account_id": "ACC-1004",
+        "as_of": "2026-08-28T12:00:00",
         "source": "MCP",
         "deterministic": true
       },
-      "timestamp": "2026-08-31T06:51:53.041947+00:00"
+      "timestamp": "2026-09-25T19:51:34.490588+00:00"
     },
     {
       "step": "balance_comparison_response",
@@ -182,7 +185,9 @@
         "deterministic": true,
         "result": {
           "account_id": "ACC-1004",
+          "as_of": "2026-08-28T12:00:00",
           "reported_balance": "28000",
+          "reported_balance_source": "latest_posted_ledger_balance",
           "expected_balance": "28000",
           "difference": "0",
           "consistent": true,
@@ -191,7 +196,7 @@
           "suspected_duplicate_debit": null
         }
       },
-      "timestamp": "2026-08-31T06:51:53.044576+00:00"
+      "timestamp": "2026-09-25T19:51:34.495601+00:00"
     },
     {
       "step": "investigation_prompt",
@@ -206,7 +211,7 @@
           "balance_comparison"
         ]
       },
-      "timestamp": "2026-08-31T06:51:53.044656+00:00"
+      "timestamp": "2026-09-25T19:51:34.495713+00:00"
     },
     {
       "step": "llm_request",
@@ -222,7 +227,7 @@
           "balance_comparison"
         ]
       },
-      "timestamp": "2026-08-31T06:51:53.044663+00:00"
+      "timestamp": "2026-09-25T19:51:34.495723+00:00"
     },
     {
       "step": "llm_response",
@@ -230,7 +235,7 @@
       "details": {
         "response_received": true
       },
-      "timestamp": "2026-08-31T06:51:56.492500+00:00"
+      "timestamp": "2026-09-25T19:51:37.396000+00:00"
     },
     {
       "step": "result_validation",
@@ -238,7 +243,7 @@
       "details": {
         "schema": "InvestigationResult"
       },
-      "timestamp": "2026-08-31T06:51:56.492517+00:00"
+      "timestamp": "2026-09-25T19:51:37.396043+00:00"
     },
     {
       "step": "human_checkpoint",
@@ -250,7 +255,7 @@
         "consequential_action_executed": false,
         "message": "Investigation recommendation requires qualified human review before any consequential action."
       },
-      "timestamp": "2026-08-31T06:51:56.492573+00:00"
+      "timestamp": "2026-09-25T19:51:37.396123+00:00"
     },
     {
       "step": "final_result",
@@ -260,29 +265,32 @@
           "case_id": "CASE-013",
           "findings": [
             {
-              "description": "The customer's transfer of 2,000 ETB was successfully processed and recorded in the ledger.",
+              "description": "The customer initiated a transfer of 2,000 ETB on 2026-08-28, which was successfully processed.",
               "evidence": [
-                "Transaction TX-1006 status is SUCCESS.",
-                "Ledger entry LED-008 shows a DEBIT of 2,000 ETB for transaction TX-1006.",
-                "The balance decreased from 30,000 ETB to 28,000 ETB following this transaction."
+                "Transaction TX-1006: amount 2000 ETB, status SUCCESS, date 2026-08-28T10:10:00"
               ]
             },
             {
-              "description": "The current account balance is consistent with all recorded transactions and ledger entries.",
+              "description": "A corresponding debit of 2,000 ETB was posted to the customer's account ledger.",
               "evidence": [
-                "Balance comparison confirms a reported balance of 28,000 ETB matches the expected balance.",
-                "Difference is 0 and consistent is True."
+                "Ledger entry LED-008: transaction_id TX-1006, amount 2000 ETB, entry_type DEBIT, status POSTED"
+              ]
+            },
+            {
+              "description": "The account balance is consistent with the recorded transaction and ledger activity.",
+              "evidence": [
+                "Balance comparison: reported_balance 28000, expected_balance 28000, difference 0, consistent True"
               ]
             }
           ],
-          "conclusion": "The customer's account was correctly debited by 2,000 ETB for the transfer requested on 2026-08-28. The transaction record and the ledger entry align perfectly with the current account balance, and there is no evidence of an error or duplicate debit.",
+          "conclusion": "The customer's transfer of 2,000 ETB was successfully processed and correctly debited from their account. The account balance is consistent with all recorded transactions and ledger entries.",
           "confidence": "HIGH",
-          "recommendation": "Inform the customer that the transfer was successfully processed and that their account balance accurately reflects the transaction.",
+          "recommendation": "Inform the customer that the transaction was processed successfully and that their account balance accurately reflects the debit.",
           "requires_human_review": true,
           "status": "PENDING_REVIEW"
         }
       },
-      "timestamp": "2026-08-31T06:51:56.492647+00:00"
+      "timestamp": "2026-09-25T19:51:37.396220+00:00"
     }
   ]
 }

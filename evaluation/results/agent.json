@@ -1,554 +1,1345 @@
-[
-  {
-    "case_id": "CASE-001",
-    "passed": 7,
-    "total": 7,
-    "score": 1.0,
-    "criteria": [
-      {
-        "name": "Identifies TX-1001",
-        "passed": true
-      },
-      {
-        "name": "Identifies TX-1004",
-        "passed": true
-      },
-      {
-        "name": "Identifies 5,000 ETB transfers",
-        "passed": true
-      },
-      {
-        "name": "Identifies successful transactions",
-        "passed": true
-      },
-      {
-        "name": "Identifies suspected duplicate",
-        "passed": true
-      },
-      {
-        "name": "Identifies balance discrepancy",
-        "passed": true
-      },
-      {
-        "name": "Does not claim confirmed fraud",
-        "passed": true
-      }
-    ]
+{
+  "metadata": {
+    "artifact_schema_version": 2,
+    "system": "agent",
+    "generated_at": "2026-09-25T19:53:57.483746+00:00",
+    "rubric_hash": "ea4ddaa70e538910ad10d6e7ca68be099f4076daa706338c7e564c4ed2f14b68",
+    "ground_truth_hash": "bfa8af0877de3fcf8887b4c600cc9069026e596635e74d4fe7c5fa34be957afc",
+    "provider": "gemini",
+    "model": "gemini-3.1-flash-lite",
+    "prompt_hash": "877f56645c42d3c36fe622d53914ff7bc515dac4778eee34c911cd969061aaf8",
+    "implementation_hash": "4ffabc1f4ac1441c2bb8465b80a3c9443969d576264746a0cba2f97289d7db77",
+    "generation_config": {
+      "temperature": 0.0
+    },
+    "python_version": "3.14.6",
+    "git_commit": "f0720251fc8ea4f792740b1c0dfcea06721e3784",
+    "git_dirty": true,
+    "rescored_at": "2026-09-25T19:57:34.531258+00:00"
   },
-  {
-    "case_id": "CASE-002",
-    "passed": 5,
-    "total": 5,
-    "score": 1.0,
-    "criteria": [
-      {
-        "name": "Identifies TX-1005",
-        "passed": true
-      },
-      {
-        "name": "Identifies 10,000 ETB disputed amount",
-        "passed": true
-      },
-      {
-        "name": "Identifies failed transaction",
-        "passed": true
-      },
-      {
-        "name": "Identifies no ledger debit for TX-1005",
-        "passed": true
-      },
-      {
-        "name": "Identifies balance discrepancy",
-        "passed": true
-      }
-    ]
-  },
-  {
-    "case_id": "CASE-003",
-    "passed": 4,
-    "total": 5,
-    "score": 0.8,
-    "criteria": [
-      {
-        "name": "Identifies TX-1007",
-        "passed": true
-      },
-      {
-        "name": "Identifies reversed transaction",
-        "passed": true
-      },
-      {
-        "name": "Identifies 1,000 ETB reversal",
-        "passed": false
-      },
-      {
-        "name": "Identifies debit and reversal credit",
-        "passed": true
-      },
-      {
-        "name": "Identifies balance discrepancy",
-        "passed": true
-      }
-    ]
-  },
-  {
-    "case_id": "CASE-004",
-    "passed": 4,
-    "total": 4,
-    "score": 1.0,
-    "criteria": [
-      {
-        "name": "Identifies TX-1001",
-        "passed": true
-      },
-      {
-        "name": "Identifies 5,000 ETB transaction",
-        "passed": true
-      },
-      {
-        "name": "Identifies successful transaction",
-        "passed": true
-      },
-      {
-        "name": "Identifies account balance discrepancy",
-        "passed": true
-      }
-    ]
-  },
-  {
-    "case_id": "CASE-005",
-    "passed": 3,
-    "total": 4,
-    "score": 0.75,
-    "criteria": [
-      {
-        "name": "Identifies TX-1002",
-        "passed": false
-      },
-      {
-        "name": "Identifies 2,000 ETB transaction",
-        "passed": true
-      },
-      {
-        "name": "Identifies successful transaction",
-        "passed": true
-      },
-      {
-        "name": "Identifies balance discrepancy",
-        "passed": true
-      }
-    ]
-  },
-  {
-    "case_id": "CASE-006",
-    "passed": 3,
-    "total": 4,
-    "score": 0.75,
-    "criteria": [
-      {
-        "name": "Identifies TX-1002",
-        "passed": true
-      },
-      {
-        "name": "Identifies 2,000 ETB transaction",
-        "passed": true
-      },
-      {
-        "name": "Identifies successful transaction",
-        "passed": false
-      },
-      {
-        "name": "Identifies balance discrepancy",
-        "passed": true
-      }
-    ]
-  },
-  {
-    "case_id": "CASE-007",
-    "passed": 4,
-    "total": 4,
-    "score": 1.0,
-    "criteria": [
-      {
-        "name": "Identifies TX-1003",
-        "passed": true
-      },
-      {
-        "name": "Identifies 1,500 ETB transaction",
-        "passed": true
-      },
-      {
-        "name": "Identifies successful transaction",
-        "passed": true
-      },
-      {
-        "name": "Identifies balance discrepancy",
-        "passed": true
-      }
-    ]
-  },
-  {
-    "case_id": "CASE-008",
-    "passed": 3,
-    "total": 4,
-    "score": 0.75,
-    "criteria": [
-      {
-        "name": "Identifies TX-1003",
-        "passed": true
-      },
-      {
-        "name": "Identifies 1,500 ETB transaction",
-        "passed": true
-      },
-      {
-        "name": "Identifies successful transaction",
-        "passed": false
-      },
-      {
-        "name": "Identifies balance discrepancy",
-        "passed": true
-      }
-    ]
-  },
-  {
-    "case_id": "CASE-009",
-    "passed": 4,
-    "total": 5,
-    "score": 0.8,
-    "criteria": [
-      {
-        "name": "Identifies TX-1001",
-        "passed": true
-      },
-      {
-        "name": "Identifies TX-1004",
-        "passed": true
-      },
-      {
-        "name": "Identifies both transactions as successful",
-        "passed": true
-      },
-      {
-        "name": "Identifies suspected duplicate",
-        "passed": false
-      },
-      {
-        "name": "Identifies 5,000 ETB amount",
-        "passed": true
-      }
-    ]
-  },
-  {
-    "case_id": "CASE-010",
-    "passed": 5,
-    "total": 5,
-    "score": 1.0,
-    "criteria": [
-      {
-        "name": "Identifies TX-1005",
-        "passed": true
-      },
-      {
-        "name": "Identifies failed status",
-        "passed": true
-      },
-      {
-        "name": "Identifies 10,000 ETB amount",
-        "passed": true
-      },
-      {
-        "name": "Identifies absence of ledger debit",
-        "passed": true
-      },
-      {
-        "name": "Identifies balance discrepancy",
-        "passed": true
-      }
-    ]
-  },
-  {
-    "case_id": "CASE-011",
-    "passed": 4,
-    "total": 4,
-    "score": 1.0,
-    "criteria": [
-      {
-        "name": "Identifies TX-1005",
-        "passed": true
-      },
-      {
-        "name": "Identifies failed transaction",
-        "passed": true
-      },
-      {
-        "name": "Identifies 10,000 ETB amount",
-        "passed": true
-      },
-      {
-        "name": "Identifies no ledger debit",
-        "passed": true
-      }
-    ]
-  },
-  {
-    "case_id": "CASE-012",
-    "passed": 4,
-    "total": 4,
-    "score": 1.0,
-    "criteria": [
-      {
-        "name": "Identifies TX-1006",
-        "passed": true
-      },
-      {
-        "name": "Identifies 2,000 ETB transaction",
-        "passed": true
-      },
-      {
-        "name": "Identifies successful transaction",
-        "passed": true
-      },
-      {
-        "name": "Identifies balance discrepancy",
-        "passed": true
-      }
-    ]
-  },
-  {
-    "case_id": "CASE-013",
-    "passed": 4,
-    "total": 4,
-    "score": 1.0,
-    "criteria": [
-      {
-        "name": "Identifies TX-1006",
-        "passed": true
-      },
-      {
-        "name": "Identifies successful transaction",
-        "passed": true
-      },
-      {
-        "name": "Identifies 2,000 ETB amount",
-        "passed": true
-      },
-      {
-        "name": "Identifies account balance is consistent",
-        "passed": true
-      }
-    ]
-  },
-  {
-    "case_id": "CASE-014",
-    "passed": 5,
-    "total": 5,
-    "score": 1.0,
-    "criteria": [
-      {
-        "name": "Identifies TX-1007",
-        "passed": true
-      },
-      {
-        "name": "Identifies reversed status",
-        "passed": true
-      },
-      {
-        "name": "Identifies reversal",
-        "passed": true
-      },
-      {
-        "name": "Identifies debit and credit",
-        "passed": true
-      },
-      {
-        "name": "Identifies 1,000 ETB amount",
-        "passed": true
-      }
-    ]
-  },
-  {
-    "case_id": "CASE-015",
-    "passed": 5,
-    "total": 5,
-    "score": 1.0,
-    "criteria": [
-      {
-        "name": "Identifies TX-1007",
-        "passed": true
-      },
-      {
-        "name": "Identifies reversed transaction",
-        "passed": true
-      },
-      {
-        "name": "Identifies debit and reversal credit",
-        "passed": true
-      },
-      {
-        "name": "Identifies reversal amount",
-        "passed": true
-      },
-      {
-        "name": "Identifies balance discrepancy",
-        "passed": true
-      }
-    ]
-  },
-  {
-    "case_id": "CASE-016",
-    "passed": 4,
-    "total": 4,
-    "score": 1.0,
-    "criteria": [
-      {
-        "name": "Identifies TX-1008",
-        "passed": true
-      },
-      {
-        "name": "Identifies 2,500 ETB amount",
-        "passed": true
-      },
-      {
-        "name": "Identifies successful transaction",
-        "passed": true
-      },
-      {
-        "name": "Identifies balance discrepancy",
-        "passed": true
-      }
-    ]
-  },
-  {
-    "case_id": "CASE-017",
-    "passed": 4,
-    "total": 4,
-    "score": 1.0,
-    "criteria": [
-      {
-        "name": "Identifies TX-1008",
-        "passed": true
-      },
-      {
-        "name": "Identifies 2,500 ETB amount",
-        "passed": true
-      },
-      {
-        "name": "Identifies successful transaction",
-        "passed": true
-      },
-      {
-        "name": "Identifies balance discrepancy",
-        "passed": true
-      }
-    ]
-  },
-  {
-    "case_id": "CASE-018",
-    "passed": 8,
-    "total": 8,
-    "score": 1.0,
-    "criteria": [
-      {
-        "name": "Identifies TX-1001",
-        "passed": true
-      },
-      {
-        "name": "Identifies TX-1002",
-        "passed": true
-      },
-      {
-        "name": "Identifies TX-1003",
-        "passed": true
-      },
-      {
-        "name": "Identifies TX-1004",
-        "passed": true
-      },
-      {
-        "name": "Identifies TX-1006",
-        "passed": true
-      },
-      {
-        "name": "Identifies successful transactions",
-        "passed": true
-      },
-      {
-        "name": "Identifies duplicate pair",
-        "passed": true
-      },
-      {
-        "name": "Identifies balance discrepancy",
-        "passed": true
-      }
-    ]
-  },
-  {
-    "case_id": "CASE-019",
-    "passed": 7,
-    "total": 7,
-    "score": 1.0,
-    "criteria": [
-      {
-        "name": "Identifies TX-1001",
-        "passed": true
-      },
-      {
-        "name": "Identifies TX-1003",
-        "passed": true
-      },
-      {
-        "name": "Identifies TX-1007",
-        "passed": true
-      },
-      {
-        "name": "Identifies TX-1008",
-        "passed": true
-      },
-      {
-        "name": "Identifies reversed transaction",
-        "passed": true
-      },
-      {
-        "name": "Identifies reversal debit and credit",
-        "passed": true
-      },
-      {
-        "name": "Identifies balance discrepancy",
-        "passed": true
-      }
-    ]
-  },
-  {
-    "case_id": "CASE-020",
-    "passed": 6,
-    "total": 6,
-    "score": 1.0,
-    "criteria": [
-      {
-        "name": "Identifies TX-1001",
-        "passed": true
-      },
-      {
-        "name": "Identifies TX-1004",
-        "passed": true
-      },
-      {
-        "name": "Identifies 5,000 ETB amount",
-        "passed": true
-      },
-      {
-        "name": "Identifies successful status",
-        "passed": true
-      },
-      {
-        "name": "Identifies suspected duplicate",
-        "passed": true
-      },
-      {
-        "name": "Identifies balance discrepancy",
-        "passed": true
-      }
-    ]
-  }
-]
+  "results": [
+    {
+      "case_id": "CASE-001",
+      "output": {
+        "case_id": "CASE-001",
+        "findings": [
+          {
+            "description": "The account balance is inconsistent, with a reported balance of 15,000 ETB and an expected balance of 14,500 ETB, resulting in a difference of 500 ETB.",
+            "evidence": [
+              "Balance comparison data: reported_balance='15000', expected_balance='14500', difference='500', consistent=False"
+            ]
+          },
+          {
+            "description": "Two successful transfer transactions of 5,000 ETB each were processed to the same recipient account (ACC-1002) within two minutes of each other.",
+            "evidence": [
+              "Transaction TX-1001: 5,000 ETB, 2026-08-27T09:15:00, status SUCCESS",
+              "Transaction TX-1004: 5,000 ETB, 2026-08-27T09:17:00, status SUCCESS"
+            ]
+          },
+          {
+            "description": "Both transfer transactions (TX-1001 and TX-1004) have corresponding posted ledger entries that debited the account.",
+            "evidence": [
+              "Ledger entry LED-001: TX-1001, 5,000 ETB debit, balance_after='20000'",
+              "Ledger entry LED-007: TX-1004, 5,000 ETB debit, balance_after='15000'"
+            ]
+          },
+          {
+            "description": "The balance comparison tool identifies TX-1001 and TX-1004 as a suspected duplicate debit.",
+            "evidence": [
+              "Balance comparison data: suspected_duplicate_debit={'amount': '5000', 'recipient_account_id': 'ACC-1002', 'duplicate_count': 2, 'transaction_ids': ['TX-1004', 'TX-1001']}"
+            ]
+          }
+        ],
+        "conclusion": "The customer's account reflects two successful transfers of 5,000 ETB each to the same recipient on 2026-08-27. While the balance comparison tool flags these as a suspected duplicate, both transactions were processed as successful and have corresponding posted ledger entries. The discrepancy between the reported balance and the expected balance (500 ETB) remains unexplained by the provided transaction and ledger data.",
+        "confidence": "HIGH",
+        "recommendation": "Conduct a manual review of the account history to determine the origin of the 500 ETB discrepancy and verify if the customer intended to initiate two separate 5,000 ETB transfers.",
+        "requires_human_review": true,
+        "status": "PENDING_REVIEW"
+      },
+      "passed": 7,
+      "total": 7,
+      "score": 1.0,
+      "criteria": [
+        {
+          "name": "Identifies TX-1001",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "name": "Identifies TX-1004",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "name": "Identifies 5,000 ETB transfers",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "name": "Identifies successful transactions",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "name": "Identifies suspected duplicate",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "name": "Identifies balance discrepancy",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "name": "Does not claim confirmed fraud",
+          "passed": true,
+          "reason": ""
+        }
+      ]
+    },
+    {
+      "case_id": "CASE-002",
+      "output": {
+        "case_id": "CASE-002",
+        "findings": [
+          {
+            "description": "The customer's transaction TX-1005 for 10,000 ETB is marked as FAILED in the transaction records.",
+            "evidence": [
+              "Transaction record TX-1005: {'transaction_id': 'TX-1005', 'amount': '10000', 'status': 'FAILED', ...}"
+            ]
+          },
+          {
+            "description": "There is no ledger entry corresponding to the failed transaction TX-1005, indicating no debit was posted for this specific transaction.",
+            "evidence": [
+              "Ledger entries list: Only entries for TX-1008, TX-1007, and TX-1002 are present."
+            ]
+          },
+          {
+            "description": "The balance comparison tool identifies a discrepancy of -4,000 ETB between the reported balance (45,500 ETB) and the expected balance (49,500 ETB).",
+            "evidence": [
+              "Balance comparison: {'reported_balance': '45500', 'expected_balance': '49500', 'difference': '-4000', 'consistent': False}"
+            ]
+          }
+        ],
+        "conclusion": "The customer's claim that 10,000 ETB was deducted for the failed transaction TX-1005 is not supported by the ledger evidence, as no debit entry exists for that transaction. However, there is an unexplained balance discrepancy of 4,000 ETB on the account. The cause of this discrepancy cannot be determined from the available evidence.",
+        "confidence": "HIGH",
+        "recommendation": "Conduct a manual audit of all ledger entries associated with account ACC-1003 to identify the source of the 4,000 ETB discrepancy.",
+        "requires_human_review": true,
+        "status": "PENDING_REVIEW"
+      },
+      "passed": 5,
+      "total": 5,
+      "score": 1.0,
+      "criteria": [
+        {
+          "name": "Identifies TX-1005",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "name": "Identifies 10,000 ETB disputed amount",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "name": "Identifies failed transaction",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "name": "Identifies no ledger debit for TX-1005",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "name": "Identifies balance discrepancy",
+          "passed": true,
+          "reason": ""
+        }
+      ]
+    },
+    {
+      "case_id": "CASE-003",
+      "output": {
+        "case_id": "CASE-003",
+        "findings": [
+          {
+            "description": "Transaction TX-1007 was marked as REVERSED and is supported by two ledger entries: a debit (LED-010) and a subsequent credit (LED-012) for the same amount.",
+            "evidence": [
+              "Transaction TX-1007 status: REVERSED",
+              "Ledger entry LED-010: DEBIT of 1000 ETB",
+              "Ledger entry LED-012: CREDIT of 1000 ETB"
+            ]
+          },
+          {
+            "description": "The account balance is inconsistent, with a reported balance of 15500 ETB and an expected balance of 14000 ETB, resulting in a difference of 1500 ETB.",
+            "evidence": [
+              "Balance comparison: reported_balance 15500, expected_balance 14000, difference 1500, consistent False"
+            ]
+          },
+          {
+            "description": "The account current_balance field (13000) conflicts with the reported_balance from the ledger (15500).",
+            "evidence": [
+              "Account current_balance: 13000",
+              "Balance comparison reported_balance: 15500"
+            ]
+          }
+        ],
+        "conclusion": "The customer's inquiry regarding the reversal of TX-1007 is supported by the ledger, which shows both a debit and a reversal credit. However, there is a confirmed balance discrepancy of 1500 ETB between the expected and reported ledger balances, and a further conflict between the account's current balance and the ledger's reported balance. The cause of these discrepancies cannot be determined from the available evidence.",
+        "confidence": "HIGH",
+        "recommendation": "Escalate the case for a manual audit of the account ledger to reconcile the 1500 ETB discrepancy and resolve the conflict between the account's current balance and the ledger's reported balance.",
+        "requires_human_review": true,
+        "status": "PENDING_REVIEW"
+      },
+      "passed": 6,
+      "total": 6,
+      "score": 1.0,
+      "criteria": [
+        {
+          "name": "Identifies TX-1007",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "name": "Identifies reversed transaction",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "name": "Identifies 1,000 ETB reversal",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "name": "Identifies debit and reversal credit",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "name": "Identifies balance was restored",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "name": "Identifies balance discrepancy",
+          "passed": true,
+          "reason": ""
+        }
+      ]
+    },
+    {
+      "case_id": "CASE-004",
+      "output": {
+        "case_id": "CASE-004",
+        "findings": [
+          {
+            "description": "The customer's account (ACC-1002) shows a successful transfer of 5,000 ETB (TX-1001) which is supported by a corresponding credit ledger entry (LED-002).",
+            "evidence": [
+              "Transaction TX-1001 status is SUCCESS",
+              "Ledger entry LED-002 shows a CREDIT of 5,000 ETB for TX-1001"
+            ]
+          },
+          {
+            "description": "There is a second transaction (TX-1004) for 5,000 ETB that is marked as SUCCESS, but it lacks a corresponding ledger entry.",
+            "evidence": [
+              "Transaction TX-1004 status is SUCCESS",
+              "Ledger entries list does not contain an entry for TX-1004"
+            ]
+          },
+          {
+            "description": "The balance comparison indicates an inconsistency between the reported balance and the expected balance.",
+            "evidence": [
+              "Balance comparison reports a difference of 1,500 ETB",
+              "Balance comparison consistent field is False"
+            ]
+          }
+        ],
+        "conclusion": "The customer received one 5,000 ETB transfer (TX-1001) which is correctly reflected in the ledger. While a second transaction (TX-1004) for 5,000 ETB is marked as successful in the transaction records, it has no corresponding ledger entry. Furthermore, the balance comparison shows a discrepancy of 1,500 ETB that cannot be explained by the available ledger entries.",
+        "confidence": "HIGH",
+        "recommendation": "Conduct a manual review of the transaction processing system to determine why TX-1004 lacks a ledger entry and to investigate the source of the 1,500 ETB balance discrepancy.",
+        "requires_human_review": true,
+        "status": "PENDING_REVIEW"
+      },
+      "passed": 7,
+      "total": 7,
+      "score": 1.0,
+      "criteria": [
+        {
+          "name": "Identifies TX-1001",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "name": "Identifies 5,000 ETB transaction",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "name": "Identifies successful transaction",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "name": "Identifies incoming credit",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "name": "Identifies 5,000 ETB credited",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "name": "Identifies ledger-backed balance impact",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "name": "Identifies balance discrepancy",
+          "passed": true,
+          "reason": ""
+        }
+      ]
+    },
+    {
+      "case_id": "CASE-005",
+      "output": {
+        "case_id": "CASE-005",
+        "findings": [
+          {
+            "description": "The customer's requested transaction of 2,000 ETB is not found in the transaction history.",
+            "evidence": [
+              "Transaction list contains TX-1004, TX-1001, TX-1002, and TX-1003; none match the 2,000 ETB transfer amount requested in the complaint."
+            ]
+          },
+          {
+            "description": "The account balance is inconsistent with the expected balance.",
+            "evidence": [
+              "Balance comparison reports a reported balance of 15,000 ETB, an expected balance of 14,500 ETB, and a difference of 500 ETB."
+            ]
+          },
+          {
+            "description": "There is a suspected duplicate debit involving transactions TX-1004 and TX-1001.",
+            "evidence": [
+              "Balance comparison identifies TX-1004 and TX-1001 as a suspected duplicate debit of 5,000 ETB each to account ACC-1002."
+            ]
+          },
+          {
+            "description": "The ledger reflects four successful postings, but the account balance does not align with the expected calculation.",
+            "evidence": [
+              "Ledger entries LED-007, LED-001, LED-003, and LED-006 are all marked as POSTED."
+            ]
+          }
+        ],
+        "conclusion": "The customer's specific inquiry regarding a 2,000 ETB transfer cannot be verified as no such transaction exists in the provided records. Furthermore, the account shows a balance discrepancy of 500 ETB and a suspected duplicate debit of 5,000 ETB (TX-1001 and TX-1004), the cause of which cannot be determined from the available evidence.",
+        "confidence": "HIGH",
+        "recommendation": "Conduct a manual review of the account ledger and transaction history to reconcile the 500 ETB balance discrepancy and investigate the suspected duplicate debit of 5,000 ETB.",
+        "requires_human_review": true,
+        "status": "PENDING_REVIEW"
+      },
+      "passed": 6,
+      "total": 7,
+      "score": 0.8571428571428571,
+      "criteria": [
+        {
+          "name": "Identifies TX-1002",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "name": "Identifies 2,000 ETB transaction",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "name": "Identifies successful transaction",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "name": "Identifies outgoing transfer",
+          "passed": false,
+          "reason": "Missing: outgoing; None of alternatives matched: outgoing, sent, debited"
+        },
+        {
+          "name": "Identifies account debit",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "name": "Identifies 2,000 ETB debit",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "name": "Identifies balance discrepancy",
+          "passed": true,
+          "reason": ""
+        }
+      ]
+    },
+    {
+      "case_id": "CASE-006",
+      "output": {
+        "case_id": "CASE-006",
+        "findings": [
+          {
+            "description": "A transfer of 2,000 ETB (TX-1002) was successfully completed and credited to the customer's account.",
+            "evidence": [
+              "Transaction TX-1002 status is SUCCESS.",
+              "Ledger entry LED-004 confirms a CREDIT of 2,000 ETB to account ACC-1003 on 2026-08-26."
+            ]
+          },
+          {
+            "description": "There is a discrepancy between the reported account balance and the expected balance.",
+            "evidence": [
+              "Balance comparison shows a reported balance of 50,000 ETB and an expected balance of 52,000 ETB, resulting in a difference of -2,000 ETB.",
+              "The account consistency check is False."
+            ]
+          },
+          {
+            "description": "The cause of the balance discrepancy cannot be determined from the available evidence.",
+            "evidence": [
+              "The balance comparison indicates a difference of -2,000 ETB, but the provided ledger entries and transaction history do not account for the missing funds relative to the expected balance."
+            ]
+          }
+        ],
+        "conclusion": "The customer's claim that 2,000 ETB was credited to their account is supported by transaction TX-1002 and ledger entry LED-004. However, the account balance is currently inconsistent, showing a discrepancy of 2,000 ETB compared to the expected balance. The cause of this discrepancy cannot be determined from the provided evidence.",
+        "confidence": "HIGH",
+        "recommendation": "Conduct a manual audit of the account's full transaction and ledger history to identify the source of the 2,000 ETB balance discrepancy.",
+        "requires_human_review": true,
+        "status": "PENDING_REVIEW"
+      },
+      "passed": 7,
+      "total": 7,
+      "score": 1.0,
+      "criteria": [
+        {
+          "name": "Identifies TX-1002",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "name": "Identifies 2,000 ETB transaction",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "name": "Identifies successful transaction",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "name": "Identifies incoming credit",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "name": "Identifies 2,000 ETB credited",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "name": "Identifies account balance discrepancy",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "name": "Does not claim TX-1002 credit was missing",
+          "passed": true,
+          "reason": ""
+        }
+      ]
+    },
+    {
+      "case_id": "CASE-007",
+      "output": {
+        "case_id": "CASE-007",
+        "findings": [
+          {
+            "description": "The customer's account shows a successful debit of 1,500 ETB for transaction TX-1003 on 2026-08-25.",
+            "evidence": [
+              "Transaction TX-1003 status is SUCCESS.",
+              "Ledger entry LED-005 confirms a DEBIT of 1,500 ETB for TX-1003 on 2026-08-25."
+            ]
+          },
+          {
+            "description": "The account balance is inconsistent with the expected balance, showing a discrepancy of 1,500 ETB.",
+            "evidence": [
+              "Balance comparison reports a reported_balance of 13,000 ETB and an expected_balance of 11,500 ETB.",
+              "The difference is 1,500 ETB and consistent is False."
+            ]
+          },
+          {
+            "description": "The account received two credit transactions of 5,000 ETB each, but only one is reflected in the ledger entries.",
+            "evidence": [
+              "Transaction TX-1001 (5,000 ETB) and TX-1004 (5,000 ETB) are both marked SUCCESS.",
+              "Ledger entry LED-002 records the credit for TX-1001, but there is no corresponding ledger entry for TX-1004."
+            ]
+          }
+        ],
+        "conclusion": "The customer's 1,500 ETB transfer (TX-1003) was successfully debited from the account. However, the account balance is inconsistent due to a discrepancy between the transaction records and the ledger entries, specifically regarding the missing ledger entry for transaction TX-1004.",
+        "confidence": "HIGH",
+        "recommendation": "Escalate to the technical support team to investigate why transaction TX-1004 was not posted to the ledger, as this is the likely cause of the balance inconsistency.",
+        "requires_human_review": true,
+        "status": "PENDING_REVIEW"
+      },
+      "passed": 4,
+      "total": 4,
+      "score": 1.0,
+      "criteria": [
+        {
+          "name": "Identifies TX-1003",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "name": "Identifies 1,500 ETB transaction",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "name": "Identifies successful transaction",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "name": "Identifies balance discrepancy",
+          "passed": true,
+          "reason": ""
+        }
+      ]
+    },
+    {
+      "case_id": "CASE-008",
+      "output": {
+        "case_id": "CASE-008",
+        "findings": [
+          {
+            "description": "The customer's account shows a balance discrepancy of 500 ETB between the reported balance and the expected balance.",
+            "evidence": [
+              "Balance comparison report: reported_balance '17000', expected_balance '16500', difference '500', consistent 'False'"
+            ]
+          },
+          {
+            "description": "The customer received a credit of 1,500 ETB on 2026-08-25, which is consistent with their statement.",
+            "evidence": [
+              "Transaction TX-1003: amount '1500', status 'SUCCESS', completed_at '2026-08-25T11:30:00'",
+              "Ledger entry LED-006: transaction_id 'TX-1003', amount '1500', entry_type 'CREDIT', status 'POSTED'"
+            ]
+          },
+          {
+            "description": "The balance comparison tool identified two transactions (TX-1004 and TX-1001) as a suspected duplicate debit of 5,000 ETB each.",
+            "evidence": [
+              "Balance comparison report: suspected_duplicate_debit {'amount': '5000', 'recipient_account_id': 'ACC-1002', 'duplicate_count': 2, 'transaction_ids': ['TX-1004', 'TX-1001']}"
+            ]
+          },
+          {
+            "description": "The account current balance provided in the account summary (20,000 ETB) conflicts with the latest ledger balance (17,000 ETB).",
+            "evidence": [
+              "Account data: current_balance '20000'",
+              "Balance comparison report: reported_balance '17000'"
+            ]
+          }
+        ],
+        "conclusion": "The customer's claim regarding the receipt of 1,500 ETB is supported by transaction TX-1003. However, the account exhibits a 500 ETB discrepancy between the expected and reported balances, and there is a conflict between the account's current balance and the ledger's latest balance. Additionally, the balance comparison tool flags potential duplicate debits of 5,000 ETB. The cause of the balance discrepancy and the account balance conflict cannot be definitively determined from the provided evidence.",
+        "confidence": "MEDIUM",
+        "recommendation": "Conduct a manual reconciliation of all ledger entries for account ACC-1001 to resolve the discrepancy between the account balance and the ledger, and investigate the flagged duplicate transactions TX-1001 and TX-1004.",
+        "requires_human_review": true,
+        "status": "PENDING_REVIEW"
+      },
+      "passed": 4,
+      "total": 4,
+      "score": 1.0,
+      "criteria": [
+        {
+          "name": "Identifies TX-1003",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "name": "Identifies 1,500 ETB transaction",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "name": "Identifies successful transaction",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "name": "Identifies balance discrepancy",
+          "passed": true,
+          "reason": ""
+        }
+      ]
+    },
+    {
+      "case_id": "CASE-009",
+      "output": {
+        "case_id": "CASE-009",
+        "findings": [
+          {
+            "description": "The customer's account shows two successful transfer transactions of 5,000 ETB each to account ACC-1002, occurring two minutes apart on 2026-08-27.",
+            "evidence": [
+              "Transaction TX-1001: 5,000 ETB, 2026-08-27T09:15:00, status SUCCESS",
+              "Transaction TX-1004: 5,000 ETB, 2026-08-27T09:17:00, status SUCCESS"
+            ]
+          },
+          {
+            "description": "Both transactions are supported by corresponding debit entries in the ledger for account ACC-1001.",
+            "evidence": [
+              "Ledger entry LED-001 for TX-1001: 5,000 ETB DEBIT",
+              "Ledger entry LED-007 for TX-1004: 5,000 ETB DEBIT"
+            ]
+          },
+          {
+            "description": "The balance comparison tool identifies a discrepancy of 500 ETB and flags TX-1001 and TX-1004 as a suspected duplicate debit.",
+            "evidence": [
+              "Balance comparison: difference of 500 ETB, consistent: False",
+              "Balance comparison: suspected_duplicate_debit: {'amount': '5000', 'recipient_account_id': 'ACC-1002', 'duplicate_count': 2, 'transaction_ids': ['TX-1004', 'TX-1001']}"
+            ]
+          }
+        ],
+        "conclusion": "The customer's claim regarding two transfers of 5,000 ETB to the same account is supported by the transaction and ledger records. While the balance comparison tool flags these as a suspected duplicate, the evidence confirms that both transactions were processed as successful debits. The cause of the 500 ETB discrepancy identified by the balance comparison tool cannot be determined from the available evidence.",
+        "confidence": "HIGH",
+        "recommendation": "Conduct a manual review of the account history to reconcile the 500 ETB balance discrepancy and verify if the two 5,000 ETB transfers were intended by the customer.",
+        "requires_human_review": true,
+        "status": "PENDING_REVIEW"
+      },
+      "passed": 5,
+      "total": 5,
+      "score": 1.0,
+      "criteria": [
+        {
+          "name": "Identifies TX-1001",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "name": "Identifies TX-1004",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "name": "Identifies both transactions as successful",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "name": "Identifies suspected duplicate",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "name": "Identifies 5,000 ETB amount",
+          "passed": true,
+          "reason": ""
+        }
+      ]
+    },
+    {
+      "case_id": "CASE-010",
+      "output": {
+        "case_id": "CASE-010",
+        "findings": [
+          {
+            "description": "Transaction TX-1005 for 10,000 ETB is marked as FAILED in the transaction records.",
+            "evidence": [
+              "Transaction record TX-1005 status: 'FAILED'"
+            ]
+          },
+          {
+            "description": "There is no ledger entry corresponding to a debit for transaction TX-1005.",
+            "evidence": [
+              "Ledger entries list contains only LED-004, which relates to transaction TX-1002."
+            ]
+          },
+          {
+            "description": "The balance comparison tool indicates an inconsistency between the reported balance and the expected balance.",
+            "evidence": [
+              "Balance comparison: reported_balance '50000', expected_balance '52000', difference '-2000', consistent 'False'"
+            ]
+          }
+        ],
+        "conclusion": "The evidence confirms that transaction TX-1005 is marked as FAILED and there is no ledger entry indicating that the 10,000 ETB was debited from the account. While there is a discrepancy between the reported and expected balance, the available evidence does not link this discrepancy to the failed transaction TX-1005, and the cause of the balance inconsistency cannot be determined from the provided data.",
+        "confidence": "HIGH",
+        "recommendation": "Conduct a manual review of the account's full transaction and ledger history to identify the cause of the 2,000 ETB balance discrepancy.",
+        "requires_human_review": true,
+        "status": "PENDING_REVIEW"
+      },
+      "passed": 5,
+      "total": 5,
+      "score": 1.0,
+      "criteria": [
+        {
+          "name": "Identifies TX-1005",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "name": "Identifies failed status",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "name": "Identifies 10,000 ETB amount",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "name": "Identifies absence of ledger debit",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "name": "Identifies balance discrepancy",
+          "passed": true,
+          "reason": ""
+        }
+      ]
+    },
+    {
+      "case_id": "CASE-011",
+      "output": {
+        "case_id": "CASE-011",
+        "findings": [
+          {
+            "description": "The customer's account (ACC-1004) shows no record of a 10,000 ETB credit.",
+            "evidence": [
+              "Transaction TX-1005, which involved a 10,000 ETB transfer to ACC-1004, is marked with a status of 'FAILED'.",
+              "There are no ledger entries associated with transaction TX-1005."
+            ]
+          },
+          {
+            "description": "The account balance is consistent with the recorded transactions.",
+            "evidence": [
+              "Balance comparison shows a reported balance of 28,000 ETB, an expected balance of 28,000 ETB, and a difference of 0.",
+              "The balance reflects the opening balance of 30,000 ETB minus the successful 2,000 ETB transfer (TX-1006) recorded in ledger entry LED-008."
+            ]
+          }
+        ],
+        "conclusion": "The evidence confirms that the 10,000 ETB transfer (TX-1005) failed and was never credited to the customer's account. The account balance is consistent with all successfully processed transactions.",
+        "confidence": "HIGH",
+        "recommendation": "Inform the customer that the transaction failed and no funds were credited to their account, and advise them to contact the sender to verify the status of the transfer from the originating institution.",
+        "requires_human_review": true,
+        "status": "PENDING_REVIEW"
+      },
+      "passed": 4,
+      "total": 4,
+      "score": 1.0,
+      "criteria": [
+        {
+          "name": "Identifies TX-1005",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "name": "Identifies failed transaction",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "name": "Identifies 10,000 ETB amount",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "name": "Identifies no ledger credit",
+          "passed": true,
+          "reason": ""
+        }
+      ]
+    },
+    {
+      "case_id": "CASE-012",
+      "output": {
+        "case_id": "CASE-012",
+        "findings": [
+          {
+            "description": "The customer received a transfer of 2,000 ETB, which is reflected in the transaction and ledger records.",
+            "evidence": [
+              "Transaction TX-1006 shows a successful transfer of 2,000 ETB from ACC-1004 to ACC-1001 on 2026-08-28.",
+              "Ledger entry LED-009 confirms a credit of 2,000 ETB to ACC-1001, updating the balance from 15,000 to 17,000 ETB."
+            ]
+          },
+          {
+            "description": "There is a discrepancy between the reported balance and the expected balance for account ACC-1001.",
+            "evidence": [
+              "Balance comparison shows a reported balance of 17,000 ETB and an expected balance of 16,500 ETB, resulting in a difference of 500 ETB.",
+              "The account status is marked as inconsistent (consistent: False)."
+            ]
+          },
+          {
+            "description": "The balance comparison tool identified a suspected duplicate debit involving two separate transactions.",
+            "evidence": [
+              "Balance comparison identifies TX-1004 and TX-1001 as a suspected duplicate debit of 5,000 ETB each to recipient ACC-1002."
+            ]
+          }
+        ],
+        "conclusion": "While the receipt of 2,000 ETB (TX-1006) is correctly processed and reflected in the ledger, there is an unexplained balance discrepancy of 500 ETB on the account. The cause of this discrepancy cannot be determined from the available evidence, and the suspected duplicate debit identified by the system requires further investigation to determine if it is a valid transaction or an error.",
+        "confidence": "HIGH",
+        "recommendation": "Conduct a manual audit of all ledger entries for account ACC-1001 to reconcile the 500 ETB discrepancy and verify the validity of transactions TX-1001 and TX-1004.",
+        "requires_human_review": true,
+        "status": "PENDING_REVIEW"
+      },
+      "passed": 4,
+      "total": 4,
+      "score": 1.0,
+      "criteria": [
+        {
+          "name": "Identifies TX-1006",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "name": "Identifies 2,000 ETB transaction",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "name": "Identifies successful transaction",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "name": "Identifies balance discrepancy",
+          "passed": true,
+          "reason": ""
+        }
+      ]
+    },
+    {
+      "case_id": "CASE-013",
+      "output": {
+        "case_id": "CASE-013",
+        "findings": [
+          {
+            "description": "The customer initiated a transfer of 2,000 ETB on 2026-08-28, which was successfully processed.",
+            "evidence": [
+              "Transaction TX-1006: amount 2000 ETB, status SUCCESS, date 2026-08-28T10:10:00"
+            ]
+          },
+          {
+            "description": "A corresponding debit of 2,000 ETB was posted to the customer's account ledger.",
+            "evidence": [
+              "Ledger entry LED-008: transaction_id TX-1006, amount 2000 ETB, entry_type DEBIT, status POSTED"
+            ]
+          },
+          {
+            "description": "The account balance is consistent with the recorded transaction and ledger activity.",
+            "evidence": [
+              "Balance comparison: reported_balance 28000, expected_balance 28000, difference 0, consistent True"
+            ]
+          }
+        ],
+        "conclusion": "The customer's transfer of 2,000 ETB was successfully processed and correctly debited from their account. The account balance is consistent with all recorded transactions and ledger entries.",
+        "confidence": "HIGH",
+        "recommendation": "Inform the customer that the transaction was processed successfully and that their account balance accurately reflects the debit.",
+        "requires_human_review": true,
+        "status": "PENDING_REVIEW"
+      },
+      "passed": 4,
+      "total": 4,
+      "score": 1.0,
+      "criteria": [
+        {
+          "name": "Identifies TX-1006",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "name": "Identifies successful transaction",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "name": "Identifies 2,000 ETB amount",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "name": "Identifies account balance is consistent",
+          "passed": true,
+          "reason": ""
+        }
+      ]
+    },
+    {
+      "case_id": "CASE-014",
+      "output": {
+        "case_id": "CASE-014",
+        "findings": [
+          {
+            "description": "Transaction TX-1007 for 1,000 ETB was processed as a debit and subsequent credit, resulting in a net zero impact on the account balance.",
+            "evidence": [
+              "Transaction TX-1007 status is REVERSED.",
+              "Ledger entry LED-010 shows a debit of 1,000 ETB on 2026-08-28T12:00:00.",
+              "Ledger entry LED-012 shows a credit of 1,000 ETB on 2026-08-28T12:30:00."
+            ]
+          },
+          {
+            "description": "The account balance is inconsistent, with a reported balance of 15,500 ETB and an expected balance of 14,000 ETB, resulting in a difference of 1,500 ETB.",
+            "evidence": [
+              "Balance comparison report shows reported_balance: 15500, expected_balance: 14000, difference: 1500, and consistent: False."
+            ]
+          },
+          {
+            "description": "The cause of the 1,500 ETB balance discrepancy cannot be determined from the available transaction and ledger evidence.",
+            "evidence": [
+              "The balance comparison tool identifies a discrepancy of 1,500 ETB, but no specific transaction or ledger entry accounts for this specific amount or variance."
+            ]
+          }
+        ],
+        "conclusion": "The customer's report regarding the 1,000 ETB reversal is supported by the ledger evidence, which shows both a debit and a subsequent credit for that amount. However, there is an unexplained balance discrepancy of 1,500 ETB that is not linked to the reversed transaction or any other identifiable transaction in the provided records.",
+        "confidence": "HIGH",
+        "recommendation": "Conduct a manual audit of the account's full transaction history and ledger entries to identify the source of the 1,500 ETB balance discrepancy.",
+        "requires_human_review": true,
+        "status": "PENDING_REVIEW"
+      },
+      "passed": 5,
+      "total": 5,
+      "score": 1.0,
+      "criteria": [
+        {
+          "name": "Identifies TX-1007",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "name": "Identifies reversed status",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "name": "Identifies reversal",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "name": "Identifies debit and credit",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "name": "Identifies 1,000 ETB amount",
+          "passed": true,
+          "reason": ""
+        }
+      ]
+    },
+    {
+      "case_id": "CASE-015",
+      "output": {
+        "case_id": "CASE-015",
+        "findings": [
+          {
+            "description": "The customer's claim regarding a 1,000 ETB transfer reversal is supported by transaction and ledger evidence.",
+            "evidence": [
+              "Transaction TX-1007 for 1,000 ETB is marked as 'REVERSED'.",
+              "Ledger entry LED-011 shows a credit of 1,000 ETB (balance 48,000 to 49,000).",
+              "Ledger entry LED-013 shows a debit of 1,000 ETB (balance 49,000 to 48,000) associated with the same transaction ID."
+            ]
+          },
+          {
+            "description": "There is a discrepancy between the reported balance and the expected balance for account ACC-1003.",
+            "evidence": [
+              "Balance comparison shows a reported balance of 45,500 ETB and an expected balance of 49,500 ETB, resulting in a difference of -4,000 ETB.",
+              "The account status is marked as inconsistent (consistent: False)."
+            ]
+          },
+          {
+            "description": "The cause of the -4,000 ETB balance discrepancy cannot be determined from the available evidence.",
+            "evidence": [
+              "The balance comparison identifies a difference of -4,000 ETB, but the provided transaction and ledger records do not account for this specific variance."
+            ]
+          }
+        ],
+        "conclusion": "The customer's report of a reversed 1,000 ETB transfer is confirmed by the transaction status and corresponding ledger entries. However, the account balance shows an additional unexplained discrepancy of -4,000 ETB that is not accounted for by the provided transaction or ledger history.",
+        "confidence": "HIGH",
+        "recommendation": "Conduct a manual audit of the account ledger history to identify the source of the unexplained -4,000 ETB discrepancy.",
+        "requires_human_review": true,
+        "status": "PENDING_REVIEW"
+      },
+      "passed": 5,
+      "total": 5,
+      "score": 1.0,
+      "criteria": [
+        {
+          "name": "Identifies TX-1007",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "name": "Identifies reversed transaction",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "name": "Identifies debit and reversal credit",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "name": "Identifies reversal amount",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "name": "Identifies balance discrepancy",
+          "passed": true,
+          "reason": ""
+        }
+      ]
+    },
+    {
+      "case_id": "CASE-016",
+      "output": {
+        "case_id": "CASE-016",
+        "findings": [
+          {
+            "description": "The customer's requested transaction of 2,500 ETB (TX-1008) was processed successfully and resulted in a posted debit of 2,500 ETB to the account.",
+            "evidence": [
+              "Transaction TX-1008 status is 'SUCCESS'.",
+              "Ledger entry LED-014 shows a DEBIT of 2,500 ETB for TX-1008, reducing the balance from 48,000 ETB to 45,500 ETB."
+            ]
+          },
+          {
+            "description": "There is a discrepancy between the reported balance and the expected balance for account ACC-1003.",
+            "evidence": [
+              "Balance comparison shows a reported balance of 45,500 ETB and an expected balance of 49,500 ETB, resulting in a difference of -4,000 ETB.",
+              "The balance comparison indicates the account is not consistent (consistent: False)."
+            ]
+          },
+          {
+            "description": "The cause of the -4,000 ETB balance discrepancy cannot be determined from the available evidence.",
+            "evidence": [
+              "The balance comparison tool identifies a discrepancy but does not attribute it to a specific transaction.",
+              "The ledger entries provided (LED-004, LED-011, LED-013, LED-014) do not account for the 4,000 ETB difference between the reported and expected balances."
+            ]
+          }
+        ],
+        "conclusion": "The transaction of 2,500 ETB (TX-1008) was successfully processed and debited from the account as requested. However, the account balance is inconsistent, showing a discrepancy of -4,000 ETB that cannot be explained by the provided transaction and ledger records.",
+        "confidence": "HIGH",
+        "recommendation": "Escalate the case to the technical accounting team for a manual reconciliation of the account ledger to identify the source of the 4,000 ETB discrepancy.",
+        "requires_human_review": true,
+        "status": "PENDING_REVIEW"
+      },
+      "passed": 4,
+      "total": 4,
+      "score": 1.0,
+      "criteria": [
+        {
+          "name": "Identifies TX-1008",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "name": "Identifies 2,500 ETB amount",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "name": "Identifies successful transaction",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "name": "Identifies balance discrepancy",
+          "passed": true,
+          "reason": ""
+        }
+      ]
+    },
+    {
+      "case_id": "CASE-017",
+      "output": {
+        "case_id": "CASE-017",
+        "findings": [
+          {
+            "description": "Transaction TX-1008 for 2,500 ETB was successfully processed and credited to account ACC-1002.",
+            "evidence": [
+              "Transaction TX-1008 status is SUCCESS.",
+              "Ledger entry LED-015 shows a CREDIT of 2,500 ETB to ACC-1002, increasing the balance from 13,000 to 15,500 ETB."
+            ]
+          },
+          {
+            "description": "There is a discrepancy between the reported balance and the expected balance for account ACC-1002.",
+            "evidence": [
+              "Balance comparison report indicates a reported balance of 15,500 ETB and an expected balance of 14,000 ETB, resulting in a difference of 1,500 ETB.",
+              "The account status is inconsistent (consistent: False)."
+            ]
+          },
+          {
+            "description": "The cause of the 1,500 ETB balance discrepancy cannot be determined from the available evidence.",
+            "evidence": [
+              "The balance comparison tool identifies a difference of 1,500 ETB but does not attribute it to a specific transaction or ledger error.",
+              "Transaction and ledger records show successful processing of recorded transfers, but the cumulative ledger entries do not reconcile with the expected balance."
+            ]
+          }
+        ],
+        "conclusion": "While the 2,500 ETB credit (TX-1008) was successfully posted to the account, the account balance is currently inconsistent with the expected balance by 1,500 ETB. The available evidence confirms the credit was applied, but it does not explain the underlying cause of the 1,500 ETB discrepancy.",
+        "confidence": "HIGH",
+        "recommendation": "Escalate the case for a manual audit of the ledger history for account ACC-1002 to identify the source of the 1,500 ETB balance discrepancy.",
+        "requires_human_review": true,
+        "status": "PENDING_REVIEW"
+      },
+      "passed": 4,
+      "total": 4,
+      "score": 1.0,
+      "criteria": [
+        {
+          "name": "Identifies TX-1008",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "name": "Identifies 2,500 ETB amount",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "name": "Identifies successful transaction",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "name": "Identifies balance discrepancy",
+          "passed": true,
+          "reason": ""
+        }
+      ]
+    },
+    {
+      "case_id": "CASE-018",
+      "output": {
+        "case_id": "CASE-018",
+        "findings": [
+          {
+            "description": "The account balance is inconsistent, with a reported balance of 17,000 ETB and an expected balance of 16,500 ETB, resulting in a discrepancy of 500 ETB.",
+            "evidence": [
+              "BALANCE COMPARISON: {'account_id': 'ACC-1001', 'reported_balance': '17000', 'expected_balance': '16500', 'difference': '500', 'consistent': False}"
+            ]
+          },
+          {
+            "description": "The balance comparison tool identifies a suspected duplicate debit of 5,000 ETB involving transactions TX-1004 and TX-1001, both sent to account ACC-1002.",
+            "evidence": [
+              "BALANCE COMPARISON: {'suspected_duplicate_debit': {'amount': '5000', 'recipient_account_id': 'ACC-1002', 'duplicate_count': 2, 'transaction_ids': ['TX-1004', 'TX-1001']}}"
+            ]
+          },
+          {
+            "description": "Ledger entries confirm five successful transactions affecting the account balance, including two debits of 5,000 ETB each (TX-1001 and TX-1004) and one credit of 2,000 ETB (TX-1006).",
+            "evidence": [
+              "LEDGER ENTRIES: LED-001 (TX-1001, 5000 DEBIT), LED-007 (TX-1004, 5000 DEBIT), LED-009 (TX-1006, 2000 CREDIT)"
+            ]
+          }
+        ],
+        "conclusion": "The account balance is inconsistent. While the balance comparison tool flags a suspected duplicate debit of 5,000 ETB between TX-1001 and TX-1004, the evidence is insufficient to definitively confirm these as unauthorized duplicates or to explain the specific 500 ETB discrepancy identified by the system.",
+        "confidence": "MEDIUM",
+        "recommendation": "Conduct a manual review of the transaction history for ACC-1001 to verify the legitimacy of the two 5,000 ETB transfers to ACC-1002 and investigate the origin of the 500 ETB balance discrepancy.",
+        "requires_human_review": true,
+        "status": "PENDING_REVIEW"
+      },
+      "passed": 6,
+      "total": 8,
+      "score": 0.75,
+      "criteria": [
+        {
+          "name": "Identifies TX-1001",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "name": "Identifies TX-1002",
+          "passed": false,
+          "reason": "Missing: TX-1002"
+        },
+        {
+          "name": "Identifies TX-1003",
+          "passed": false,
+          "reason": "Missing: TX-1003"
+        },
+        {
+          "name": "Identifies TX-1004",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "name": "Identifies TX-1006",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "name": "Identifies successful transactions",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "name": "Identifies duplicate pair",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "name": "Identifies balance discrepancy",
+          "passed": true,
+          "reason": ""
+        }
+      ]
+    },
+    {
+      "case_id": "CASE-019",
+      "output": {
+        "case_id": "CASE-019",
+        "findings": [
+          {
+            "description": "The account balance is inconsistent, with a reported balance of 15,500 ETB and an expected balance of 14,000 ETB, resulting in a discrepancy of 1,500 ETB.",
+            "evidence": [
+              "Balance comparison report: reported_balance '15500', expected_balance '14000', difference '1500', consistent 'False'"
+            ]
+          },
+          {
+            "description": "Transaction TX-1007 was marked as REVERSED, and ledger entries confirm both a debit (LED-010) and a subsequent credit (LED-012) of 1,000 ETB.",
+            "evidence": [
+              "Transaction TX-1007 status 'REVERSED'",
+              "Ledger entry LED-010 (DEBIT, 1000 ETB)",
+              "Ledger entry LED-012 (CREDIT, 1000 ETB)"
+            ]
+          },
+          {
+            "description": "Transaction TX-1008 was successfully processed and credited to the account.",
+            "evidence": [
+              "Transaction TX-1008 status 'SUCCESS'",
+              "Ledger entry LED-015 (CREDIT, 2500 ETB, balance_after '15500')"
+            ]
+          },
+          {
+            "description": "The cause of the 1,500 ETB balance discrepancy cannot be determined from the available transaction and ledger evidence.",
+            "evidence": [
+              "Balance comparison report shows a difference of 1500",
+              "All ledger entries (LED-002, LED-005, LED-010, LED-012, LED-015) are accounted for in the balance comparison"
+            ]
+          }
+        ],
+        "conclusion": "The account balance is inconsistent with the expected balance calculated from the ledger entries. While the reversal of TX-1007 and the success of TX-1008 are documented in the ledger, these transactions do not explain the 1,500 ETB discrepancy. The cause of this variance remains unidentified based on the provided data.",
+        "confidence": "HIGH",
+        "recommendation": "Conduct a manual audit of the account ledger history to identify the origin of the 1,500 ETB discrepancy.",
+        "requires_human_review": true,
+        "status": "PENDING_REVIEW"
+      },
+      "passed": 5,
+      "total": 7,
+      "score": 0.7142857142857143,
+      "criteria": [
+        {
+          "name": "Identifies TX-1001",
+          "passed": false,
+          "reason": "Missing: TX-1001"
+        },
+        {
+          "name": "Identifies TX-1003",
+          "passed": false,
+          "reason": "Missing: TX-1003"
+        },
+        {
+          "name": "Identifies TX-1007",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "name": "Identifies TX-1008",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "name": "Identifies reversed transaction",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "name": "Identifies reversal debit and credit",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "name": "Identifies balance discrepancy",
+          "passed": true,
+          "reason": ""
+        }
+      ]
+    },
+    {
+      "case_id": "CASE-020",
+      "output": {
+        "case_id": "CASE-020",
+        "findings": [
+          {
+            "description": "The customer performed two 5,000 ETB transfers to account ACC-1002 on 2026-08-27, identified as TX-1001 and TX-1004.",
+            "evidence": [
+              "Transaction TX-1001: 5,000 ETB, 2026-08-27T09:15:00, status SUCCESS",
+              "Transaction TX-1004: 5,000 ETB, 2026-08-27T09:17:00, status SUCCESS"
+            ]
+          },
+          {
+            "description": "Both transfers were successfully processed and recorded in the ledger as debits to account ACC-1001.",
+            "evidence": [
+              "Ledger entry LED-001: TX-1001, 5,000 ETB DEBIT, balance 25,000 to 20,000",
+              "Ledger entry LED-007: TX-1004, 5,000 ETB DEBIT, balance 20,000 to 15,000"
+            ]
+          },
+          {
+            "description": "The balance comparison tool indicates an inconsistency in the account balance.",
+            "evidence": [
+              "Balance comparison: reported_balance 17,000, expected_balance 16,500, difference 500, consistent False"
+            ]
+          },
+          {
+            "description": "The balance comparison tool identifies TX-1001 and TX-1004 as a suspected duplicate debit.",
+            "evidence": [
+              "Balance comparison: suspected_duplicate_debit {'amount': '5000', 'recipient_account_id': 'ACC-1002', 'duplicate_count': 2, 'transaction_ids': ['TX-1004', 'TX-1001']}"
+            ]
+          }
+        ],
+        "conclusion": "The customer's claim regarding two 5,000 ETB transfers is supported by the transaction and ledger evidence, which confirm both transfers were successfully processed and debited from the account. However, the balance comparison tool reports a 500 ETB discrepancy between the reported and expected balance, the cause of which cannot be determined from the available evidence.",
+        "confidence": "HIGH",
+        "recommendation": "Conduct a manual audit of all ledger entries for account ACC-1001 to identify the source of the 500 ETB balance discrepancy.",
+        "requires_human_review": true,
+        "status": "PENDING_REVIEW"
+      },
+      "passed": 6,
+      "total": 6,
+      "score": 1.0,
+      "criteria": [
+        {
+          "name": "Identifies TX-1001",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "name": "Identifies TX-1004",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "name": "Identifies 5,000 ETB amount",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "name": "Identifies successful status",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "name": "Identifies suspected duplicate",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "name": "Identifies balance discrepancy",
+          "passed": true,
+          "reason": ""
+        }
+      ]
+    }
+  ]
+}

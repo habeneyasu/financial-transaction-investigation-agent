@@ -4,7 +4,7 @@ from collections import defaultdict
 from decimal import Decimal
 from typing import Optional
 
-from app.mcp.tools._serialization import jsonable
+from app.mcp.tools._serialization import jsonable, parse_optional_datetime
 from app.models.ledger_entry import LedgerEntryStatus, LedgerEntryType
 from app.models.transaction import Transaction
 from app.services.account_service import AccountService
@@ -64,11 +64,26 @@ def compare_account_balance_tool(
     over; it does not alter the balance comparison itself.
     """
 
-    async def compare_account_balance(account_id: str) -> dict:
+    async def compare_account_balance(
+        account_id: str,
+        as_of: str | None = None,
+    ) -> dict:
         """Compare reported account balance with the ledger-derived expected balance."""
+        cutoff = parse_optional_datetime(as_of)
         account = account_service.get_account(account_id)
-        entries = ledger_service.get_ledger_entries(account_id)
-        transactions = transaction_service.get_transactions_for_account(account_id)
+        entries = (
+            ledger_service.get_ledger_entries(account_id)
+            if cutoff is None
+            else ledger_service.get_ledger_entries(account_id, cutoff)
+        )
+        transactions = (
+            transaction_service.get_transactions_for_account(account_id)
+            if cutoff is None
+            else transaction_service.get_transactions_for_account(
+                account_id,
+                cutoff,
+            )
+        )
         transaction_lookup = {
             transaction.transaction_id: transaction
             for transaction in transactions
@@ -93,6 +108,19 @@ def compare_account_balance_tool(
                 expected_balance -= entry.amount
 
         reported_balance: Decimal = account.current_balance
+        balance_source = "account_current_balance"
+        if cutoff is not None:
+            latest_posted_entry = max(
+                posted_entries,
+                key=lambda entry: entry.created_at,
+                default=None,
+            )
+            reported_balance = (
+                latest_posted_entry.balance_after
+                if latest_posted_entry is not None
+                else account.opening_balance
+            )
+            balance_source = "latest_posted_ledger_balance"
         difference: Decimal = reported_balance - expected_balance
 
         suspected_duplicate = _detect_suspected_duplicate_debit(
@@ -103,7 +131,9 @@ def compare_account_balance_tool(
         return jsonable(
             {
                 "account_id": account_id,
+                "as_of": cutoff,
                 "reported_balance": reported_balance,
+                "reported_balance_source": balance_source,
                 "expected_balance": expected_balance,
                 "difference": difference,
                 "consistent": difference == 0,

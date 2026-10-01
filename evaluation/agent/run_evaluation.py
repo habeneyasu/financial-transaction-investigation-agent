@@ -3,15 +3,24 @@ import asyncio
 import json
 from pathlib import Path
 
-from google.genai.errors import ClientError
+from google.genai.errors import APIError
 
 from app.agent.investigation_agent import InvestigationAgent
+from app.agent.prompts import INVESTIGATION_PROMPT, SYSTEM_PROMPT
+from app.config.settings import settings
 from app.data.database import db
 from app.llm.client import LLMClient
 from app.mcp.client import McpClient
 from app.services.investigation_service import InvestigationService
 
 from evaluation.cases.cases import EVALUATION_CASES
+from evaluation.artifacts import (
+    build_metadata,
+    load_artifact,
+    metadata_is_compatible,
+    save_artifact,
+    text_hash,
+)
 from evaluation.evaluator import evaluate_case
 
 
@@ -19,6 +28,26 @@ RESULTS_FILE = (
     Path(__file__).parent.parent
     / "results"
     / "agent.json"
+)
+
+AGENT_IMPLEMENTATION_FILE = (
+    Path(__file__).resolve().parents[2]
+    / "app"
+    / "agent"
+    / "investigation_agent.py"
+)
+
+RESULTS_METADATA = build_metadata(
+    "agent",
+    provider=settings.default_llm_provider,
+    model=settings.gemini_model,
+    prompt_hash=text_hash(SYSTEM_PROMPT, INVESTIGATION_PROMPT),
+    implementation_hash=text_hash(
+        AGENT_IMPLEMENTATION_FILE.read_text(encoding="utf-8")
+    ),
+    generation_config={
+        "temperature": settings.gemini_temperature,
+    },
 )
 
 
@@ -54,6 +83,13 @@ def parse_args():
         ),
     )
 
+    parser.add_argument(
+        "--max-attempts",
+        type=int,
+        default=3,
+        help="Maximum attempts for transient LLM API failures.",
+    )
+
     return parser.parse_args()
 
 
@@ -62,24 +98,21 @@ def load_existing_results():
         return []
 
     try:
-        data = json.loads(
-            RESULTS_FILE.read_text(
-                encoding="utf-8",
-            )
-        )
+        metadata, results = load_artifact(RESULTS_FILE)
 
-        if not isinstance(data, list):
+        if not metadata_is_compatible(metadata, RESULTS_METADATA):
             print(
-                f"Warning: {RESULTS_FILE} does not contain "
-                "a JSON list. Starting with empty results."
+                f"Warning: {RESULTS_FILE} was generated with a different "
+                "rubric, dataset, model, or prompt. Starting with empty "
+                "results."
             )
             return []
 
-        return data
+        return results
 
-    except json.JSONDecodeError:
+    except (json.JSONDecodeError, OSError, ValueError) as exc:
         print(
-            f"Warning: Could not parse {RESULTS_FILE}. "
+            f"Warning: Could not load {RESULTS_FILE}: {exc}. "
             "Starting with empty results."
         )
 
@@ -87,17 +120,10 @@ def load_existing_results():
 
 
 def save_results(results):
-    RESULTS_FILE.parent.mkdir(
-        parents=True,
-        exist_ok=True,
-    )
-
-    RESULTS_FILE.write_text(
-        json.dumps(
-            results,
-            indent=2,
-        ),
-        encoding="utf-8",
+    save_artifact(
+        RESULTS_FILE,
+        RESULTS_METADATA,
+        results,
     )
 
 
@@ -178,6 +204,34 @@ def print_summary(results):
 
     print()
     print("=" * 60)
+
+
+async def investigate_with_retries(
+    agent: InvestigationAgent,
+    case_id: str,
+    max_attempts: int,
+):
+    """Retry transient model API failures with bounded backoff."""
+    for attempt in range(1, max_attempts + 1):
+        try:
+            return await agent.investigate(case_id)
+        except APIError as exc:
+            status_code = getattr(exc, "code", None)
+            transient = status_code == 429 or (
+                isinstance(status_code, int) and 500 <= status_code < 600
+            )
+            if not transient or attempt == max_attempts:
+                raise
+
+            delay_seconds = 2 ** (attempt - 1)
+            print(
+                f"Transient LLM error {status_code} for {case_id}; "
+                f"retrying in {delay_seconds}s "
+                f"({attempt + 1}/{max_attempts})."
+            )
+            await asyncio.sleep(delay_seconds)
+
+    raise RuntimeError("Investigation retry loop ended unexpectedly.")
     print("EVALUATION SUMMARY")
     print("=" * 60)
 
@@ -275,8 +329,10 @@ async def main():
             print("=" * 60)
 
             try:
-                result = await agent.investigate(
-                    case_id
+                result = await investigate_with_retries(
+                    agent,
+                    case_id,
+                    args.max_attempts,
                 )
 
                 evaluation = evaluate_case(
@@ -286,6 +342,7 @@ async def main():
 
                 evaluation_result = {
                     "case_id": evaluation.case_id,
+                    "output": result.model_dump(mode="json"),
                     "passed": evaluation.passed,
                     "total": evaluation.total,
                     "score": evaluation.score,
@@ -320,17 +377,14 @@ async def main():
                     evaluation
                 )
 
-            except ClientError as exc:
+            except APIError as exc:
                 if getattr(
                     exc,
                     "code",
                     None,
                 ) == 429:
                     print()
-                    print(
-                        f"Rate limit reached while "
-                        f"evaluating {case_id}."
-                    )
+                    print(f"Rate limit reached while evaluating {case_id}.")
 
                     print(
                         "No result was recorded "

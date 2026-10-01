@@ -9,11 +9,13 @@ class GeminiProvider:
         self,
         api_key: str,
         model: str,
+        temperature: float,
     ):
         self._client = genai.Client(
             api_key=api_key
         )
         self._model = model
+        self._temperature = temperature
 
     async def generate(
         self,
@@ -24,6 +26,7 @@ class GeminiProvider:
             model=self._model,
             config=types.GenerateContentConfig(
                 system_instruction=system_prompt,
+                temperature=self._temperature,
             ),
         )
 

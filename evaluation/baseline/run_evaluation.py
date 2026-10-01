@@ -1,5 +1,4 @@
 import asyncio
-import json
 from pathlib import Path
 
 from app.data.database import db
@@ -7,6 +6,7 @@ from app.mcp.client import McpClient
 from app.services.investigation_service import InvestigationService
 
 from evaluation.cases.cases import EVALUATION_CASES
+from evaluation.artifacts import build_metadata, save_artifact, text_hash
 from evaluation.evaluator import evaluate_case
 
 
@@ -17,6 +17,7 @@ RESULTS_FILE = (
 
 def build_baseline_result(
     case_id: str,
+    account_id: str,
     transactions: list[dict],
     ledger_entries: list[dict],
     balance_comparison: dict,
@@ -36,44 +37,85 @@ def build_baseline_result(
             f"{amount} ETB, status {status}."
         )
 
-        # Failed transaction
-        if status == "FAILED":
-            transaction_ledger = [
-                entry
-                for entry in ledger_entries
-                if entry["transaction_id"] == transaction_id
-            ]
+        transaction_ledger = [
+            entry
+            for entry in ledger_entries
+            if entry["transaction_id"] == transaction_id
+            and entry["status"] == "POSTED"
+        ]
 
-            has_debit = any(
-                entry["entry_type"] == "DEBIT"
-                for entry in transaction_ledger
+        if transaction["from_account_id"] == account_id:
+            lines.append(
+                f"Transaction {transaction_id} is an outgoing transfer "
+                f"from the account."
+            )
+        elif transaction["to_account_id"] == account_id:
+            lines.append(
+                f"Transaction {transaction_id} is an incoming transfer "
+                f"to the account."
             )
 
-            if not has_debit:
+        for entry in transaction_ledger:
+            entry_type = entry["entry_type"]
+            entry_amount = entry["amount"]
+            lines.append(
+                f"The account has a posted {entry_type} ledger entry of "
+                f"{entry_amount} ETB for transaction {transaction_id}."
+            )
+
+            if entry_type == "CREDIT":
                 lines.append(
-                    f"Transaction {transaction_id} is FAILED "
-                    f"and has no ledger debit."
+                    f"The {entry_amount} ETB credit increased the account "
+                    "balance."
+                )
+            elif entry_type == "DEBIT":
+                lines.append(
+                    f"The {entry_amount} ETB debit decreased the account "
+                    "balance."
                 )
 
-        # Reversed transaction
-        if status == "REVERSED":
-            transaction_ledger = [
-                entry
-                for entry in ledger_entries
-                if entry["transaction_id"] == transaction_id
-            ]
-
+        # Failed transaction
+        if status == "FAILED":
             has_debit = any(
                 entry["entry_type"] == "DEBIT"
                 for entry in transaction_ledger
             )
-
             has_credit = any(
                 entry["entry_type"] == "CREDIT"
                 for entry in transaction_ledger
             )
 
-            if has_debit and has_credit:
+            if (
+                transaction["from_account_id"] == account_id
+                and not has_debit
+            ):
+                lines.append(
+                    f"Transaction {transaction_id} is FAILED "
+                    f"and has no ledger debit."
+                )
+            elif (
+                transaction["to_account_id"] == account_id
+                and not has_credit
+            ):
+                lines.append(
+                    f"Transaction {transaction_id} is FAILED "
+                    f"and has no ledger credit."
+                )
+
+        # Reversed transaction
+        if status == "REVERSED":
+            debit_total = sum(
+                float(entry["amount"])
+                for entry in transaction_ledger
+                if entry["entry_type"] == "DEBIT"
+            )
+            credit_total = sum(
+                float(entry["amount"])
+                for entry in transaction_ledger
+                if entry["entry_type"] == "CREDIT"
+            )
+
+            if debit_total and debit_total == credit_total:
                 lines.append(
                     f"Transaction {transaction_id} was REVERSED "
                     f"with a debit and reversal credit."
@@ -81,6 +123,10 @@ def build_baseline_result(
 
                 lines.append(
                     f"The reversal amount is {amount} ETB."
+                )
+                lines.append(
+                    "The balance was fully restored and the reversal has "
+                    "a net effect of 0 ETB."
                 )
 
     # Duplicate transaction rule
@@ -132,21 +178,25 @@ async def main():
             )
 
             transactions = await mcp_client.get_transactions(
-                case.account_id
+                case.account_id,
+                as_of=case.submitted_at,
             )
 
             ledger_entries = await mcp_client.get_ledger_entries(
-                case.account_id
+                case.account_id,
+                as_of=case.submitted_at,
             )
 
             balance_comparison = (
                 await mcp_client.compare_account_balance(
-                    case.account_id
+                    case.account_id,
+                    as_of=case.submitted_at,
                 )
             )
 
             baseline_result = build_baseline_result(
                 case_id=case_id,
+                account_id=case.account_id,
                 transactions=transactions,
                 ledger_entries=ledger_entries,
                 balance_comparison=balance_comparison,
@@ -160,6 +210,7 @@ async def main():
             results.append(
                 {
                     "case_id": evaluation.case_id,
+                    "output": baseline_result,
                     "passed": evaluation.passed,
                     "total": evaluation.total,
                     "score": evaluation.score,
@@ -182,14 +233,16 @@ async def main():
                 status = "PASS" if criterion.passed else "FAIL"
                 print(f"[{status}] {criterion.name}")
 
-    RESULTS_FILE.parent.mkdir(
-        parents=True,
-        exist_ok=True,
+    metadata = build_metadata(
+        "baseline",
+        implementation_hash=text_hash(
+            Path(__file__).read_text(encoding="utf-8")
+        ),
     )
-
-    RESULTS_FILE.write_text(
-        json.dumps(results, indent=2),
-        encoding="utf-8",
+    save_artifact(
+        RESULTS_FILE,
+        metadata,
+        results,
     )
 
     print(f"\nResults saved to: {RESULTS_FILE}")

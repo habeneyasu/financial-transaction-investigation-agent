@@ -1,12 +1,13 @@
 [
   {
     "case_id": "CASE-001",
+    "as_of": "2026-08-28T09:00:00",
     "case": {
       "case_id": "CASE-001",
       "customer_id": "CUST-001",
       "account_id": "ACC-1001",
       "complaint": "I transferred 5,000 ETB yesterday but my balance is wrong.",
-      "submitted_at": "2026-08-28 09:00:00",
+      "submitted_at": "2026-08-28T09:00:00",
       "status": "OPEN"
     },
     "customer": {
@@ -42,11 +43,11 @@
         "amount": "5000",
         "currency": "ETB",
         "transaction_type": "TRANSFER",
-        "transaction_date": "2026-08-27 09:17:00",
+        "transaction_date": "2026-08-27T09:17:00",
         "status": "SUCCESS",
         "reference": "REF-004",
-        "created_at": "2026-08-27 09:17:00",
-        "completed_at": "2026-08-27 09:17:00"
+        "created_at": "2026-08-27T09:17:00",
+        "completed_at": "2026-08-27T09:17:00"
       },
       {
         "transaction_id": "TX-1001",
@@ -55,21 +56,26 @@
         "amount": "5000",
         "currency": "ETB",
         "transaction_type": "TRANSFER",
-        "transaction_date": "2026-08-27 09:15:00",
+        "transaction_date": "2026-08-27T09:15:00",
         "status": "SUCCESS",
         "reference": "REF-001",
-        "created_at": "2026-08-27 09:15:00",
-        "completed_at": "2026-08-27 09:15:00"
+        "created_at": "2026-08-27T09:15:00",
+        "completed_at": "2026-08-27T09:15:00"
       }
     ],
     "transaction_facts": [
       {
         "transaction_id": "TX-1004",
-        "amount": "5000",
-        "currency": "ETB",
-        "status": "SUCCESS",
         "from_account_id": "ACC-1001",
         "to_account_id": "ACC-1002",
+        "amount": "5000",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-27T09:17:00",
+        "status": "SUCCESS",
+        "reference": "REF-004",
+        "created_at": "2026-08-27T09:17:00",
+        "completed_at": "2026-08-27T09:17:00",
         "direction": "OUTGOING",
         "ledger_entries": [
           {
@@ -81,18 +87,23 @@
             "currency": "ETB",
             "balance_before": "20000",
             "balance_after": "15000",
-            "created_at": "2026-08-27 09:17:00",
+            "created_at": "2026-08-27T09:17:00",
             "status": "POSTED"
           }
         ]
       },
       {
         "transaction_id": "TX-1001",
-        "amount": "5000",
-        "currency": "ETB",
-        "status": "SUCCESS",
         "from_account_id": "ACC-1001",
         "to_account_id": "ACC-1002",
+        "amount": "5000",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-27T09:15:00",
+        "status": "SUCCESS",
+        "reference": "REF-001",
+        "created_at": "2026-08-27T09:15:00",
+        "completed_at": "2026-08-27T09:15:00",
         "direction": "OUTGOING",
         "ledger_entries": [
           {
@@ -104,25 +115,67 @@
             "currency": "ETB",
             "balance_before": "25000",
             "balance_after": "20000",
-            "created_at": "2026-08-27 09:15:00",
+            "created_at": "2026-08-27T09:15:00",
             "status": "POSTED"
           }
         ]
       }
     ],
-    "ledger_entries": [
+    "transactions": [
       {
-        "ledger_entry_id": "LED-009",
-        "transaction_id": "TX-1006",
-        "account_id": "ACC-1001",
-        "entry_type": "CREDIT",
+        "transaction_id": "TX-1004",
+        "from_account_id": "ACC-1001",
+        "to_account_id": "ACC-1002",
+        "amount": "5000",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-27T09:17:00",
+        "status": "SUCCESS",
+        "reference": "REF-004",
+        "created_at": "2026-08-27T09:17:00",
+        "completed_at": "2026-08-27T09:17:00"
+      },
+      {
+        "transaction_id": "TX-1001",
+        "from_account_id": "ACC-1001",
+        "to_account_id": "ACC-1002",
+        "amount": "5000",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-27T09:15:00",
+        "status": "SUCCESS",
+        "reference": "REF-001",
+        "created_at": "2026-08-27T09:15:00",
+        "completed_at": "2026-08-27T09:15:00"
+      },
+      {
+        "transaction_id": "TX-1002",
+        "from_account_id": "ACC-1001",
+        "to_account_id": "ACC-1003",
         "amount": "2000",
         "currency": "ETB",
-        "balance_before": "15000",
-        "balance_after": "17000",
-        "created_at": "2026-08-28 10:10:00",
-        "status": "POSTED"
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-26T14:20:00",
+        "status": "SUCCESS",
+        "reference": "REF-002",
+        "created_at": "2026-08-26T14:20:00",
+        "completed_at": "2026-08-26T14:20:00"
       },
+      {
+        "transaction_id": "TX-1003",
+        "from_account_id": "ACC-1002",
+        "to_account_id": "ACC-1001",
+        "amount": "1500",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-25T11:30:00",
+        "status": "SUCCESS",
+        "reference": "REF-003",
+        "created_at": "2026-08-25T11:30:00",
+        "completed_at": "2026-08-25T11:30:00"
+      }
+    ],
+    "ledger_entries": [
       {
         "ledger_entry_id": "LED-007",
         "transaction_id": "TX-1004",
@@ -132,7 +185,7 @@
         "currency": "ETB",
         "balance_before": "20000",
         "balance_after": "15000",
-        "created_at": "2026-08-27 09:17:00",
+        "created_at": "2026-08-27T09:17:00",
         "status": "POSTED"
       },
       {
@@ -144,7 +197,7 @@
         "currency": "ETB",
         "balance_before": "25000",
         "balance_after": "20000",
-        "created_at": "2026-08-27 09:15:00",
+        "created_at": "2026-08-27T09:15:00",
         "status": "POSTED"
       },
       {
@@ -156,7 +209,7 @@
         "currency": "ETB",
         "balance_before": "20000",
         "balance_after": "18000",
-        "created_at": "2026-08-26 14:20:00",
+        "created_at": "2026-08-26T14:20:00",
         "status": "POSTED"
       },
       {
@@ -168,40 +221,40 @@
         "currency": "ETB",
         "balance_before": "18500",
         "balance_after": "20000",
-        "created_at": "2026-08-25 11:30:00",
+        "created_at": "2026-08-25T11:30:00",
         "status": "POSTED"
       }
     ],
-    "balance_reconciliation": {
-      "opening_balance": "25000",
-      "current_balance": "20000",
-      "expected_balance": "16500",
-      "difference": "3500",
-      "consistent": false
-    },
-    "suspected_duplicates": [
-      {
-        "recipient_account_id": "ACC-1002",
+    "balance_comparison": {
+      "account_id": "ACC-1001",
+      "as_of": "2026-08-28T09:00:00",
+      "reported_balance": "15000",
+      "reported_balance_source": "latest_posted_ledger_balance",
+      "expected_balance": "14500",
+      "difference": "500",
+      "consistent": false,
+      "posted_ledger_entries": 4,
+      "total_ledger_entries": 4,
+      "suspected_duplicate_debit": {
         "amount": "5000",
-        "currency": "ETB",
+        "recipient_account_id": "ACC-1002",
+        "duplicate_count": 2,
         "transaction_ids": [
           "TX-1004",
           "TX-1001"
-        ],
-        "count": 2
+        ]
       }
-    ],
-    "reversals": [],
-    "failed_transactions_without_debit": []
+    }
   },
   {
     "case_id": "CASE-002",
+    "as_of": "2026-08-28T17:00:00",
     "case": {
       "case_id": "CASE-002",
       "customer_id": "CUST-003",
       "account_id": "ACC-1003",
       "complaint": "My 10,000 ETB transfer failed. Please check if money was deducted.",
-      "submitted_at": "2026-08-28 17:00:00",
+      "submitted_at": "2026-08-28T17:00:00",
       "status": "OPEN"
     },
     "customer": {
@@ -236,23 +289,82 @@
         "amount": "10000",
         "currency": "ETB",
         "transaction_type": "TRANSFER",
-        "transaction_date": "2026-08-27 16:00:00",
+        "transaction_date": "2026-08-27T16:00:00",
         "status": "FAILED",
         "reference": "REF-005",
-        "created_at": "2026-08-27 16:00:00",
-        "completed_at": "2026-08-27 16:01:00"
+        "created_at": "2026-08-27T16:00:00",
+        "completed_at": "2026-08-27T16:01:00"
       }
     ],
     "transaction_facts": [
       {
         "transaction_id": "TX-1005",
-        "amount": "10000",
-        "currency": "ETB",
-        "status": "FAILED",
         "from_account_id": "ACC-1003",
         "to_account_id": "ACC-1004",
+        "amount": "10000",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-27T16:00:00",
+        "status": "FAILED",
+        "reference": "REF-005",
+        "created_at": "2026-08-27T16:00:00",
+        "completed_at": "2026-08-27T16:01:00",
         "direction": "OUTGOING",
         "ledger_entries": []
+      }
+    ],
+    "transactions": [
+      {
+        "transaction_id": "TX-1008",
+        "from_account_id": "ACC-1003",
+        "to_account_id": "ACC-1002",
+        "amount": "2500",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-28T13:30:00",
+        "status": "SUCCESS",
+        "reference": "REF-008",
+        "created_at": "2026-08-28T13:30:00",
+        "completed_at": "2026-08-28T13:30:00"
+      },
+      {
+        "transaction_id": "TX-1007",
+        "from_account_id": "ACC-1002",
+        "to_account_id": "ACC-1003",
+        "amount": "1000",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-28T12:00:00",
+        "status": "REVERSED",
+        "reference": "REF-007",
+        "created_at": "2026-08-28T12:00:00",
+        "completed_at": "2026-08-28T12:30:00"
+      },
+      {
+        "transaction_id": "TX-1005",
+        "from_account_id": "ACC-1003",
+        "to_account_id": "ACC-1004",
+        "amount": "10000",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-27T16:00:00",
+        "status": "FAILED",
+        "reference": "REF-005",
+        "created_at": "2026-08-27T16:00:00",
+        "completed_at": "2026-08-27T16:01:00"
+      },
+      {
+        "transaction_id": "TX-1002",
+        "from_account_id": "ACC-1001",
+        "to_account_id": "ACC-1003",
+        "amount": "2000",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-26T14:20:00",
+        "status": "SUCCESS",
+        "reference": "REF-002",
+        "created_at": "2026-08-26T14:20:00",
+        "completed_at": "2026-08-26T14:20:00"
       }
     ],
     "ledger_entries": [
@@ -265,7 +377,7 @@
         "currency": "ETB",
         "balance_before": "48000",
         "balance_after": "45500",
-        "created_at": "2026-08-28 13:30:00",
+        "created_at": "2026-08-28T13:30:00",
         "status": "POSTED"
       },
       {
@@ -277,7 +389,7 @@
         "currency": "ETB",
         "balance_before": "49000",
         "balance_after": "48000",
-        "created_at": "2026-08-28 12:30:00",
+        "created_at": "2026-08-28T12:30:00",
         "status": "POSTED"
       },
       {
@@ -289,7 +401,7 @@
         "currency": "ETB",
         "balance_before": "48000",
         "balance_after": "49000",
-        "created_at": "2026-08-28 12:00:00",
+        "created_at": "2026-08-28T12:00:00",
         "status": "POSTED"
       },
       {
@@ -301,64 +413,32 @@
         "currency": "ETB",
         "balance_before": "48000",
         "balance_after": "50000",
-        "created_at": "2026-08-26 14:20:00",
+        "created_at": "2026-08-26T14:20:00",
         "status": "POSTED"
       }
     ],
-    "balance_reconciliation": {
-      "opening_balance": "50000",
-      "current_balance": "48500",
+    "balance_comparison": {
+      "account_id": "ACC-1003",
+      "as_of": "2026-08-28T17:00:00",
+      "reported_balance": "45500",
+      "reported_balance_source": "latest_posted_ledger_balance",
       "expected_balance": "49500",
-      "difference": "-1000",
-      "consistent": false
-    },
-    "suspected_duplicates": [],
-    "reversals": [
-      {
-        "transaction_id": "TX-1007",
-        "debit_amount": "1000",
-        "credit_amount": "1000",
-        "fully_reversed": true,
-        "ledger_entries": [
-          {
-            "ledger_entry_id": "LED-013",
-            "transaction_id": "TX-1007",
-            "account_id": "ACC-1003",
-            "entry_type": "DEBIT",
-            "amount": "1000",
-            "currency": "ETB",
-            "balance_before": "49000",
-            "balance_after": "48000",
-            "created_at": "2026-08-28 12:30:00",
-            "status": "POSTED"
-          },
-          {
-            "ledger_entry_id": "LED-011",
-            "transaction_id": "TX-1007",
-            "account_id": "ACC-1003",
-            "entry_type": "CREDIT",
-            "amount": "1000",
-            "currency": "ETB",
-            "balance_before": "48000",
-            "balance_after": "49000",
-            "created_at": "2026-08-28 12:00:00",
-            "status": "POSTED"
-          }
-        ]
-      }
-    ],
-    "failed_transactions_without_debit": [
-      "TX-1005"
-    ]
+      "difference": "-4000",
+      "consistent": false,
+      "posted_ledger_entries": 4,
+      "total_ledger_entries": 4,
+      "suspected_duplicate_debit": null
+    }
   },
   {
     "case_id": "CASE-003",
+    "as_of": "2026-08-29T09:00:00",
     "case": {
       "case_id": "CASE-003",
       "customer_id": "CUST-002",
       "account_id": "ACC-1002",
       "complaint": "A transfer was reversed but I want to know whether my balance was restored.",
-      "submitted_at": "2026-08-29 09:00:00",
+      "submitted_at": "2026-08-29T09:00:00",
       "status": "OPEN"
     },
     "customer": {
@@ -393,21 +473,26 @@
         "amount": "1000",
         "currency": "ETB",
         "transaction_type": "TRANSFER",
-        "transaction_date": "2026-08-28 12:00:00",
+        "transaction_date": "2026-08-28T12:00:00",
         "status": "REVERSED",
         "reference": "REF-007",
-        "created_at": "2026-08-28 12:00:00",
-        "completed_at": "2026-08-28 12:30:00"
+        "created_at": "2026-08-28T12:00:00",
+        "completed_at": "2026-08-28T12:30:00"
       }
     ],
     "transaction_facts": [
       {
         "transaction_id": "TX-1007",
-        "amount": "1000",
-        "currency": "ETB",
-        "status": "REVERSED",
         "from_account_id": "ACC-1002",
         "to_account_id": "ACC-1003",
+        "amount": "1000",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-28T12:00:00",
+        "status": "REVERSED",
+        "reference": "REF-007",
+        "created_at": "2026-08-28T12:00:00",
+        "completed_at": "2026-08-28T12:30:00",
         "direction": "OUTGOING",
         "ledger_entries": [
           {
@@ -419,7 +504,7 @@
             "currency": "ETB",
             "balance_before": "12000",
             "balance_after": "13000",
-            "created_at": "2026-08-28 12:30:00",
+            "created_at": "2026-08-28T12:30:00",
             "status": "POSTED"
           },
           {
@@ -431,10 +516,77 @@
             "currency": "ETB",
             "balance_before": "13000",
             "balance_after": "12000",
-            "created_at": "2026-08-28 12:00:00",
+            "created_at": "2026-08-28T12:00:00",
             "status": "POSTED"
           }
         ]
+      }
+    ],
+    "transactions": [
+      {
+        "transaction_id": "TX-1008",
+        "from_account_id": "ACC-1003",
+        "to_account_id": "ACC-1002",
+        "amount": "2500",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-28T13:30:00",
+        "status": "SUCCESS",
+        "reference": "REF-008",
+        "created_at": "2026-08-28T13:30:00",
+        "completed_at": "2026-08-28T13:30:00"
+      },
+      {
+        "transaction_id": "TX-1007",
+        "from_account_id": "ACC-1002",
+        "to_account_id": "ACC-1003",
+        "amount": "1000",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-28T12:00:00",
+        "status": "REVERSED",
+        "reference": "REF-007",
+        "created_at": "2026-08-28T12:00:00",
+        "completed_at": "2026-08-28T12:30:00"
+      },
+      {
+        "transaction_id": "TX-1004",
+        "from_account_id": "ACC-1001",
+        "to_account_id": "ACC-1002",
+        "amount": "5000",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-27T09:17:00",
+        "status": "SUCCESS",
+        "reference": "REF-004",
+        "created_at": "2026-08-27T09:17:00",
+        "completed_at": "2026-08-27T09:17:00"
+      },
+      {
+        "transaction_id": "TX-1001",
+        "from_account_id": "ACC-1001",
+        "to_account_id": "ACC-1002",
+        "amount": "5000",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-27T09:15:00",
+        "status": "SUCCESS",
+        "reference": "REF-001",
+        "created_at": "2026-08-27T09:15:00",
+        "completed_at": "2026-08-27T09:15:00"
+      },
+      {
+        "transaction_id": "TX-1003",
+        "from_account_id": "ACC-1002",
+        "to_account_id": "ACC-1001",
+        "amount": "1500",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-25T11:30:00",
+        "status": "SUCCESS",
+        "reference": "REF-003",
+        "created_at": "2026-08-25T11:30:00",
+        "completed_at": "2026-08-25T11:30:00"
       }
     ],
     "ledger_entries": [
@@ -447,7 +599,7 @@
         "currency": "ETB",
         "balance_before": "13000",
         "balance_after": "15500",
-        "created_at": "2026-08-28 13:30:00",
+        "created_at": "2026-08-28T13:30:00",
         "status": "POSTED"
       },
       {
@@ -459,7 +611,7 @@
         "currency": "ETB",
         "balance_before": "12000",
         "balance_after": "13000",
-        "created_at": "2026-08-28 12:30:00",
+        "created_at": "2026-08-28T12:30:00",
         "status": "POSTED"
       },
       {
@@ -471,7 +623,7 @@
         "currency": "ETB",
         "balance_before": "13000",
         "balance_after": "12000",
-        "created_at": "2026-08-28 12:00:00",
+        "created_at": "2026-08-28T12:00:00",
         "status": "POSTED"
       },
       {
@@ -483,7 +635,7 @@
         "currency": "ETB",
         "balance_before": "8000",
         "balance_after": "13000",
-        "created_at": "2026-08-27 09:15:00",
+        "created_at": "2026-08-27T09:15:00",
         "status": "POSTED"
       },
       {
@@ -495,62 +647,32 @@
         "currency": "ETB",
         "balance_before": "9500",
         "balance_after": "8000",
-        "created_at": "2026-08-25 11:30:00",
+        "created_at": "2026-08-25T11:30:00",
         "status": "POSTED"
       }
     ],
-    "balance_reconciliation": {
-      "opening_balance": "8000",
-      "current_balance": "13000",
+    "balance_comparison": {
+      "account_id": "ACC-1002",
+      "as_of": "2026-08-29T09:00:00",
+      "reported_balance": "15500",
+      "reported_balance_source": "latest_posted_ledger_balance",
       "expected_balance": "14000",
-      "difference": "-1000",
-      "consistent": false
-    },
-    "suspected_duplicates": [],
-    "reversals": [
-      {
-        "transaction_id": "TX-1007",
-        "debit_amount": "1000",
-        "credit_amount": "1000",
-        "fully_reversed": true,
-        "ledger_entries": [
-          {
-            "ledger_entry_id": "LED-012",
-            "transaction_id": "TX-1007",
-            "account_id": "ACC-1002",
-            "entry_type": "CREDIT",
-            "amount": "1000",
-            "currency": "ETB",
-            "balance_before": "12000",
-            "balance_after": "13000",
-            "created_at": "2026-08-28 12:30:00",
-            "status": "POSTED"
-          },
-          {
-            "ledger_entry_id": "LED-010",
-            "transaction_id": "TX-1007",
-            "account_id": "ACC-1002",
-            "entry_type": "DEBIT",
-            "amount": "1000",
-            "currency": "ETB",
-            "balance_before": "13000",
-            "balance_after": "12000",
-            "created_at": "2026-08-28 12:00:00",
-            "status": "POSTED"
-          }
-        ]
-      }
-    ],
-    "failed_transactions_without_debit": []
+      "difference": "1500",
+      "consistent": false,
+      "posted_ledger_entries": 5,
+      "total_ledger_entries": 5,
+      "suspected_duplicate_debit": null
+    }
   },
   {
     "case_id": "CASE-004",
+    "as_of": "2026-08-28T09:30:00",
     "case": {
       "case_id": "CASE-004",
       "customer_id": "CUST-002",
       "account_id": "ACC-1002",
       "complaint": "I received a 5,000 ETB transfer. Please confirm the transaction and the amount credited to my account.",
-      "submitted_at": "2026-08-28 09:30:00",
+      "submitted_at": "2026-08-28T09:30:00",
       "status": "OPEN"
     },
     "customer": {
@@ -585,21 +707,26 @@
         "amount": "5000",
         "currency": "ETB",
         "transaction_type": "TRANSFER",
-        "transaction_date": "2026-08-27 09:15:00",
+        "transaction_date": "2026-08-27T09:15:00",
         "status": "SUCCESS",
         "reference": "REF-001",
-        "created_at": "2026-08-27 09:15:00",
-        "completed_at": "2026-08-27 09:15:00"
+        "created_at": "2026-08-27T09:15:00",
+        "completed_at": "2026-08-27T09:15:00"
       }
     ],
     "transaction_facts": [
       {
         "transaction_id": "TX-1001",
-        "amount": "5000",
-        "currency": "ETB",
-        "status": "SUCCESS",
         "from_account_id": "ACC-1001",
         "to_account_id": "ACC-1002",
+        "amount": "5000",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-27T09:15:00",
+        "status": "SUCCESS",
+        "reference": "REF-001",
+        "created_at": "2026-08-27T09:15:00",
+        "completed_at": "2026-08-27T09:15:00",
         "direction": "INCOMING",
         "ledger_entries": [
           {
@@ -611,49 +738,54 @@
             "currency": "ETB",
             "balance_before": "8000",
             "balance_after": "13000",
-            "created_at": "2026-08-27 09:15:00",
+            "created_at": "2026-08-27T09:15:00",
             "status": "POSTED"
           }
         ]
       }
     ],
+    "transactions": [
+      {
+        "transaction_id": "TX-1004",
+        "from_account_id": "ACC-1001",
+        "to_account_id": "ACC-1002",
+        "amount": "5000",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-27T09:17:00",
+        "status": "SUCCESS",
+        "reference": "REF-004",
+        "created_at": "2026-08-27T09:17:00",
+        "completed_at": "2026-08-27T09:17:00"
+      },
+      {
+        "transaction_id": "TX-1001",
+        "from_account_id": "ACC-1001",
+        "to_account_id": "ACC-1002",
+        "amount": "5000",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-27T09:15:00",
+        "status": "SUCCESS",
+        "reference": "REF-001",
+        "created_at": "2026-08-27T09:15:00",
+        "completed_at": "2026-08-27T09:15:00"
+      },
+      {
+        "transaction_id": "TX-1003",
+        "from_account_id": "ACC-1002",
+        "to_account_id": "ACC-1001",
+        "amount": "1500",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-25T11:30:00",
+        "status": "SUCCESS",
+        "reference": "REF-003",
+        "created_at": "2026-08-25T11:30:00",
+        "completed_at": "2026-08-25T11:30:00"
+      }
+    ],
     "ledger_entries": [
-      {
-        "ledger_entry_id": "LED-015",
-        "transaction_id": "TX-1008",
-        "account_id": "ACC-1002",
-        "entry_type": "CREDIT",
-        "amount": "2500",
-        "currency": "ETB",
-        "balance_before": "13000",
-        "balance_after": "15500",
-        "created_at": "2026-08-28 13:30:00",
-        "status": "POSTED"
-      },
-      {
-        "ledger_entry_id": "LED-012",
-        "transaction_id": "TX-1007",
-        "account_id": "ACC-1002",
-        "entry_type": "CREDIT",
-        "amount": "1000",
-        "currency": "ETB",
-        "balance_before": "12000",
-        "balance_after": "13000",
-        "created_at": "2026-08-28 12:30:00",
-        "status": "POSTED"
-      },
-      {
-        "ledger_entry_id": "LED-010",
-        "transaction_id": "TX-1007",
-        "account_id": "ACC-1002",
-        "entry_type": "DEBIT",
-        "amount": "1000",
-        "currency": "ETB",
-        "balance_before": "13000",
-        "balance_after": "12000",
-        "created_at": "2026-08-28 12:00:00",
-        "status": "POSTED"
-      },
       {
         "ledger_entry_id": "LED-002",
         "transaction_id": "TX-1001",
@@ -663,7 +795,7 @@
         "currency": "ETB",
         "balance_before": "8000",
         "balance_after": "13000",
-        "created_at": "2026-08-27 09:15:00",
+        "created_at": "2026-08-27T09:15:00",
         "status": "POSTED"
       },
       {
@@ -675,62 +807,32 @@
         "currency": "ETB",
         "balance_before": "9500",
         "balance_after": "8000",
-        "created_at": "2026-08-25 11:30:00",
+        "created_at": "2026-08-25T11:30:00",
         "status": "POSTED"
       }
     ],
-    "balance_reconciliation": {
-      "opening_balance": "8000",
-      "current_balance": "13000",
-      "expected_balance": "14000",
-      "difference": "-1000",
-      "consistent": false
-    },
-    "suspected_duplicates": [],
-    "reversals": [
-      {
-        "transaction_id": "TX-1007",
-        "debit_amount": "1000",
-        "credit_amount": "1000",
-        "fully_reversed": true,
-        "ledger_entries": [
-          {
-            "ledger_entry_id": "LED-012",
-            "transaction_id": "TX-1007",
-            "account_id": "ACC-1002",
-            "entry_type": "CREDIT",
-            "amount": "1000",
-            "currency": "ETB",
-            "balance_before": "12000",
-            "balance_after": "13000",
-            "created_at": "2026-08-28 12:30:00",
-            "status": "POSTED"
-          },
-          {
-            "ledger_entry_id": "LED-010",
-            "transaction_id": "TX-1007",
-            "account_id": "ACC-1002",
-            "entry_type": "DEBIT",
-            "amount": "1000",
-            "currency": "ETB",
-            "balance_before": "13000",
-            "balance_after": "12000",
-            "created_at": "2026-08-28 12:00:00",
-            "status": "POSTED"
-          }
-        ]
-      }
-    ],
-    "failed_transactions_without_debit": []
+    "balance_comparison": {
+      "account_id": "ACC-1002",
+      "as_of": "2026-08-28T09:30:00",
+      "reported_balance": "13000",
+      "reported_balance_source": "latest_posted_ledger_balance",
+      "expected_balance": "11500",
+      "difference": "1500",
+      "consistent": false,
+      "posted_ledger_entries": 2,
+      "total_ledger_entries": 2,
+      "suspected_duplicate_debit": null
+    }
   },
   {
     "case_id": "CASE-005",
+    "as_of": "2026-08-28T09:45:00",
     "case": {
       "case_id": "CASE-005",
       "customer_id": "CUST-001",
       "account_id": "ACC-1001",
       "complaint": "I sent 2,000 ETB to another account. Please confirm whether the transfer was completed and my account was debited.",
-      "submitted_at": "2026-08-28 09:45:00",
+      "submitted_at": "2026-08-28T09:45:00",
       "status": "OPEN"
     },
     "customer": {
@@ -765,21 +867,26 @@
         "amount": "2000",
         "currency": "ETB",
         "transaction_type": "TRANSFER",
-        "transaction_date": "2026-08-26 14:20:00",
+        "transaction_date": "2026-08-26T14:20:00",
         "status": "SUCCESS",
         "reference": "REF-002",
-        "created_at": "2026-08-26 14:20:00",
-        "completed_at": "2026-08-26 14:20:00"
+        "created_at": "2026-08-26T14:20:00",
+        "completed_at": "2026-08-26T14:20:00"
       }
     ],
     "transaction_facts": [
       {
         "transaction_id": "TX-1002",
-        "amount": "2000",
-        "currency": "ETB",
-        "status": "SUCCESS",
         "from_account_id": "ACC-1001",
         "to_account_id": "ACC-1003",
+        "amount": "2000",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-26T14:20:00",
+        "status": "SUCCESS",
+        "reference": "REF-002",
+        "created_at": "2026-08-26T14:20:00",
+        "completed_at": "2026-08-26T14:20:00",
         "direction": "OUTGOING",
         "ledger_entries": [
           {
@@ -791,25 +898,67 @@
             "currency": "ETB",
             "balance_before": "20000",
             "balance_after": "18000",
-            "created_at": "2026-08-26 14:20:00",
+            "created_at": "2026-08-26T14:20:00",
             "status": "POSTED"
           }
         ]
       }
     ],
-    "ledger_entries": [
+    "transactions": [
       {
-        "ledger_entry_id": "LED-009",
-        "transaction_id": "TX-1006",
-        "account_id": "ACC-1001",
-        "entry_type": "CREDIT",
+        "transaction_id": "TX-1004",
+        "from_account_id": "ACC-1001",
+        "to_account_id": "ACC-1002",
+        "amount": "5000",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-27T09:17:00",
+        "status": "SUCCESS",
+        "reference": "REF-004",
+        "created_at": "2026-08-27T09:17:00",
+        "completed_at": "2026-08-27T09:17:00"
+      },
+      {
+        "transaction_id": "TX-1001",
+        "from_account_id": "ACC-1001",
+        "to_account_id": "ACC-1002",
+        "amount": "5000",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-27T09:15:00",
+        "status": "SUCCESS",
+        "reference": "REF-001",
+        "created_at": "2026-08-27T09:15:00",
+        "completed_at": "2026-08-27T09:15:00"
+      },
+      {
+        "transaction_id": "TX-1002",
+        "from_account_id": "ACC-1001",
+        "to_account_id": "ACC-1003",
         "amount": "2000",
         "currency": "ETB",
-        "balance_before": "15000",
-        "balance_after": "17000",
-        "created_at": "2026-08-28 10:10:00",
-        "status": "POSTED"
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-26T14:20:00",
+        "status": "SUCCESS",
+        "reference": "REF-002",
+        "created_at": "2026-08-26T14:20:00",
+        "completed_at": "2026-08-26T14:20:00"
       },
+      {
+        "transaction_id": "TX-1003",
+        "from_account_id": "ACC-1002",
+        "to_account_id": "ACC-1001",
+        "amount": "1500",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-25T11:30:00",
+        "status": "SUCCESS",
+        "reference": "REF-003",
+        "created_at": "2026-08-25T11:30:00",
+        "completed_at": "2026-08-25T11:30:00"
+      }
+    ],
+    "ledger_entries": [
       {
         "ledger_entry_id": "LED-007",
         "transaction_id": "TX-1004",
@@ -819,7 +968,7 @@
         "currency": "ETB",
         "balance_before": "20000",
         "balance_after": "15000",
-        "created_at": "2026-08-27 09:17:00",
+        "created_at": "2026-08-27T09:17:00",
         "status": "POSTED"
       },
       {
@@ -831,7 +980,7 @@
         "currency": "ETB",
         "balance_before": "25000",
         "balance_after": "20000",
-        "created_at": "2026-08-27 09:15:00",
+        "created_at": "2026-08-27T09:15:00",
         "status": "POSTED"
       },
       {
@@ -843,7 +992,7 @@
         "currency": "ETB",
         "balance_before": "20000",
         "balance_after": "18000",
-        "created_at": "2026-08-26 14:20:00",
+        "created_at": "2026-08-26T14:20:00",
         "status": "POSTED"
       },
       {
@@ -855,40 +1004,40 @@
         "currency": "ETB",
         "balance_before": "18500",
         "balance_after": "20000",
-        "created_at": "2026-08-25 11:30:00",
+        "created_at": "2026-08-25T11:30:00",
         "status": "POSTED"
       }
     ],
-    "balance_reconciliation": {
-      "opening_balance": "25000",
-      "current_balance": "20000",
-      "expected_balance": "16500",
-      "difference": "3500",
-      "consistent": false
-    },
-    "suspected_duplicates": [
-      {
-        "recipient_account_id": "ACC-1002",
+    "balance_comparison": {
+      "account_id": "ACC-1001",
+      "as_of": "2026-08-28T09:45:00",
+      "reported_balance": "15000",
+      "reported_balance_source": "latest_posted_ledger_balance",
+      "expected_balance": "14500",
+      "difference": "500",
+      "consistent": false,
+      "posted_ledger_entries": 4,
+      "total_ledger_entries": 4,
+      "suspected_duplicate_debit": {
         "amount": "5000",
-        "currency": "ETB",
+        "recipient_account_id": "ACC-1002",
+        "duplicate_count": 2,
         "transaction_ids": [
           "TX-1004",
           "TX-1001"
-        ],
-        "count": 2
+        ]
       }
-    ],
-    "reversals": [],
-    "failed_transactions_without_debit": []
+    }
   },
   {
     "case_id": "CASE-006",
+    "as_of": "2026-08-28T10:00:00",
     "case": {
       "case_id": "CASE-006",
       "customer_id": "CUST-003",
       "account_id": "ACC-1003",
       "complaint": "I received 2,000 ETB. Please verify that the money was actually credited to my account.",
-      "submitted_at": "2026-08-28 10:00:00",
+      "submitted_at": "2026-08-28T10:00:00",
       "status": "OPEN"
     },
     "customer": {
@@ -923,21 +1072,26 @@
         "amount": "2000",
         "currency": "ETB",
         "transaction_type": "TRANSFER",
-        "transaction_date": "2026-08-26 14:20:00",
+        "transaction_date": "2026-08-26T14:20:00",
         "status": "SUCCESS",
         "reference": "REF-002",
-        "created_at": "2026-08-26 14:20:00",
-        "completed_at": "2026-08-26 14:20:00"
+        "created_at": "2026-08-26T14:20:00",
+        "completed_at": "2026-08-26T14:20:00"
       }
     ],
     "transaction_facts": [
       {
         "transaction_id": "TX-1002",
-        "amount": "2000",
-        "currency": "ETB",
-        "status": "SUCCESS",
         "from_account_id": "ACC-1001",
         "to_account_id": "ACC-1003",
+        "amount": "2000",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-26T14:20:00",
+        "status": "SUCCESS",
+        "reference": "REF-002",
+        "created_at": "2026-08-26T14:20:00",
+        "completed_at": "2026-08-26T14:20:00",
         "direction": "INCOMING",
         "ledger_entries": [
           {
@@ -949,49 +1103,41 @@
             "currency": "ETB",
             "balance_before": "48000",
             "balance_after": "50000",
-            "created_at": "2026-08-26 14:20:00",
+            "created_at": "2026-08-26T14:20:00",
             "status": "POSTED"
           }
         ]
       }
     ],
+    "transactions": [
+      {
+        "transaction_id": "TX-1005",
+        "from_account_id": "ACC-1003",
+        "to_account_id": "ACC-1004",
+        "amount": "10000",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-27T16:00:00",
+        "status": "FAILED",
+        "reference": "REF-005",
+        "created_at": "2026-08-27T16:00:00",
+        "completed_at": "2026-08-27T16:01:00"
+      },
+      {
+        "transaction_id": "TX-1002",
+        "from_account_id": "ACC-1001",
+        "to_account_id": "ACC-1003",
+        "amount": "2000",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-26T14:20:00",
+        "status": "SUCCESS",
+        "reference": "REF-002",
+        "created_at": "2026-08-26T14:20:00",
+        "completed_at": "2026-08-26T14:20:00"
+      }
+    ],
     "ledger_entries": [
-      {
-        "ledger_entry_id": "LED-014",
-        "transaction_id": "TX-1008",
-        "account_id": "ACC-1003",
-        "entry_type": "DEBIT",
-        "amount": "2500",
-        "currency": "ETB",
-        "balance_before": "48000",
-        "balance_after": "45500",
-        "created_at": "2026-08-28 13:30:00",
-        "status": "POSTED"
-      },
-      {
-        "ledger_entry_id": "LED-013",
-        "transaction_id": "TX-1007",
-        "account_id": "ACC-1003",
-        "entry_type": "DEBIT",
-        "amount": "1000",
-        "currency": "ETB",
-        "balance_before": "49000",
-        "balance_after": "48000",
-        "created_at": "2026-08-28 12:30:00",
-        "status": "POSTED"
-      },
-      {
-        "ledger_entry_id": "LED-011",
-        "transaction_id": "TX-1007",
-        "account_id": "ACC-1003",
-        "entry_type": "CREDIT",
-        "amount": "1000",
-        "currency": "ETB",
-        "balance_before": "48000",
-        "balance_after": "49000",
-        "created_at": "2026-08-28 12:00:00",
-        "status": "POSTED"
-      },
       {
         "ledger_entry_id": "LED-004",
         "transaction_id": "TX-1002",
@@ -1001,64 +1147,32 @@
         "currency": "ETB",
         "balance_before": "48000",
         "balance_after": "50000",
-        "created_at": "2026-08-26 14:20:00",
+        "created_at": "2026-08-26T14:20:00",
         "status": "POSTED"
       }
     ],
-    "balance_reconciliation": {
-      "opening_balance": "50000",
-      "current_balance": "48500",
-      "expected_balance": "49500",
-      "difference": "-1000",
-      "consistent": false
-    },
-    "suspected_duplicates": [],
-    "reversals": [
-      {
-        "transaction_id": "TX-1007",
-        "debit_amount": "1000",
-        "credit_amount": "1000",
-        "fully_reversed": true,
-        "ledger_entries": [
-          {
-            "ledger_entry_id": "LED-013",
-            "transaction_id": "TX-1007",
-            "account_id": "ACC-1003",
-            "entry_type": "DEBIT",
-            "amount": "1000",
-            "currency": "ETB",
-            "balance_before": "49000",
-            "balance_after": "48000",
-            "created_at": "2026-08-28 12:30:00",
-            "status": "POSTED"
-          },
-          {
-            "ledger_entry_id": "LED-011",
-            "transaction_id": "TX-1007",
-            "account_id": "ACC-1003",
-            "entry_type": "CREDIT",
-            "amount": "1000",
-            "currency": "ETB",
-            "balance_before": "48000",
-            "balance_after": "49000",
-            "created_at": "2026-08-28 12:00:00",
-            "status": "POSTED"
-          }
-        ]
-      }
-    ],
-    "failed_transactions_without_debit": [
-      "TX-1005"
-    ]
+    "balance_comparison": {
+      "account_id": "ACC-1003",
+      "as_of": "2026-08-28T10:00:00",
+      "reported_balance": "50000",
+      "reported_balance_source": "latest_posted_ledger_balance",
+      "expected_balance": "52000",
+      "difference": "-2000",
+      "consistent": false,
+      "posted_ledger_entries": 1,
+      "total_ledger_entries": 1,
+      "suspected_duplicate_debit": null
+    }
   },
   {
     "case_id": "CASE-007",
+    "as_of": "2026-08-28T10:15:00",
     "case": {
       "case_id": "CASE-007",
       "customer_id": "CUST-002",
       "account_id": "ACC-1002",
       "complaint": "I sent 1,500 ETB and want to confirm whether it was deducted from my balance.",
-      "submitted_at": "2026-08-28 10:15:00",
+      "submitted_at": "2026-08-28T10:15:00",
       "status": "OPEN"
     },
     "customer": {
@@ -1093,21 +1207,26 @@
         "amount": "1500",
         "currency": "ETB",
         "transaction_type": "TRANSFER",
-        "transaction_date": "2026-08-25 11:30:00",
+        "transaction_date": "2026-08-25T11:30:00",
         "status": "SUCCESS",
         "reference": "REF-003",
-        "created_at": "2026-08-25 11:30:00",
-        "completed_at": "2026-08-25 11:30:00"
+        "created_at": "2026-08-25T11:30:00",
+        "completed_at": "2026-08-25T11:30:00"
       }
     ],
     "transaction_facts": [
       {
         "transaction_id": "TX-1003",
-        "amount": "1500",
-        "currency": "ETB",
-        "status": "SUCCESS",
         "from_account_id": "ACC-1002",
         "to_account_id": "ACC-1001",
+        "amount": "1500",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-25T11:30:00",
+        "status": "SUCCESS",
+        "reference": "REF-003",
+        "created_at": "2026-08-25T11:30:00",
+        "completed_at": "2026-08-25T11:30:00",
         "direction": "OUTGOING",
         "ledger_entries": [
           {
@@ -1119,49 +1238,54 @@
             "currency": "ETB",
             "balance_before": "9500",
             "balance_after": "8000",
-            "created_at": "2026-08-25 11:30:00",
+            "created_at": "2026-08-25T11:30:00",
             "status": "POSTED"
           }
         ]
       }
     ],
+    "transactions": [
+      {
+        "transaction_id": "TX-1004",
+        "from_account_id": "ACC-1001",
+        "to_account_id": "ACC-1002",
+        "amount": "5000",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-27T09:17:00",
+        "status": "SUCCESS",
+        "reference": "REF-004",
+        "created_at": "2026-08-27T09:17:00",
+        "completed_at": "2026-08-27T09:17:00"
+      },
+      {
+        "transaction_id": "TX-1001",
+        "from_account_id": "ACC-1001",
+        "to_account_id": "ACC-1002",
+        "amount": "5000",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-27T09:15:00",
+        "status": "SUCCESS",
+        "reference": "REF-001",
+        "created_at": "2026-08-27T09:15:00",
+        "completed_at": "2026-08-27T09:15:00"
+      },
+      {
+        "transaction_id": "TX-1003",
+        "from_account_id": "ACC-1002",
+        "to_account_id": "ACC-1001",
+        "amount": "1500",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-25T11:30:00",
+        "status": "SUCCESS",
+        "reference": "REF-003",
+        "created_at": "2026-08-25T11:30:00",
+        "completed_at": "2026-08-25T11:30:00"
+      }
+    ],
     "ledger_entries": [
-      {
-        "ledger_entry_id": "LED-015",
-        "transaction_id": "TX-1008",
-        "account_id": "ACC-1002",
-        "entry_type": "CREDIT",
-        "amount": "2500",
-        "currency": "ETB",
-        "balance_before": "13000",
-        "balance_after": "15500",
-        "created_at": "2026-08-28 13:30:00",
-        "status": "POSTED"
-      },
-      {
-        "ledger_entry_id": "LED-012",
-        "transaction_id": "TX-1007",
-        "account_id": "ACC-1002",
-        "entry_type": "CREDIT",
-        "amount": "1000",
-        "currency": "ETB",
-        "balance_before": "12000",
-        "balance_after": "13000",
-        "created_at": "2026-08-28 12:30:00",
-        "status": "POSTED"
-      },
-      {
-        "ledger_entry_id": "LED-010",
-        "transaction_id": "TX-1007",
-        "account_id": "ACC-1002",
-        "entry_type": "DEBIT",
-        "amount": "1000",
-        "currency": "ETB",
-        "balance_before": "13000",
-        "balance_after": "12000",
-        "created_at": "2026-08-28 12:00:00",
-        "status": "POSTED"
-      },
       {
         "ledger_entry_id": "LED-002",
         "transaction_id": "TX-1001",
@@ -1171,7 +1295,7 @@
         "currency": "ETB",
         "balance_before": "8000",
         "balance_after": "13000",
-        "created_at": "2026-08-27 09:15:00",
+        "created_at": "2026-08-27T09:15:00",
         "status": "POSTED"
       },
       {
@@ -1183,62 +1307,32 @@
         "currency": "ETB",
         "balance_before": "9500",
         "balance_after": "8000",
-        "created_at": "2026-08-25 11:30:00",
+        "created_at": "2026-08-25T11:30:00",
         "status": "POSTED"
       }
     ],
-    "balance_reconciliation": {
-      "opening_balance": "8000",
-      "current_balance": "13000",
-      "expected_balance": "14000",
-      "difference": "-1000",
-      "consistent": false
-    },
-    "suspected_duplicates": [],
-    "reversals": [
-      {
-        "transaction_id": "TX-1007",
-        "debit_amount": "1000",
-        "credit_amount": "1000",
-        "fully_reversed": true,
-        "ledger_entries": [
-          {
-            "ledger_entry_id": "LED-012",
-            "transaction_id": "TX-1007",
-            "account_id": "ACC-1002",
-            "entry_type": "CREDIT",
-            "amount": "1000",
-            "currency": "ETB",
-            "balance_before": "12000",
-            "balance_after": "13000",
-            "created_at": "2026-08-28 12:30:00",
-            "status": "POSTED"
-          },
-          {
-            "ledger_entry_id": "LED-010",
-            "transaction_id": "TX-1007",
-            "account_id": "ACC-1002",
-            "entry_type": "DEBIT",
-            "amount": "1000",
-            "currency": "ETB",
-            "balance_before": "13000",
-            "balance_after": "12000",
-            "created_at": "2026-08-28 12:00:00",
-            "status": "POSTED"
-          }
-        ]
-      }
-    ],
-    "failed_transactions_without_debit": []
+    "balance_comparison": {
+      "account_id": "ACC-1002",
+      "as_of": "2026-08-28T10:15:00",
+      "reported_balance": "13000",
+      "reported_balance_source": "latest_posted_ledger_balance",
+      "expected_balance": "11500",
+      "difference": "1500",
+      "consistent": false,
+      "posted_ledger_entries": 2,
+      "total_ledger_entries": 2,
+      "suspected_duplicate_debit": null
+    }
   },
   {
     "case_id": "CASE-008",
+    "as_of": "2026-08-28T10:30:00",
     "case": {
       "case_id": "CASE-008",
       "customer_id": "CUST-001",
       "account_id": "ACC-1001",
       "complaint": "I received 1,500 ETB. Please check the transaction and confirm the credited amount.",
-      "submitted_at": "2026-08-28 10:30:00",
+      "submitted_at": "2026-08-28T10:30:00",
       "status": "OPEN"
     },
     "customer": {
@@ -1273,21 +1367,26 @@
         "amount": "1500",
         "currency": "ETB",
         "transaction_type": "TRANSFER",
-        "transaction_date": "2026-08-25 11:30:00",
+        "transaction_date": "2026-08-25T11:30:00",
         "status": "SUCCESS",
         "reference": "REF-003",
-        "created_at": "2026-08-25 11:30:00",
-        "completed_at": "2026-08-25 11:30:00"
+        "created_at": "2026-08-25T11:30:00",
+        "completed_at": "2026-08-25T11:30:00"
       }
     ],
     "transaction_facts": [
       {
         "transaction_id": "TX-1003",
-        "amount": "1500",
-        "currency": "ETB",
-        "status": "SUCCESS",
         "from_account_id": "ACC-1002",
         "to_account_id": "ACC-1001",
+        "amount": "1500",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-25T11:30:00",
+        "status": "SUCCESS",
+        "reference": "REF-003",
+        "created_at": "2026-08-25T11:30:00",
+        "completed_at": "2026-08-25T11:30:00",
         "direction": "INCOMING",
         "ledger_entries": [
           {
@@ -1299,10 +1398,77 @@
             "currency": "ETB",
             "balance_before": "18500",
             "balance_after": "20000",
-            "created_at": "2026-08-25 11:30:00",
+            "created_at": "2026-08-25T11:30:00",
             "status": "POSTED"
           }
         ]
+      }
+    ],
+    "transactions": [
+      {
+        "transaction_id": "TX-1006",
+        "from_account_id": "ACC-1004",
+        "to_account_id": "ACC-1001",
+        "amount": "2000",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-28T10:10:00",
+        "status": "SUCCESS",
+        "reference": "REF-006",
+        "created_at": "2026-08-28T10:10:00",
+        "completed_at": "2026-08-28T10:10:00"
+      },
+      {
+        "transaction_id": "TX-1004",
+        "from_account_id": "ACC-1001",
+        "to_account_id": "ACC-1002",
+        "amount": "5000",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-27T09:17:00",
+        "status": "SUCCESS",
+        "reference": "REF-004",
+        "created_at": "2026-08-27T09:17:00",
+        "completed_at": "2026-08-27T09:17:00"
+      },
+      {
+        "transaction_id": "TX-1001",
+        "from_account_id": "ACC-1001",
+        "to_account_id": "ACC-1002",
+        "amount": "5000",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-27T09:15:00",
+        "status": "SUCCESS",
+        "reference": "REF-001",
+        "created_at": "2026-08-27T09:15:00",
+        "completed_at": "2026-08-27T09:15:00"
+      },
+      {
+        "transaction_id": "TX-1002",
+        "from_account_id": "ACC-1001",
+        "to_account_id": "ACC-1003",
+        "amount": "2000",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-26T14:20:00",
+        "status": "SUCCESS",
+        "reference": "REF-002",
+        "created_at": "2026-08-26T14:20:00",
+        "completed_at": "2026-08-26T14:20:00"
+      },
+      {
+        "transaction_id": "TX-1003",
+        "from_account_id": "ACC-1002",
+        "to_account_id": "ACC-1001",
+        "amount": "1500",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-25T11:30:00",
+        "status": "SUCCESS",
+        "reference": "REF-003",
+        "created_at": "2026-08-25T11:30:00",
+        "completed_at": "2026-08-25T11:30:00"
       }
     ],
     "ledger_entries": [
@@ -1315,7 +1481,7 @@
         "currency": "ETB",
         "balance_before": "15000",
         "balance_after": "17000",
-        "created_at": "2026-08-28 10:10:00",
+        "created_at": "2026-08-28T10:10:00",
         "status": "POSTED"
       },
       {
@@ -1327,7 +1493,7 @@
         "currency": "ETB",
         "balance_before": "20000",
         "balance_after": "15000",
-        "created_at": "2026-08-27 09:17:00",
+        "created_at": "2026-08-27T09:17:00",
         "status": "POSTED"
       },
       {
@@ -1339,7 +1505,7 @@
         "currency": "ETB",
         "balance_before": "25000",
         "balance_after": "20000",
-        "created_at": "2026-08-27 09:15:00",
+        "created_at": "2026-08-27T09:15:00",
         "status": "POSTED"
       },
       {
@@ -1351,7 +1517,7 @@
         "currency": "ETB",
         "balance_before": "20000",
         "balance_after": "18000",
-        "created_at": "2026-08-26 14:20:00",
+        "created_at": "2026-08-26T14:20:00",
         "status": "POSTED"
       },
       {
@@ -1363,40 +1529,40 @@
         "currency": "ETB",
         "balance_before": "18500",
         "balance_after": "20000",
-        "created_at": "2026-08-25 11:30:00",
+        "created_at": "2026-08-25T11:30:00",
         "status": "POSTED"
       }
     ],
-    "balance_reconciliation": {
-      "opening_balance": "25000",
-      "current_balance": "20000",
+    "balance_comparison": {
+      "account_id": "ACC-1001",
+      "as_of": "2026-08-28T10:30:00",
+      "reported_balance": "17000",
+      "reported_balance_source": "latest_posted_ledger_balance",
       "expected_balance": "16500",
-      "difference": "3500",
-      "consistent": false
-    },
-    "suspected_duplicates": [
-      {
-        "recipient_account_id": "ACC-1002",
+      "difference": "500",
+      "consistent": false,
+      "posted_ledger_entries": 5,
+      "total_ledger_entries": 5,
+      "suspected_duplicate_debit": {
         "amount": "5000",
-        "currency": "ETB",
+        "recipient_account_id": "ACC-1002",
+        "duplicate_count": 2,
         "transaction_ids": [
           "TX-1004",
           "TX-1001"
-        ],
-        "count": 2
+        ]
       }
-    ],
-    "reversals": [],
-    "failed_transactions_without_debit": []
+    }
   },
   {
     "case_id": "CASE-009",
+    "as_of": "2026-08-28T11:00:00",
     "case": {
       "case_id": "CASE-009",
       "customer_id": "CUST-001",
       "account_id": "ACC-1001",
       "complaint": "I see two transfers of 5,000 ETB to the same account only two minutes apart. Please investigate both transactions.",
-      "submitted_at": "2026-08-28 11:00:00",
+      "submitted_at": "2026-08-28T11:00:00",
       "status": "OPEN"
     },
     "customer": {
@@ -1432,11 +1598,11 @@
         "amount": "5000",
         "currency": "ETB",
         "transaction_type": "TRANSFER",
-        "transaction_date": "2026-08-27 09:17:00",
+        "transaction_date": "2026-08-27T09:17:00",
         "status": "SUCCESS",
         "reference": "REF-004",
-        "created_at": "2026-08-27 09:17:00",
-        "completed_at": "2026-08-27 09:17:00"
+        "created_at": "2026-08-27T09:17:00",
+        "completed_at": "2026-08-27T09:17:00"
       },
       {
         "transaction_id": "TX-1001",
@@ -1445,21 +1611,26 @@
         "amount": "5000",
         "currency": "ETB",
         "transaction_type": "TRANSFER",
-        "transaction_date": "2026-08-27 09:15:00",
+        "transaction_date": "2026-08-27T09:15:00",
         "status": "SUCCESS",
         "reference": "REF-001",
-        "created_at": "2026-08-27 09:15:00",
-        "completed_at": "2026-08-27 09:15:00"
+        "created_at": "2026-08-27T09:15:00",
+        "completed_at": "2026-08-27T09:15:00"
       }
     ],
     "transaction_facts": [
       {
         "transaction_id": "TX-1004",
-        "amount": "5000",
-        "currency": "ETB",
-        "status": "SUCCESS",
         "from_account_id": "ACC-1001",
         "to_account_id": "ACC-1002",
+        "amount": "5000",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-27T09:17:00",
+        "status": "SUCCESS",
+        "reference": "REF-004",
+        "created_at": "2026-08-27T09:17:00",
+        "completed_at": "2026-08-27T09:17:00",
         "direction": "OUTGOING",
         "ledger_entries": [
           {
@@ -1471,18 +1642,23 @@
             "currency": "ETB",
             "balance_before": "20000",
             "balance_after": "15000",
-            "created_at": "2026-08-27 09:17:00",
+            "created_at": "2026-08-27T09:17:00",
             "status": "POSTED"
           }
         ]
       },
       {
         "transaction_id": "TX-1001",
-        "amount": "5000",
-        "currency": "ETB",
-        "status": "SUCCESS",
         "from_account_id": "ACC-1001",
         "to_account_id": "ACC-1002",
+        "amount": "5000",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-27T09:15:00",
+        "status": "SUCCESS",
+        "reference": "REF-001",
+        "created_at": "2026-08-27T09:15:00",
+        "completed_at": "2026-08-27T09:15:00",
         "direction": "OUTGOING",
         "ledger_entries": [
           {
@@ -1494,10 +1670,77 @@
             "currency": "ETB",
             "balance_before": "25000",
             "balance_after": "20000",
-            "created_at": "2026-08-27 09:15:00",
+            "created_at": "2026-08-27T09:15:00",
             "status": "POSTED"
           }
         ]
+      }
+    ],
+    "transactions": [
+      {
+        "transaction_id": "TX-1006",
+        "from_account_id": "ACC-1004",
+        "to_account_id": "ACC-1001",
+        "amount": "2000",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-28T10:10:00",
+        "status": "SUCCESS",
+        "reference": "REF-006",
+        "created_at": "2026-08-28T10:10:00",
+        "completed_at": "2026-08-28T10:10:00"
+      },
+      {
+        "transaction_id": "TX-1004",
+        "from_account_id": "ACC-1001",
+        "to_account_id": "ACC-1002",
+        "amount": "5000",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-27T09:17:00",
+        "status": "SUCCESS",
+        "reference": "REF-004",
+        "created_at": "2026-08-27T09:17:00",
+        "completed_at": "2026-08-27T09:17:00"
+      },
+      {
+        "transaction_id": "TX-1001",
+        "from_account_id": "ACC-1001",
+        "to_account_id": "ACC-1002",
+        "amount": "5000",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-27T09:15:00",
+        "status": "SUCCESS",
+        "reference": "REF-001",
+        "created_at": "2026-08-27T09:15:00",
+        "completed_at": "2026-08-27T09:15:00"
+      },
+      {
+        "transaction_id": "TX-1002",
+        "from_account_id": "ACC-1001",
+        "to_account_id": "ACC-1003",
+        "amount": "2000",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-26T14:20:00",
+        "status": "SUCCESS",
+        "reference": "REF-002",
+        "created_at": "2026-08-26T14:20:00",
+        "completed_at": "2026-08-26T14:20:00"
+      },
+      {
+        "transaction_id": "TX-1003",
+        "from_account_id": "ACC-1002",
+        "to_account_id": "ACC-1001",
+        "amount": "1500",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-25T11:30:00",
+        "status": "SUCCESS",
+        "reference": "REF-003",
+        "created_at": "2026-08-25T11:30:00",
+        "completed_at": "2026-08-25T11:30:00"
       }
     ],
     "ledger_entries": [
@@ -1510,7 +1753,7 @@
         "currency": "ETB",
         "balance_before": "15000",
         "balance_after": "17000",
-        "created_at": "2026-08-28 10:10:00",
+        "created_at": "2026-08-28T10:10:00",
         "status": "POSTED"
       },
       {
@@ -1522,7 +1765,7 @@
         "currency": "ETB",
         "balance_before": "20000",
         "balance_after": "15000",
-        "created_at": "2026-08-27 09:17:00",
+        "created_at": "2026-08-27T09:17:00",
         "status": "POSTED"
       },
       {
@@ -1534,7 +1777,7 @@
         "currency": "ETB",
         "balance_before": "25000",
         "balance_after": "20000",
-        "created_at": "2026-08-27 09:15:00",
+        "created_at": "2026-08-27T09:15:00",
         "status": "POSTED"
       },
       {
@@ -1546,7 +1789,7 @@
         "currency": "ETB",
         "balance_before": "20000",
         "balance_after": "18000",
-        "created_at": "2026-08-26 14:20:00",
+        "created_at": "2026-08-26T14:20:00",
         "status": "POSTED"
       },
       {
@@ -1558,40 +1801,40 @@
         "currency": "ETB",
         "balance_before": "18500",
         "balance_after": "20000",
-        "created_at": "2026-08-25 11:30:00",
+        "created_at": "2026-08-25T11:30:00",
         "status": "POSTED"
       }
     ],
-    "balance_reconciliation": {
-      "opening_balance": "25000",
-      "current_balance": "20000",
+    "balance_comparison": {
+      "account_id": "ACC-1001",
+      "as_of": "2026-08-28T11:00:00",
+      "reported_balance": "17000",
+      "reported_balance_source": "latest_posted_ledger_balance",
       "expected_balance": "16500",
-      "difference": "3500",
-      "consistent": false
-    },
-    "suspected_duplicates": [
-      {
-        "recipient_account_id": "ACC-1002",
+      "difference": "500",
+      "consistent": false,
+      "posted_ledger_entries": 5,
+      "total_ledger_entries": 5,
+      "suspected_duplicate_debit": {
         "amount": "5000",
-        "currency": "ETB",
+        "recipient_account_id": "ACC-1002",
+        "duplicate_count": 2,
         "transaction_ids": [
           "TX-1004",
           "TX-1001"
-        ],
-        "count": 2
+        ]
       }
-    ],
-    "reversals": [],
-    "failed_transactions_without_debit": []
+    }
   },
   {
     "case_id": "CASE-010",
+    "as_of": "2026-08-28T11:15:00",
     "case": {
       "case_id": "CASE-010",
       "customer_id": "CUST-003",
       "account_id": "ACC-1003",
       "complaint": "The 10,000 ETB transfer shows as failed. Please determine whether my account was permanently debited.",
-      "submitted_at": "2026-08-28 11:15:00",
+      "submitted_at": "2026-08-28T11:15:00",
       "status": "OPEN"
     },
     "customer": {
@@ -1626,62 +1869,59 @@
         "amount": "10000",
         "currency": "ETB",
         "transaction_type": "TRANSFER",
-        "transaction_date": "2026-08-27 16:00:00",
+        "transaction_date": "2026-08-27T16:00:00",
         "status": "FAILED",
         "reference": "REF-005",
-        "created_at": "2026-08-27 16:00:00",
-        "completed_at": "2026-08-27 16:01:00"
+        "created_at": "2026-08-27T16:00:00",
+        "completed_at": "2026-08-27T16:01:00"
       }
     ],
     "transaction_facts": [
       {
         "transaction_id": "TX-1005",
-        "amount": "10000",
-        "currency": "ETB",
-        "status": "FAILED",
         "from_account_id": "ACC-1003",
         "to_account_id": "ACC-1004",
+        "amount": "10000",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-27T16:00:00",
+        "status": "FAILED",
+        "reference": "REF-005",
+        "created_at": "2026-08-27T16:00:00",
+        "completed_at": "2026-08-27T16:01:00",
         "direction": "OUTGOING",
         "ledger_entries": []
       }
     ],
+    "transactions": [
+      {
+        "transaction_id": "TX-1005",
+        "from_account_id": "ACC-1003",
+        "to_account_id": "ACC-1004",
+        "amount": "10000",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-27T16:00:00",
+        "status": "FAILED",
+        "reference": "REF-005",
+        "created_at": "2026-08-27T16:00:00",
+        "completed_at": "2026-08-27T16:01:00"
+      },
+      {
+        "transaction_id": "TX-1002",
+        "from_account_id": "ACC-1001",
+        "to_account_id": "ACC-1003",
+        "amount": "2000",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-26T14:20:00",
+        "status": "SUCCESS",
+        "reference": "REF-002",
+        "created_at": "2026-08-26T14:20:00",
+        "completed_at": "2026-08-26T14:20:00"
+      }
+    ],
     "ledger_entries": [
-      {
-        "ledger_entry_id": "LED-014",
-        "transaction_id": "TX-1008",
-        "account_id": "ACC-1003",
-        "entry_type": "DEBIT",
-        "amount": "2500",
-        "currency": "ETB",
-        "balance_before": "48000",
-        "balance_after": "45500",
-        "created_at": "2026-08-28 13:30:00",
-        "status": "POSTED"
-      },
-      {
-        "ledger_entry_id": "LED-013",
-        "transaction_id": "TX-1007",
-        "account_id": "ACC-1003",
-        "entry_type": "DEBIT",
-        "amount": "1000",
-        "currency": "ETB",
-        "balance_before": "49000",
-        "balance_after": "48000",
-        "created_at": "2026-08-28 12:30:00",
-        "status": "POSTED"
-      },
-      {
-        "ledger_entry_id": "LED-011",
-        "transaction_id": "TX-1007",
-        "account_id": "ACC-1003",
-        "entry_type": "CREDIT",
-        "amount": "1000",
-        "currency": "ETB",
-        "balance_before": "48000",
-        "balance_after": "49000",
-        "created_at": "2026-08-28 12:00:00",
-        "status": "POSTED"
-      },
       {
         "ledger_entry_id": "LED-004",
         "transaction_id": "TX-1002",
@@ -1691,64 +1931,32 @@
         "currency": "ETB",
         "balance_before": "48000",
         "balance_after": "50000",
-        "created_at": "2026-08-26 14:20:00",
+        "created_at": "2026-08-26T14:20:00",
         "status": "POSTED"
       }
     ],
-    "balance_reconciliation": {
-      "opening_balance": "50000",
-      "current_balance": "48500",
-      "expected_balance": "49500",
-      "difference": "-1000",
-      "consistent": false
-    },
-    "suspected_duplicates": [],
-    "reversals": [
-      {
-        "transaction_id": "TX-1007",
-        "debit_amount": "1000",
-        "credit_amount": "1000",
-        "fully_reversed": true,
-        "ledger_entries": [
-          {
-            "ledger_entry_id": "LED-013",
-            "transaction_id": "TX-1007",
-            "account_id": "ACC-1003",
-            "entry_type": "DEBIT",
-            "amount": "1000",
-            "currency": "ETB",
-            "balance_before": "49000",
-            "balance_after": "48000",
-            "created_at": "2026-08-28 12:30:00",
-            "status": "POSTED"
-          },
-          {
-            "ledger_entry_id": "LED-011",
-            "transaction_id": "TX-1007",
-            "account_id": "ACC-1003",
-            "entry_type": "CREDIT",
-            "amount": "1000",
-            "currency": "ETB",
-            "balance_before": "48000",
-            "balance_after": "49000",
-            "created_at": "2026-08-28 12:00:00",
-            "status": "POSTED"
-          }
-        ]
-      }
-    ],
-    "failed_transactions_without_debit": [
-      "TX-1005"
-    ]
+    "balance_comparison": {
+      "account_id": "ACC-1003",
+      "as_of": "2026-08-28T11:15:00",
+      "reported_balance": "50000",
+      "reported_balance_source": "latest_posted_ledger_balance",
+      "expected_balance": "52000",
+      "difference": "-2000",
+      "consistent": false,
+      "posted_ledger_entries": 1,
+      "total_ledger_entries": 1,
+      "suspected_duplicate_debit": null
+    }
   },
   {
     "case_id": "CASE-011",
+    "as_of": "2026-08-28T11:30:00",
     "case": {
       "case_id": "CASE-011",
       "customer_id": "CUST-004",
       "account_id": "ACC-1004",
       "complaint": "Someone attempted to transfer 10,000 ETB to my account, but the transfer failed. Please confirm whether any money was credited.",
-      "submitted_at": "2026-08-28 11:30:00",
+      "submitted_at": "2026-08-28T11:30:00",
       "status": "OPEN"
     },
     "customer": {
@@ -1783,23 +1991,56 @@
         "amount": "10000",
         "currency": "ETB",
         "transaction_type": "TRANSFER",
-        "transaction_date": "2026-08-27 16:00:00",
+        "transaction_date": "2026-08-27T16:00:00",
         "status": "FAILED",
         "reference": "REF-005",
-        "created_at": "2026-08-27 16:00:00",
-        "completed_at": "2026-08-27 16:01:00"
+        "created_at": "2026-08-27T16:00:00",
+        "completed_at": "2026-08-27T16:01:00"
       }
     ],
     "transaction_facts": [
       {
         "transaction_id": "TX-1005",
-        "amount": "10000",
-        "currency": "ETB",
-        "status": "FAILED",
         "from_account_id": "ACC-1003",
         "to_account_id": "ACC-1004",
+        "amount": "10000",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-27T16:00:00",
+        "status": "FAILED",
+        "reference": "REF-005",
+        "created_at": "2026-08-27T16:00:00",
+        "completed_at": "2026-08-27T16:01:00",
         "direction": "INCOMING",
         "ledger_entries": []
+      }
+    ],
+    "transactions": [
+      {
+        "transaction_id": "TX-1006",
+        "from_account_id": "ACC-1004",
+        "to_account_id": "ACC-1001",
+        "amount": "2000",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-28T10:10:00",
+        "status": "SUCCESS",
+        "reference": "REF-006",
+        "created_at": "2026-08-28T10:10:00",
+        "completed_at": "2026-08-28T10:10:00"
+      },
+      {
+        "transaction_id": "TX-1005",
+        "from_account_id": "ACC-1003",
+        "to_account_id": "ACC-1004",
+        "amount": "10000",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-27T16:00:00",
+        "status": "FAILED",
+        "reference": "REF-005",
+        "created_at": "2026-08-27T16:00:00",
+        "completed_at": "2026-08-27T16:01:00"
       }
     ],
     "ledger_entries": [
@@ -1812,31 +2053,32 @@
         "currency": "ETB",
         "balance_before": "30000",
         "balance_after": "28000",
-        "created_at": "2026-08-28 10:10:00",
+        "created_at": "2026-08-28T10:10:00",
         "status": "POSTED"
       }
     ],
-    "balance_reconciliation": {
-      "opening_balance": "30000",
-      "current_balance": "28000",
+    "balance_comparison": {
+      "account_id": "ACC-1004",
+      "as_of": "2026-08-28T11:30:00",
+      "reported_balance": "28000",
+      "reported_balance_source": "latest_posted_ledger_balance",
       "expected_balance": "28000",
       "difference": "0",
-      "consistent": true
-    },
-    "suspected_duplicates": [],
-    "reversals": [],
-    "failed_transactions_without_debit": [
-      "TX-1005"
-    ]
+      "consistent": true,
+      "posted_ledger_entries": 1,
+      "total_ledger_entries": 1,
+      "suspected_duplicate_debit": null
+    }
   },
   {
     "case_id": "CASE-012",
+    "as_of": "2026-08-28T11:45:00",
     "case": {
       "case_id": "CASE-012",
       "customer_id": "CUST-001",
       "account_id": "ACC-1001",
       "complaint": "I received 2,000 ETB from another account. Please verify the transaction and resulting balance change.",
-      "submitted_at": "2026-08-28 11:45:00",
+      "submitted_at": "2026-08-28T11:45:00",
       "status": "OPEN"
     },
     "customer": {
@@ -1871,21 +2113,26 @@
         "amount": "2000",
         "currency": "ETB",
         "transaction_type": "TRANSFER",
-        "transaction_date": "2026-08-28 10:10:00",
+        "transaction_date": "2026-08-28T10:10:00",
         "status": "SUCCESS",
         "reference": "REF-006",
-        "created_at": "2026-08-28 10:10:00",
-        "completed_at": "2026-08-28 10:10:00"
+        "created_at": "2026-08-28T10:10:00",
+        "completed_at": "2026-08-28T10:10:00"
       }
     ],
     "transaction_facts": [
       {
         "transaction_id": "TX-1006",
-        "amount": "2000",
-        "currency": "ETB",
-        "status": "SUCCESS",
         "from_account_id": "ACC-1004",
         "to_account_id": "ACC-1001",
+        "amount": "2000",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-28T10:10:00",
+        "status": "SUCCESS",
+        "reference": "REF-006",
+        "created_at": "2026-08-28T10:10:00",
+        "completed_at": "2026-08-28T10:10:00",
         "direction": "INCOMING",
         "ledger_entries": [
           {
@@ -1897,10 +2144,77 @@
             "currency": "ETB",
             "balance_before": "15000",
             "balance_after": "17000",
-            "created_at": "2026-08-28 10:10:00",
+            "created_at": "2026-08-28T10:10:00",
             "status": "POSTED"
           }
         ]
+      }
+    ],
+    "transactions": [
+      {
+        "transaction_id": "TX-1006",
+        "from_account_id": "ACC-1004",
+        "to_account_id": "ACC-1001",
+        "amount": "2000",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-28T10:10:00",
+        "status": "SUCCESS",
+        "reference": "REF-006",
+        "created_at": "2026-08-28T10:10:00",
+        "completed_at": "2026-08-28T10:10:00"
+      },
+      {
+        "transaction_id": "TX-1004",
+        "from_account_id": "ACC-1001",
+        "to_account_id": "ACC-1002",
+        "amount": "5000",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-27T09:17:00",
+        "status": "SUCCESS",
+        "reference": "REF-004",
+        "created_at": "2026-08-27T09:17:00",
+        "completed_at": "2026-08-27T09:17:00"
+      },
+      {
+        "transaction_id": "TX-1001",
+        "from_account_id": "ACC-1001",
+        "to_account_id": "ACC-1002",
+        "amount": "5000",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-27T09:15:00",
+        "status": "SUCCESS",
+        "reference": "REF-001",
+        "created_at": "2026-08-27T09:15:00",
+        "completed_at": "2026-08-27T09:15:00"
+      },
+      {
+        "transaction_id": "TX-1002",
+        "from_account_id": "ACC-1001",
+        "to_account_id": "ACC-1003",
+        "amount": "2000",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-26T14:20:00",
+        "status": "SUCCESS",
+        "reference": "REF-002",
+        "created_at": "2026-08-26T14:20:00",
+        "completed_at": "2026-08-26T14:20:00"
+      },
+      {
+        "transaction_id": "TX-1003",
+        "from_account_id": "ACC-1002",
+        "to_account_id": "ACC-1001",
+        "amount": "1500",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-25T11:30:00",
+        "status": "SUCCESS",
+        "reference": "REF-003",
+        "created_at": "2026-08-25T11:30:00",
+        "completed_at": "2026-08-25T11:30:00"
       }
     ],
     "ledger_entries": [
@@ -1913,7 +2227,7 @@
         "currency": "ETB",
         "balance_before": "15000",
         "balance_after": "17000",
-        "created_at": "2026-08-28 10:10:00",
+        "created_at": "2026-08-28T10:10:00",
         "status": "POSTED"
       },
       {
@@ -1925,7 +2239,7 @@
         "currency": "ETB",
         "balance_before": "20000",
         "balance_after": "15000",
-        "created_at": "2026-08-27 09:17:00",
+        "created_at": "2026-08-27T09:17:00",
         "status": "POSTED"
       },
       {
@@ -1937,7 +2251,7 @@
         "currency": "ETB",
         "balance_before": "25000",
         "balance_after": "20000",
-        "created_at": "2026-08-27 09:15:00",
+        "created_at": "2026-08-27T09:15:00",
         "status": "POSTED"
       },
       {
@@ -1949,7 +2263,7 @@
         "currency": "ETB",
         "balance_before": "20000",
         "balance_after": "18000",
-        "created_at": "2026-08-26 14:20:00",
+        "created_at": "2026-08-26T14:20:00",
         "status": "POSTED"
       },
       {
@@ -1961,40 +2275,40 @@
         "currency": "ETB",
         "balance_before": "18500",
         "balance_after": "20000",
-        "created_at": "2026-08-25 11:30:00",
+        "created_at": "2026-08-25T11:30:00",
         "status": "POSTED"
       }
     ],
-    "balance_reconciliation": {
-      "opening_balance": "25000",
-      "current_balance": "20000",
+    "balance_comparison": {
+      "account_id": "ACC-1001",
+      "as_of": "2026-08-28T11:45:00",
+      "reported_balance": "17000",
+      "reported_balance_source": "latest_posted_ledger_balance",
       "expected_balance": "16500",
-      "difference": "3500",
-      "consistent": false
-    },
-    "suspected_duplicates": [
-      {
-        "recipient_account_id": "ACC-1002",
+      "difference": "500",
+      "consistent": false,
+      "posted_ledger_entries": 5,
+      "total_ledger_entries": 5,
+      "suspected_duplicate_debit": {
         "amount": "5000",
-        "currency": "ETB",
+        "recipient_account_id": "ACC-1002",
+        "duplicate_count": 2,
         "transaction_ids": [
           "TX-1004",
           "TX-1001"
-        ],
-        "count": 2
+        ]
       }
-    ],
-    "reversals": [],
-    "failed_transactions_without_debit": []
+    }
   },
   {
     "case_id": "CASE-013",
+    "as_of": "2026-08-28T12:00:00",
     "case": {
       "case_id": "CASE-013",
       "customer_id": "CUST-004",
       "account_id": "ACC-1004",
       "complaint": "I transferred 2,000 ETB to another account. Please verify that my account was debited correctly.",
-      "submitted_at": "2026-08-28 12:00:00",
+      "submitted_at": "2026-08-28T12:00:00",
       "status": "OPEN"
     },
     "customer": {
@@ -2029,21 +2343,26 @@
         "amount": "2000",
         "currency": "ETB",
         "transaction_type": "TRANSFER",
-        "transaction_date": "2026-08-28 10:10:00",
+        "transaction_date": "2026-08-28T10:10:00",
         "status": "SUCCESS",
         "reference": "REF-006",
-        "created_at": "2026-08-28 10:10:00",
-        "completed_at": "2026-08-28 10:10:00"
+        "created_at": "2026-08-28T10:10:00",
+        "completed_at": "2026-08-28T10:10:00"
       }
     ],
     "transaction_facts": [
       {
         "transaction_id": "TX-1006",
-        "amount": "2000",
-        "currency": "ETB",
-        "status": "SUCCESS",
         "from_account_id": "ACC-1004",
         "to_account_id": "ACC-1001",
+        "amount": "2000",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-28T10:10:00",
+        "status": "SUCCESS",
+        "reference": "REF-006",
+        "created_at": "2026-08-28T10:10:00",
+        "completed_at": "2026-08-28T10:10:00",
         "direction": "OUTGOING",
         "ledger_entries": [
           {
@@ -2055,10 +2374,38 @@
             "currency": "ETB",
             "balance_before": "30000",
             "balance_after": "28000",
-            "created_at": "2026-08-28 10:10:00",
+            "created_at": "2026-08-28T10:10:00",
             "status": "POSTED"
           }
         ]
+      }
+    ],
+    "transactions": [
+      {
+        "transaction_id": "TX-1006",
+        "from_account_id": "ACC-1004",
+        "to_account_id": "ACC-1001",
+        "amount": "2000",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-28T10:10:00",
+        "status": "SUCCESS",
+        "reference": "REF-006",
+        "created_at": "2026-08-28T10:10:00",
+        "completed_at": "2026-08-28T10:10:00"
+      },
+      {
+        "transaction_id": "TX-1005",
+        "from_account_id": "ACC-1003",
+        "to_account_id": "ACC-1004",
+        "amount": "10000",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-27T16:00:00",
+        "status": "FAILED",
+        "reference": "REF-005",
+        "created_at": "2026-08-27T16:00:00",
+        "completed_at": "2026-08-27T16:01:00"
       }
     ],
     "ledger_entries": [
@@ -2071,31 +2418,32 @@
         "currency": "ETB",
         "balance_before": "30000",
         "balance_after": "28000",
-        "created_at": "2026-08-28 10:10:00",
+        "created_at": "2026-08-28T10:10:00",
         "status": "POSTED"
       }
     ],
-    "balance_reconciliation": {
-      "opening_balance": "30000",
-      "current_balance": "28000",
+    "balance_comparison": {
+      "account_id": "ACC-1004",
+      "as_of": "2026-08-28T12:00:00",
+      "reported_balance": "28000",
+      "reported_balance_source": "latest_posted_ledger_balance",
       "expected_balance": "28000",
       "difference": "0",
-      "consistent": true
-    },
-    "suspected_duplicates": [],
-    "reversals": [],
-    "failed_transactions_without_debit": [
-      "TX-1005"
-    ]
+      "consistent": true,
+      "posted_ledger_entries": 1,
+      "total_ledger_entries": 1,
+      "suspected_duplicate_debit": null
+    }
   },
   {
     "case_id": "CASE-014",
+    "as_of": "2026-08-28T14:00:00",
     "case": {
       "case_id": "CASE-014",
       "customer_id": "CUST-002",
       "account_id": "ACC-1002",
       "complaint": "The 1,000 ETB transfer from my account was reversed. Please check the debit and the subsequent restoration.",
-      "submitted_at": "2026-08-28 14:00:00",
+      "submitted_at": "2026-08-28T14:00:00",
       "status": "OPEN"
     },
     "customer": {
@@ -2130,21 +2478,26 @@
         "amount": "1000",
         "currency": "ETB",
         "transaction_type": "TRANSFER",
-        "transaction_date": "2026-08-28 12:00:00",
+        "transaction_date": "2026-08-28T12:00:00",
         "status": "REVERSED",
         "reference": "REF-007",
-        "created_at": "2026-08-28 12:00:00",
-        "completed_at": "2026-08-28 12:30:00"
+        "created_at": "2026-08-28T12:00:00",
+        "completed_at": "2026-08-28T12:30:00"
       }
     ],
     "transaction_facts": [
       {
         "transaction_id": "TX-1007",
-        "amount": "1000",
-        "currency": "ETB",
-        "status": "REVERSED",
         "from_account_id": "ACC-1002",
         "to_account_id": "ACC-1003",
+        "amount": "1000",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-28T12:00:00",
+        "status": "REVERSED",
+        "reference": "REF-007",
+        "created_at": "2026-08-28T12:00:00",
+        "completed_at": "2026-08-28T12:30:00",
         "direction": "OUTGOING",
         "ledger_entries": [
           {
@@ -2156,7 +2509,7 @@
             "currency": "ETB",
             "balance_before": "12000",
             "balance_after": "13000",
-            "created_at": "2026-08-28 12:30:00",
+            "created_at": "2026-08-28T12:30:00",
             "status": "POSTED"
           },
           {
@@ -2168,10 +2521,77 @@
             "currency": "ETB",
             "balance_before": "13000",
             "balance_after": "12000",
-            "created_at": "2026-08-28 12:00:00",
+            "created_at": "2026-08-28T12:00:00",
             "status": "POSTED"
           }
         ]
+      }
+    ],
+    "transactions": [
+      {
+        "transaction_id": "TX-1008",
+        "from_account_id": "ACC-1003",
+        "to_account_id": "ACC-1002",
+        "amount": "2500",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-28T13:30:00",
+        "status": "SUCCESS",
+        "reference": "REF-008",
+        "created_at": "2026-08-28T13:30:00",
+        "completed_at": "2026-08-28T13:30:00"
+      },
+      {
+        "transaction_id": "TX-1007",
+        "from_account_id": "ACC-1002",
+        "to_account_id": "ACC-1003",
+        "amount": "1000",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-28T12:00:00",
+        "status": "REVERSED",
+        "reference": "REF-007",
+        "created_at": "2026-08-28T12:00:00",
+        "completed_at": "2026-08-28T12:30:00"
+      },
+      {
+        "transaction_id": "TX-1004",
+        "from_account_id": "ACC-1001",
+        "to_account_id": "ACC-1002",
+        "amount": "5000",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-27T09:17:00",
+        "status": "SUCCESS",
+        "reference": "REF-004",
+        "created_at": "2026-08-27T09:17:00",
+        "completed_at": "2026-08-27T09:17:00"
+      },
+      {
+        "transaction_id": "TX-1001",
+        "from_account_id": "ACC-1001",
+        "to_account_id": "ACC-1002",
+        "amount": "5000",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-27T09:15:00",
+        "status": "SUCCESS",
+        "reference": "REF-001",
+        "created_at": "2026-08-27T09:15:00",
+        "completed_at": "2026-08-27T09:15:00"
+      },
+      {
+        "transaction_id": "TX-1003",
+        "from_account_id": "ACC-1002",
+        "to_account_id": "ACC-1001",
+        "amount": "1500",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-25T11:30:00",
+        "status": "SUCCESS",
+        "reference": "REF-003",
+        "created_at": "2026-08-25T11:30:00",
+        "completed_at": "2026-08-25T11:30:00"
       }
     ],
     "ledger_entries": [
@@ -2184,7 +2604,7 @@
         "currency": "ETB",
         "balance_before": "13000",
         "balance_after": "15500",
-        "created_at": "2026-08-28 13:30:00",
+        "created_at": "2026-08-28T13:30:00",
         "status": "POSTED"
       },
       {
@@ -2196,7 +2616,7 @@
         "currency": "ETB",
         "balance_before": "12000",
         "balance_after": "13000",
-        "created_at": "2026-08-28 12:30:00",
+        "created_at": "2026-08-28T12:30:00",
         "status": "POSTED"
       },
       {
@@ -2208,7 +2628,7 @@
         "currency": "ETB",
         "balance_before": "13000",
         "balance_after": "12000",
-        "created_at": "2026-08-28 12:00:00",
+        "created_at": "2026-08-28T12:00:00",
         "status": "POSTED"
       },
       {
@@ -2220,7 +2640,7 @@
         "currency": "ETB",
         "balance_before": "8000",
         "balance_after": "13000",
-        "created_at": "2026-08-27 09:15:00",
+        "created_at": "2026-08-27T09:15:00",
         "status": "POSTED"
       },
       {
@@ -2232,62 +2652,32 @@
         "currency": "ETB",
         "balance_before": "9500",
         "balance_after": "8000",
-        "created_at": "2026-08-25 11:30:00",
+        "created_at": "2026-08-25T11:30:00",
         "status": "POSTED"
       }
     ],
-    "balance_reconciliation": {
-      "opening_balance": "8000",
-      "current_balance": "13000",
+    "balance_comparison": {
+      "account_id": "ACC-1002",
+      "as_of": "2026-08-28T14:00:00",
+      "reported_balance": "15500",
+      "reported_balance_source": "latest_posted_ledger_balance",
       "expected_balance": "14000",
-      "difference": "-1000",
-      "consistent": false
-    },
-    "suspected_duplicates": [],
-    "reversals": [
-      {
-        "transaction_id": "TX-1007",
-        "debit_amount": "1000",
-        "credit_amount": "1000",
-        "fully_reversed": true,
-        "ledger_entries": [
-          {
-            "ledger_entry_id": "LED-012",
-            "transaction_id": "TX-1007",
-            "account_id": "ACC-1002",
-            "entry_type": "CREDIT",
-            "amount": "1000",
-            "currency": "ETB",
-            "balance_before": "12000",
-            "balance_after": "13000",
-            "created_at": "2026-08-28 12:30:00",
-            "status": "POSTED"
-          },
-          {
-            "ledger_entry_id": "LED-010",
-            "transaction_id": "TX-1007",
-            "account_id": "ACC-1002",
-            "entry_type": "DEBIT",
-            "amount": "1000",
-            "currency": "ETB",
-            "balance_before": "13000",
-            "balance_after": "12000",
-            "created_at": "2026-08-28 12:00:00",
-            "status": "POSTED"
-          }
-        ]
-      }
-    ],
-    "failed_transactions_without_debit": []
+      "difference": "1500",
+      "consistent": false,
+      "posted_ledger_entries": 5,
+      "total_ledger_entries": 5,
+      "suspected_duplicate_debit": null
+    }
   },
   {
     "case_id": "CASE-015",
+    "as_of": "2026-08-28T14:15:00",
     "case": {
       "case_id": "CASE-015",
       "customer_id": "CUST-003",
       "account_id": "ACC-1003",
       "complaint": "I received a 1,000 ETB transfer that was later reversed. Please verify what happened to my balance.",
-      "submitted_at": "2026-08-28 14:15:00",
+      "submitted_at": "2026-08-28T14:15:00",
       "status": "OPEN"
     },
     "customer": {
@@ -2322,21 +2712,26 @@
         "amount": "1000",
         "currency": "ETB",
         "transaction_type": "TRANSFER",
-        "transaction_date": "2026-08-28 12:00:00",
+        "transaction_date": "2026-08-28T12:00:00",
         "status": "REVERSED",
         "reference": "REF-007",
-        "created_at": "2026-08-28 12:00:00",
-        "completed_at": "2026-08-28 12:30:00"
+        "created_at": "2026-08-28T12:00:00",
+        "completed_at": "2026-08-28T12:30:00"
       }
     ],
     "transaction_facts": [
       {
         "transaction_id": "TX-1007",
-        "amount": "1000",
-        "currency": "ETB",
-        "status": "REVERSED",
         "from_account_id": "ACC-1002",
         "to_account_id": "ACC-1003",
+        "amount": "1000",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-28T12:00:00",
+        "status": "REVERSED",
+        "reference": "REF-007",
+        "created_at": "2026-08-28T12:00:00",
+        "completed_at": "2026-08-28T12:30:00",
         "direction": "INCOMING",
         "ledger_entries": [
           {
@@ -2348,7 +2743,7 @@
             "currency": "ETB",
             "balance_before": "49000",
             "balance_after": "48000",
-            "created_at": "2026-08-28 12:30:00",
+            "created_at": "2026-08-28T12:30:00",
             "status": "POSTED"
           },
           {
@@ -2360,10 +2755,64 @@
             "currency": "ETB",
             "balance_before": "48000",
             "balance_after": "49000",
-            "created_at": "2026-08-28 12:00:00",
+            "created_at": "2026-08-28T12:00:00",
             "status": "POSTED"
           }
         ]
+      }
+    ],
+    "transactions": [
+      {
+        "transaction_id": "TX-1008",
+        "from_account_id": "ACC-1003",
+        "to_account_id": "ACC-1002",
+        "amount": "2500",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-28T13:30:00",
+        "status": "SUCCESS",
+        "reference": "REF-008",
+        "created_at": "2026-08-28T13:30:00",
+        "completed_at": "2026-08-28T13:30:00"
+      },
+      {
+        "transaction_id": "TX-1007",
+        "from_account_id": "ACC-1002",
+        "to_account_id": "ACC-1003",
+        "amount": "1000",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-28T12:00:00",
+        "status": "REVERSED",
+        "reference": "REF-007",
+        "created_at": "2026-08-28T12:00:00",
+        "completed_at": "2026-08-28T12:30:00"
+      },
+      {
+        "transaction_id": "TX-1005",
+        "from_account_id": "ACC-1003",
+        "to_account_id": "ACC-1004",
+        "amount": "10000",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-27T16:00:00",
+        "status": "FAILED",
+        "reference": "REF-005",
+        "created_at": "2026-08-27T16:00:00",
+        "completed_at": "2026-08-27T16:01:00"
+      },
+      {
+        "transaction_id": "TX-1002",
+        "from_account_id": "ACC-1001",
+        "to_account_id": "ACC-1003",
+        "amount": "2000",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-26T14:20:00",
+        "status": "SUCCESS",
+        "reference": "REF-002",
+        "created_at": "2026-08-26T14:20:00",
+        "completed_at": "2026-08-26T14:20:00"
       }
     ],
     "ledger_entries": [
@@ -2376,7 +2825,7 @@
         "currency": "ETB",
         "balance_before": "48000",
         "balance_after": "45500",
-        "created_at": "2026-08-28 13:30:00",
+        "created_at": "2026-08-28T13:30:00",
         "status": "POSTED"
       },
       {
@@ -2388,7 +2837,7 @@
         "currency": "ETB",
         "balance_before": "49000",
         "balance_after": "48000",
-        "created_at": "2026-08-28 12:30:00",
+        "created_at": "2026-08-28T12:30:00",
         "status": "POSTED"
       },
       {
@@ -2400,7 +2849,7 @@
         "currency": "ETB",
         "balance_before": "48000",
         "balance_after": "49000",
-        "created_at": "2026-08-28 12:00:00",
+        "created_at": "2026-08-28T12:00:00",
         "status": "POSTED"
       },
       {
@@ -2412,64 +2861,32 @@
         "currency": "ETB",
         "balance_before": "48000",
         "balance_after": "50000",
-        "created_at": "2026-08-26 14:20:00",
+        "created_at": "2026-08-26T14:20:00",
         "status": "POSTED"
       }
     ],
-    "balance_reconciliation": {
-      "opening_balance": "50000",
-      "current_balance": "48500",
+    "balance_comparison": {
+      "account_id": "ACC-1003",
+      "as_of": "2026-08-28T14:15:00",
+      "reported_balance": "45500",
+      "reported_balance_source": "latest_posted_ledger_balance",
       "expected_balance": "49500",
-      "difference": "-1000",
-      "consistent": false
-    },
-    "suspected_duplicates": [],
-    "reversals": [
-      {
-        "transaction_id": "TX-1007",
-        "debit_amount": "1000",
-        "credit_amount": "1000",
-        "fully_reversed": true,
-        "ledger_entries": [
-          {
-            "ledger_entry_id": "LED-013",
-            "transaction_id": "TX-1007",
-            "account_id": "ACC-1003",
-            "entry_type": "DEBIT",
-            "amount": "1000",
-            "currency": "ETB",
-            "balance_before": "49000",
-            "balance_after": "48000",
-            "created_at": "2026-08-28 12:30:00",
-            "status": "POSTED"
-          },
-          {
-            "ledger_entry_id": "LED-011",
-            "transaction_id": "TX-1007",
-            "account_id": "ACC-1003",
-            "entry_type": "CREDIT",
-            "amount": "1000",
-            "currency": "ETB",
-            "balance_before": "48000",
-            "balance_after": "49000",
-            "created_at": "2026-08-28 12:00:00",
-            "status": "POSTED"
-          }
-        ]
-      }
-    ],
-    "failed_transactions_without_debit": [
-      "TX-1005"
-    ]
+      "difference": "-4000",
+      "consistent": false,
+      "posted_ledger_entries": 4,
+      "total_ledger_entries": 4,
+      "suspected_duplicate_debit": null
+    }
   },
   {
     "case_id": "CASE-016",
+    "as_of": "2026-08-28T14:30:00",
     "case": {
       "case_id": "CASE-016",
       "customer_id": "CUST-003",
       "account_id": "ACC-1003",
       "complaint": "I sent 2,500 ETB to another account. Please confirm the transaction status and amount deducted.",
-      "submitted_at": "2026-08-28 14:30:00",
+      "submitted_at": "2026-08-28T14:30:00",
       "status": "OPEN"
     },
     "customer": {
@@ -2504,21 +2921,26 @@
         "amount": "2500",
         "currency": "ETB",
         "transaction_type": "TRANSFER",
-        "transaction_date": "2026-08-28 13:30:00",
+        "transaction_date": "2026-08-28T13:30:00",
         "status": "SUCCESS",
         "reference": "REF-008",
-        "created_at": "2026-08-28 13:30:00",
-        "completed_at": "2026-08-28 13:30:00"
+        "created_at": "2026-08-28T13:30:00",
+        "completed_at": "2026-08-28T13:30:00"
       }
     ],
     "transaction_facts": [
       {
         "transaction_id": "TX-1008",
-        "amount": "2500",
-        "currency": "ETB",
-        "status": "SUCCESS",
         "from_account_id": "ACC-1003",
         "to_account_id": "ACC-1002",
+        "amount": "2500",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-28T13:30:00",
+        "status": "SUCCESS",
+        "reference": "REF-008",
+        "created_at": "2026-08-28T13:30:00",
+        "completed_at": "2026-08-28T13:30:00",
         "direction": "OUTGOING",
         "ledger_entries": [
           {
@@ -2530,10 +2952,64 @@
             "currency": "ETB",
             "balance_before": "48000",
             "balance_after": "45500",
-            "created_at": "2026-08-28 13:30:00",
+            "created_at": "2026-08-28T13:30:00",
             "status": "POSTED"
           }
         ]
+      }
+    ],
+    "transactions": [
+      {
+        "transaction_id": "TX-1008",
+        "from_account_id": "ACC-1003",
+        "to_account_id": "ACC-1002",
+        "amount": "2500",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-28T13:30:00",
+        "status": "SUCCESS",
+        "reference": "REF-008",
+        "created_at": "2026-08-28T13:30:00",
+        "completed_at": "2026-08-28T13:30:00"
+      },
+      {
+        "transaction_id": "TX-1007",
+        "from_account_id": "ACC-1002",
+        "to_account_id": "ACC-1003",
+        "amount": "1000",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-28T12:00:00",
+        "status": "REVERSED",
+        "reference": "REF-007",
+        "created_at": "2026-08-28T12:00:00",
+        "completed_at": "2026-08-28T12:30:00"
+      },
+      {
+        "transaction_id": "TX-1005",
+        "from_account_id": "ACC-1003",
+        "to_account_id": "ACC-1004",
+        "amount": "10000",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-27T16:00:00",
+        "status": "FAILED",
+        "reference": "REF-005",
+        "created_at": "2026-08-27T16:00:00",
+        "completed_at": "2026-08-27T16:01:00"
+      },
+      {
+        "transaction_id": "TX-1002",
+        "from_account_id": "ACC-1001",
+        "to_account_id": "ACC-1003",
+        "amount": "2000",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-26T14:20:00",
+        "status": "SUCCESS",
+        "reference": "REF-002",
+        "created_at": "2026-08-26T14:20:00",
+        "completed_at": "2026-08-26T14:20:00"
       }
     ],
     "ledger_entries": [
@@ -2546,7 +3022,7 @@
         "currency": "ETB",
         "balance_before": "48000",
         "balance_after": "45500",
-        "created_at": "2026-08-28 13:30:00",
+        "created_at": "2026-08-28T13:30:00",
         "status": "POSTED"
       },
       {
@@ -2558,7 +3034,7 @@
         "currency": "ETB",
         "balance_before": "49000",
         "balance_after": "48000",
-        "created_at": "2026-08-28 12:30:00",
+        "created_at": "2026-08-28T12:30:00",
         "status": "POSTED"
       },
       {
@@ -2570,7 +3046,7 @@
         "currency": "ETB",
         "balance_before": "48000",
         "balance_after": "49000",
-        "created_at": "2026-08-28 12:00:00",
+        "created_at": "2026-08-28T12:00:00",
         "status": "POSTED"
       },
       {
@@ -2582,64 +3058,32 @@
         "currency": "ETB",
         "balance_before": "48000",
         "balance_after": "50000",
-        "created_at": "2026-08-26 14:20:00",
+        "created_at": "2026-08-26T14:20:00",
         "status": "POSTED"
       }
     ],
-    "balance_reconciliation": {
-      "opening_balance": "50000",
-      "current_balance": "48500",
+    "balance_comparison": {
+      "account_id": "ACC-1003",
+      "as_of": "2026-08-28T14:30:00",
+      "reported_balance": "45500",
+      "reported_balance_source": "latest_posted_ledger_balance",
       "expected_balance": "49500",
-      "difference": "-1000",
-      "consistent": false
-    },
-    "suspected_duplicates": [],
-    "reversals": [
-      {
-        "transaction_id": "TX-1007",
-        "debit_amount": "1000",
-        "credit_amount": "1000",
-        "fully_reversed": true,
-        "ledger_entries": [
-          {
-            "ledger_entry_id": "LED-013",
-            "transaction_id": "TX-1007",
-            "account_id": "ACC-1003",
-            "entry_type": "DEBIT",
-            "amount": "1000",
-            "currency": "ETB",
-            "balance_before": "49000",
-            "balance_after": "48000",
-            "created_at": "2026-08-28 12:30:00",
-            "status": "POSTED"
-          },
-          {
-            "ledger_entry_id": "LED-011",
-            "transaction_id": "TX-1007",
-            "account_id": "ACC-1003",
-            "entry_type": "CREDIT",
-            "amount": "1000",
-            "currency": "ETB",
-            "balance_before": "48000",
-            "balance_after": "49000",
-            "created_at": "2026-08-28 12:00:00",
-            "status": "POSTED"
-          }
-        ]
-      }
-    ],
-    "failed_transactions_without_debit": [
-      "TX-1005"
-    ]
+      "difference": "-4000",
+      "consistent": false,
+      "posted_ledger_entries": 4,
+      "total_ledger_entries": 4,
+      "suspected_duplicate_debit": null
+    }
   },
   {
     "case_id": "CASE-017",
+    "as_of": "2026-08-28T14:45:00",
     "case": {
       "case_id": "CASE-017",
       "customer_id": "CUST-002",
       "account_id": "ACC-1002",
       "complaint": "I received 2,500 ETB. Please verify that the amount was credited correctly.",
-      "submitted_at": "2026-08-28 14:45:00",
+      "submitted_at": "2026-08-28T14:45:00",
       "status": "OPEN"
     },
     "customer": {
@@ -2674,21 +3118,26 @@
         "amount": "2500",
         "currency": "ETB",
         "transaction_type": "TRANSFER",
-        "transaction_date": "2026-08-28 13:30:00",
+        "transaction_date": "2026-08-28T13:30:00",
         "status": "SUCCESS",
         "reference": "REF-008",
-        "created_at": "2026-08-28 13:30:00",
-        "completed_at": "2026-08-28 13:30:00"
+        "created_at": "2026-08-28T13:30:00",
+        "completed_at": "2026-08-28T13:30:00"
       }
     ],
     "transaction_facts": [
       {
         "transaction_id": "TX-1008",
-        "amount": "2500",
-        "currency": "ETB",
-        "status": "SUCCESS",
         "from_account_id": "ACC-1003",
         "to_account_id": "ACC-1002",
+        "amount": "2500",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-28T13:30:00",
+        "status": "SUCCESS",
+        "reference": "REF-008",
+        "created_at": "2026-08-28T13:30:00",
+        "completed_at": "2026-08-28T13:30:00",
         "direction": "INCOMING",
         "ledger_entries": [
           {
@@ -2700,10 +3149,77 @@
             "currency": "ETB",
             "balance_before": "13000",
             "balance_after": "15500",
-            "created_at": "2026-08-28 13:30:00",
+            "created_at": "2026-08-28T13:30:00",
             "status": "POSTED"
           }
         ]
+      }
+    ],
+    "transactions": [
+      {
+        "transaction_id": "TX-1008",
+        "from_account_id": "ACC-1003",
+        "to_account_id": "ACC-1002",
+        "amount": "2500",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-28T13:30:00",
+        "status": "SUCCESS",
+        "reference": "REF-008",
+        "created_at": "2026-08-28T13:30:00",
+        "completed_at": "2026-08-28T13:30:00"
+      },
+      {
+        "transaction_id": "TX-1007",
+        "from_account_id": "ACC-1002",
+        "to_account_id": "ACC-1003",
+        "amount": "1000",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-28T12:00:00",
+        "status": "REVERSED",
+        "reference": "REF-007",
+        "created_at": "2026-08-28T12:00:00",
+        "completed_at": "2026-08-28T12:30:00"
+      },
+      {
+        "transaction_id": "TX-1004",
+        "from_account_id": "ACC-1001",
+        "to_account_id": "ACC-1002",
+        "amount": "5000",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-27T09:17:00",
+        "status": "SUCCESS",
+        "reference": "REF-004",
+        "created_at": "2026-08-27T09:17:00",
+        "completed_at": "2026-08-27T09:17:00"
+      },
+      {
+        "transaction_id": "TX-1001",
+        "from_account_id": "ACC-1001",
+        "to_account_id": "ACC-1002",
+        "amount": "5000",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-27T09:15:00",
+        "status": "SUCCESS",
+        "reference": "REF-001",
+        "created_at": "2026-08-27T09:15:00",
+        "completed_at": "2026-08-27T09:15:00"
+      },
+      {
+        "transaction_id": "TX-1003",
+        "from_account_id": "ACC-1002",
+        "to_account_id": "ACC-1001",
+        "amount": "1500",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-25T11:30:00",
+        "status": "SUCCESS",
+        "reference": "REF-003",
+        "created_at": "2026-08-25T11:30:00",
+        "completed_at": "2026-08-25T11:30:00"
       }
     ],
     "ledger_entries": [
@@ -2716,7 +3232,7 @@
         "currency": "ETB",
         "balance_before": "13000",
         "balance_after": "15500",
-        "created_at": "2026-08-28 13:30:00",
+        "created_at": "2026-08-28T13:30:00",
         "status": "POSTED"
       },
       {
@@ -2728,7 +3244,7 @@
         "currency": "ETB",
         "balance_before": "12000",
         "balance_after": "13000",
-        "created_at": "2026-08-28 12:30:00",
+        "created_at": "2026-08-28T12:30:00",
         "status": "POSTED"
       },
       {
@@ -2740,7 +3256,7 @@
         "currency": "ETB",
         "balance_before": "13000",
         "balance_after": "12000",
-        "created_at": "2026-08-28 12:00:00",
+        "created_at": "2026-08-28T12:00:00",
         "status": "POSTED"
       },
       {
@@ -2752,7 +3268,7 @@
         "currency": "ETB",
         "balance_before": "8000",
         "balance_after": "13000",
-        "created_at": "2026-08-27 09:15:00",
+        "created_at": "2026-08-27T09:15:00",
         "status": "POSTED"
       },
       {
@@ -2764,62 +3280,32 @@
         "currency": "ETB",
         "balance_before": "9500",
         "balance_after": "8000",
-        "created_at": "2026-08-25 11:30:00",
+        "created_at": "2026-08-25T11:30:00",
         "status": "POSTED"
       }
     ],
-    "balance_reconciliation": {
-      "opening_balance": "8000",
-      "current_balance": "13000",
+    "balance_comparison": {
+      "account_id": "ACC-1002",
+      "as_of": "2026-08-28T14:45:00",
+      "reported_balance": "15500",
+      "reported_balance_source": "latest_posted_ledger_balance",
       "expected_balance": "14000",
-      "difference": "-1000",
-      "consistent": false
-    },
-    "suspected_duplicates": [],
-    "reversals": [
-      {
-        "transaction_id": "TX-1007",
-        "debit_amount": "1000",
-        "credit_amount": "1000",
-        "fully_reversed": true,
-        "ledger_entries": [
-          {
-            "ledger_entry_id": "LED-012",
-            "transaction_id": "TX-1007",
-            "account_id": "ACC-1002",
-            "entry_type": "CREDIT",
-            "amount": "1000",
-            "currency": "ETB",
-            "balance_before": "12000",
-            "balance_after": "13000",
-            "created_at": "2026-08-28 12:30:00",
-            "status": "POSTED"
-          },
-          {
-            "ledger_entry_id": "LED-010",
-            "transaction_id": "TX-1007",
-            "account_id": "ACC-1002",
-            "entry_type": "DEBIT",
-            "amount": "1000",
-            "currency": "ETB",
-            "balance_before": "13000",
-            "balance_after": "12000",
-            "created_at": "2026-08-28 12:00:00",
-            "status": "POSTED"
-          }
-        ]
-      }
-    ],
-    "failed_transactions_without_debit": []
+      "difference": "1500",
+      "consistent": false,
+      "posted_ledger_entries": 5,
+      "total_ledger_entries": 5,
+      "suspected_duplicate_debit": null
+    }
   },
   {
     "case_id": "CASE-018",
+    "as_of": "2026-08-28T15:00:00",
     "case": {
       "case_id": "CASE-018",
       "customer_id": "CUST-001",
       "account_id": "ACC-1001",
       "complaint": "Please review my recent account activity and identify the transfers that affected my balance, including the amounts and direction of each transfer.",
-      "submitted_at": "2026-08-28 15:00:00",
+      "submitted_at": "2026-08-28T15:00:00",
       "status": "OPEN"
     },
     "customer": {
@@ -2858,11 +3344,11 @@
         "amount": "2000",
         "currency": "ETB",
         "transaction_type": "TRANSFER",
-        "transaction_date": "2026-08-28 10:10:00",
+        "transaction_date": "2026-08-28T10:10:00",
         "status": "SUCCESS",
         "reference": "REF-006",
-        "created_at": "2026-08-28 10:10:00",
-        "completed_at": "2026-08-28 10:10:00"
+        "created_at": "2026-08-28T10:10:00",
+        "completed_at": "2026-08-28T10:10:00"
       },
       {
         "transaction_id": "TX-1004",
@@ -2871,11 +3357,11 @@
         "amount": "5000",
         "currency": "ETB",
         "transaction_type": "TRANSFER",
-        "transaction_date": "2026-08-27 09:17:00",
+        "transaction_date": "2026-08-27T09:17:00",
         "status": "SUCCESS",
         "reference": "REF-004",
-        "created_at": "2026-08-27 09:17:00",
-        "completed_at": "2026-08-27 09:17:00"
+        "created_at": "2026-08-27T09:17:00",
+        "completed_at": "2026-08-27T09:17:00"
       },
       {
         "transaction_id": "TX-1001",
@@ -2884,11 +3370,11 @@
         "amount": "5000",
         "currency": "ETB",
         "transaction_type": "TRANSFER",
-        "transaction_date": "2026-08-27 09:15:00",
+        "transaction_date": "2026-08-27T09:15:00",
         "status": "SUCCESS",
         "reference": "REF-001",
-        "created_at": "2026-08-27 09:15:00",
-        "completed_at": "2026-08-27 09:15:00"
+        "created_at": "2026-08-27T09:15:00",
+        "completed_at": "2026-08-27T09:15:00"
       },
       {
         "transaction_id": "TX-1002",
@@ -2897,11 +3383,11 @@
         "amount": "2000",
         "currency": "ETB",
         "transaction_type": "TRANSFER",
-        "transaction_date": "2026-08-26 14:20:00",
+        "transaction_date": "2026-08-26T14:20:00",
         "status": "SUCCESS",
         "reference": "REF-002",
-        "created_at": "2026-08-26 14:20:00",
-        "completed_at": "2026-08-26 14:20:00"
+        "created_at": "2026-08-26T14:20:00",
+        "completed_at": "2026-08-26T14:20:00"
       },
       {
         "transaction_id": "TX-1003",
@@ -2910,21 +3396,26 @@
         "amount": "1500",
         "currency": "ETB",
         "transaction_type": "TRANSFER",
-        "transaction_date": "2026-08-25 11:30:00",
+        "transaction_date": "2026-08-25T11:30:00",
         "status": "SUCCESS",
         "reference": "REF-003",
-        "created_at": "2026-08-25 11:30:00",
-        "completed_at": "2026-08-25 11:30:00"
+        "created_at": "2026-08-25T11:30:00",
+        "completed_at": "2026-08-25T11:30:00"
       }
     ],
     "transaction_facts": [
       {
         "transaction_id": "TX-1006",
-        "amount": "2000",
-        "currency": "ETB",
-        "status": "SUCCESS",
         "from_account_id": "ACC-1004",
         "to_account_id": "ACC-1001",
+        "amount": "2000",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-28T10:10:00",
+        "status": "SUCCESS",
+        "reference": "REF-006",
+        "created_at": "2026-08-28T10:10:00",
+        "completed_at": "2026-08-28T10:10:00",
         "direction": "INCOMING",
         "ledger_entries": [
           {
@@ -2936,18 +3427,23 @@
             "currency": "ETB",
             "balance_before": "15000",
             "balance_after": "17000",
-            "created_at": "2026-08-28 10:10:00",
+            "created_at": "2026-08-28T10:10:00",
             "status": "POSTED"
           }
         ]
       },
       {
         "transaction_id": "TX-1004",
-        "amount": "5000",
-        "currency": "ETB",
-        "status": "SUCCESS",
         "from_account_id": "ACC-1001",
         "to_account_id": "ACC-1002",
+        "amount": "5000",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-27T09:17:00",
+        "status": "SUCCESS",
+        "reference": "REF-004",
+        "created_at": "2026-08-27T09:17:00",
+        "completed_at": "2026-08-27T09:17:00",
         "direction": "OUTGOING",
         "ledger_entries": [
           {
@@ -2959,18 +3455,23 @@
             "currency": "ETB",
             "balance_before": "20000",
             "balance_after": "15000",
-            "created_at": "2026-08-27 09:17:00",
+            "created_at": "2026-08-27T09:17:00",
             "status": "POSTED"
           }
         ]
       },
       {
         "transaction_id": "TX-1001",
-        "amount": "5000",
-        "currency": "ETB",
-        "status": "SUCCESS",
         "from_account_id": "ACC-1001",
         "to_account_id": "ACC-1002",
+        "amount": "5000",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-27T09:15:00",
+        "status": "SUCCESS",
+        "reference": "REF-001",
+        "created_at": "2026-08-27T09:15:00",
+        "completed_at": "2026-08-27T09:15:00",
         "direction": "OUTGOING",
         "ledger_entries": [
           {
@@ -2982,18 +3483,23 @@
             "currency": "ETB",
             "balance_before": "25000",
             "balance_after": "20000",
-            "created_at": "2026-08-27 09:15:00",
+            "created_at": "2026-08-27T09:15:00",
             "status": "POSTED"
           }
         ]
       },
       {
         "transaction_id": "TX-1002",
-        "amount": "2000",
-        "currency": "ETB",
-        "status": "SUCCESS",
         "from_account_id": "ACC-1001",
         "to_account_id": "ACC-1003",
+        "amount": "2000",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-26T14:20:00",
+        "status": "SUCCESS",
+        "reference": "REF-002",
+        "created_at": "2026-08-26T14:20:00",
+        "completed_at": "2026-08-26T14:20:00",
         "direction": "OUTGOING",
         "ledger_entries": [
           {
@@ -3005,18 +3511,23 @@
             "currency": "ETB",
             "balance_before": "20000",
             "balance_after": "18000",
-            "created_at": "2026-08-26 14:20:00",
+            "created_at": "2026-08-26T14:20:00",
             "status": "POSTED"
           }
         ]
       },
       {
         "transaction_id": "TX-1003",
-        "amount": "1500",
-        "currency": "ETB",
-        "status": "SUCCESS",
         "from_account_id": "ACC-1002",
         "to_account_id": "ACC-1001",
+        "amount": "1500",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-25T11:30:00",
+        "status": "SUCCESS",
+        "reference": "REF-003",
+        "created_at": "2026-08-25T11:30:00",
+        "completed_at": "2026-08-25T11:30:00",
         "direction": "INCOMING",
         "ledger_entries": [
           {
@@ -3028,10 +3539,77 @@
             "currency": "ETB",
             "balance_before": "18500",
             "balance_after": "20000",
-            "created_at": "2026-08-25 11:30:00",
+            "created_at": "2026-08-25T11:30:00",
             "status": "POSTED"
           }
         ]
+      }
+    ],
+    "transactions": [
+      {
+        "transaction_id": "TX-1006",
+        "from_account_id": "ACC-1004",
+        "to_account_id": "ACC-1001",
+        "amount": "2000",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-28T10:10:00",
+        "status": "SUCCESS",
+        "reference": "REF-006",
+        "created_at": "2026-08-28T10:10:00",
+        "completed_at": "2026-08-28T10:10:00"
+      },
+      {
+        "transaction_id": "TX-1004",
+        "from_account_id": "ACC-1001",
+        "to_account_id": "ACC-1002",
+        "amount": "5000",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-27T09:17:00",
+        "status": "SUCCESS",
+        "reference": "REF-004",
+        "created_at": "2026-08-27T09:17:00",
+        "completed_at": "2026-08-27T09:17:00"
+      },
+      {
+        "transaction_id": "TX-1001",
+        "from_account_id": "ACC-1001",
+        "to_account_id": "ACC-1002",
+        "amount": "5000",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-27T09:15:00",
+        "status": "SUCCESS",
+        "reference": "REF-001",
+        "created_at": "2026-08-27T09:15:00",
+        "completed_at": "2026-08-27T09:15:00"
+      },
+      {
+        "transaction_id": "TX-1002",
+        "from_account_id": "ACC-1001",
+        "to_account_id": "ACC-1003",
+        "amount": "2000",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-26T14:20:00",
+        "status": "SUCCESS",
+        "reference": "REF-002",
+        "created_at": "2026-08-26T14:20:00",
+        "completed_at": "2026-08-26T14:20:00"
+      },
+      {
+        "transaction_id": "TX-1003",
+        "from_account_id": "ACC-1002",
+        "to_account_id": "ACC-1001",
+        "amount": "1500",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-25T11:30:00",
+        "status": "SUCCESS",
+        "reference": "REF-003",
+        "created_at": "2026-08-25T11:30:00",
+        "completed_at": "2026-08-25T11:30:00"
       }
     ],
     "ledger_entries": [
@@ -3044,7 +3622,7 @@
         "currency": "ETB",
         "balance_before": "15000",
         "balance_after": "17000",
-        "created_at": "2026-08-28 10:10:00",
+        "created_at": "2026-08-28T10:10:00",
         "status": "POSTED"
       },
       {
@@ -3056,7 +3634,7 @@
         "currency": "ETB",
         "balance_before": "20000",
         "balance_after": "15000",
-        "created_at": "2026-08-27 09:17:00",
+        "created_at": "2026-08-27T09:17:00",
         "status": "POSTED"
       },
       {
@@ -3068,7 +3646,7 @@
         "currency": "ETB",
         "balance_before": "25000",
         "balance_after": "20000",
-        "created_at": "2026-08-27 09:15:00",
+        "created_at": "2026-08-27T09:15:00",
         "status": "POSTED"
       },
       {
@@ -3080,7 +3658,7 @@
         "currency": "ETB",
         "balance_before": "20000",
         "balance_after": "18000",
-        "created_at": "2026-08-26 14:20:00",
+        "created_at": "2026-08-26T14:20:00",
         "status": "POSTED"
       },
       {
@@ -3092,40 +3670,40 @@
         "currency": "ETB",
         "balance_before": "18500",
         "balance_after": "20000",
-        "created_at": "2026-08-25 11:30:00",
+        "created_at": "2026-08-25T11:30:00",
         "status": "POSTED"
       }
     ],
-    "balance_reconciliation": {
-      "opening_balance": "25000",
-      "current_balance": "20000",
+    "balance_comparison": {
+      "account_id": "ACC-1001",
+      "as_of": "2026-08-28T15:00:00",
+      "reported_balance": "17000",
+      "reported_balance_source": "latest_posted_ledger_balance",
       "expected_balance": "16500",
-      "difference": "3500",
-      "consistent": false
-    },
-    "suspected_duplicates": [
-      {
-        "recipient_account_id": "ACC-1002",
+      "difference": "500",
+      "consistent": false,
+      "posted_ledger_entries": 5,
+      "total_ledger_entries": 5,
+      "suspected_duplicate_debit": {
         "amount": "5000",
-        "currency": "ETB",
+        "recipient_account_id": "ACC-1002",
+        "duplicate_count": 2,
         "transaction_ids": [
           "TX-1004",
           "TX-1001"
-        ],
-        "count": 2
+        ]
       }
-    ],
-    "reversals": [],
-    "failed_transactions_without_debit": []
+    }
   },
   {
     "case_id": "CASE-019",
+    "as_of": "2026-08-28T15:15:00",
     "case": {
       "case_id": "CASE-019",
       "customer_id": "CUST-002",
       "account_id": "ACC-1002",
       "complaint": "Please review my recent transfer activity and explain the successful incoming, outgoing, and reversed transactions involving my account.",
-      "submitted_at": "2026-08-28 15:15:00",
+      "submitted_at": "2026-08-28T15:15:00",
       "status": "OPEN"
     },
     "customer": {
@@ -3163,11 +3741,11 @@
         "amount": "2500",
         "currency": "ETB",
         "transaction_type": "TRANSFER",
-        "transaction_date": "2026-08-28 13:30:00",
+        "transaction_date": "2026-08-28T13:30:00",
         "status": "SUCCESS",
         "reference": "REF-008",
-        "created_at": "2026-08-28 13:30:00",
-        "completed_at": "2026-08-28 13:30:00"
+        "created_at": "2026-08-28T13:30:00",
+        "completed_at": "2026-08-28T13:30:00"
       },
       {
         "transaction_id": "TX-1007",
@@ -3176,11 +3754,11 @@
         "amount": "1000",
         "currency": "ETB",
         "transaction_type": "TRANSFER",
-        "transaction_date": "2026-08-28 12:00:00",
+        "transaction_date": "2026-08-28T12:00:00",
         "status": "REVERSED",
         "reference": "REF-007",
-        "created_at": "2026-08-28 12:00:00",
-        "completed_at": "2026-08-28 12:30:00"
+        "created_at": "2026-08-28T12:00:00",
+        "completed_at": "2026-08-28T12:30:00"
       },
       {
         "transaction_id": "TX-1001",
@@ -3189,11 +3767,11 @@
         "amount": "5000",
         "currency": "ETB",
         "transaction_type": "TRANSFER",
-        "transaction_date": "2026-08-27 09:15:00",
+        "transaction_date": "2026-08-27T09:15:00",
         "status": "SUCCESS",
         "reference": "REF-001",
-        "created_at": "2026-08-27 09:15:00",
-        "completed_at": "2026-08-27 09:15:00"
+        "created_at": "2026-08-27T09:15:00",
+        "completed_at": "2026-08-27T09:15:00"
       },
       {
         "transaction_id": "TX-1003",
@@ -3202,21 +3780,26 @@
         "amount": "1500",
         "currency": "ETB",
         "transaction_type": "TRANSFER",
-        "transaction_date": "2026-08-25 11:30:00",
+        "transaction_date": "2026-08-25T11:30:00",
         "status": "SUCCESS",
         "reference": "REF-003",
-        "created_at": "2026-08-25 11:30:00",
-        "completed_at": "2026-08-25 11:30:00"
+        "created_at": "2026-08-25T11:30:00",
+        "completed_at": "2026-08-25T11:30:00"
       }
     ],
     "transaction_facts": [
       {
         "transaction_id": "TX-1008",
-        "amount": "2500",
-        "currency": "ETB",
-        "status": "SUCCESS",
         "from_account_id": "ACC-1003",
         "to_account_id": "ACC-1002",
+        "amount": "2500",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-28T13:30:00",
+        "status": "SUCCESS",
+        "reference": "REF-008",
+        "created_at": "2026-08-28T13:30:00",
+        "completed_at": "2026-08-28T13:30:00",
         "direction": "INCOMING",
         "ledger_entries": [
           {
@@ -3228,18 +3811,23 @@
             "currency": "ETB",
             "balance_before": "13000",
             "balance_after": "15500",
-            "created_at": "2026-08-28 13:30:00",
+            "created_at": "2026-08-28T13:30:00",
             "status": "POSTED"
           }
         ]
       },
       {
         "transaction_id": "TX-1007",
-        "amount": "1000",
-        "currency": "ETB",
-        "status": "REVERSED",
         "from_account_id": "ACC-1002",
         "to_account_id": "ACC-1003",
+        "amount": "1000",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-28T12:00:00",
+        "status": "REVERSED",
+        "reference": "REF-007",
+        "created_at": "2026-08-28T12:00:00",
+        "completed_at": "2026-08-28T12:30:00",
         "direction": "OUTGOING",
         "ledger_entries": [
           {
@@ -3251,7 +3839,7 @@
             "currency": "ETB",
             "balance_before": "12000",
             "balance_after": "13000",
-            "created_at": "2026-08-28 12:30:00",
+            "created_at": "2026-08-28T12:30:00",
             "status": "POSTED"
           },
           {
@@ -3263,18 +3851,23 @@
             "currency": "ETB",
             "balance_before": "13000",
             "balance_after": "12000",
-            "created_at": "2026-08-28 12:00:00",
+            "created_at": "2026-08-28T12:00:00",
             "status": "POSTED"
           }
         ]
       },
       {
         "transaction_id": "TX-1001",
-        "amount": "5000",
-        "currency": "ETB",
-        "status": "SUCCESS",
         "from_account_id": "ACC-1001",
         "to_account_id": "ACC-1002",
+        "amount": "5000",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-27T09:15:00",
+        "status": "SUCCESS",
+        "reference": "REF-001",
+        "created_at": "2026-08-27T09:15:00",
+        "completed_at": "2026-08-27T09:15:00",
         "direction": "INCOMING",
         "ledger_entries": [
           {
@@ -3286,18 +3879,23 @@
             "currency": "ETB",
             "balance_before": "8000",
             "balance_after": "13000",
-            "created_at": "2026-08-27 09:15:00",
+            "created_at": "2026-08-27T09:15:00",
             "status": "POSTED"
           }
         ]
       },
       {
         "transaction_id": "TX-1003",
-        "amount": "1500",
-        "currency": "ETB",
-        "status": "SUCCESS",
         "from_account_id": "ACC-1002",
         "to_account_id": "ACC-1001",
+        "amount": "1500",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-25T11:30:00",
+        "status": "SUCCESS",
+        "reference": "REF-003",
+        "created_at": "2026-08-25T11:30:00",
+        "completed_at": "2026-08-25T11:30:00",
         "direction": "OUTGOING",
         "ledger_entries": [
           {
@@ -3309,10 +3907,77 @@
             "currency": "ETB",
             "balance_before": "9500",
             "balance_after": "8000",
-            "created_at": "2026-08-25 11:30:00",
+            "created_at": "2026-08-25T11:30:00",
             "status": "POSTED"
           }
         ]
+      }
+    ],
+    "transactions": [
+      {
+        "transaction_id": "TX-1008",
+        "from_account_id": "ACC-1003",
+        "to_account_id": "ACC-1002",
+        "amount": "2500",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-28T13:30:00",
+        "status": "SUCCESS",
+        "reference": "REF-008",
+        "created_at": "2026-08-28T13:30:00",
+        "completed_at": "2026-08-28T13:30:00"
+      },
+      {
+        "transaction_id": "TX-1007",
+        "from_account_id": "ACC-1002",
+        "to_account_id": "ACC-1003",
+        "amount": "1000",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-28T12:00:00",
+        "status": "REVERSED",
+        "reference": "REF-007",
+        "created_at": "2026-08-28T12:00:00",
+        "completed_at": "2026-08-28T12:30:00"
+      },
+      {
+        "transaction_id": "TX-1004",
+        "from_account_id": "ACC-1001",
+        "to_account_id": "ACC-1002",
+        "amount": "5000",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-27T09:17:00",
+        "status": "SUCCESS",
+        "reference": "REF-004",
+        "created_at": "2026-08-27T09:17:00",
+        "completed_at": "2026-08-27T09:17:00"
+      },
+      {
+        "transaction_id": "TX-1001",
+        "from_account_id": "ACC-1001",
+        "to_account_id": "ACC-1002",
+        "amount": "5000",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-27T09:15:00",
+        "status": "SUCCESS",
+        "reference": "REF-001",
+        "created_at": "2026-08-27T09:15:00",
+        "completed_at": "2026-08-27T09:15:00"
+      },
+      {
+        "transaction_id": "TX-1003",
+        "from_account_id": "ACC-1002",
+        "to_account_id": "ACC-1001",
+        "amount": "1500",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-25T11:30:00",
+        "status": "SUCCESS",
+        "reference": "REF-003",
+        "created_at": "2026-08-25T11:30:00",
+        "completed_at": "2026-08-25T11:30:00"
       }
     ],
     "ledger_entries": [
@@ -3325,7 +3990,7 @@
         "currency": "ETB",
         "balance_before": "13000",
         "balance_after": "15500",
-        "created_at": "2026-08-28 13:30:00",
+        "created_at": "2026-08-28T13:30:00",
         "status": "POSTED"
       },
       {
@@ -3337,7 +4002,7 @@
         "currency": "ETB",
         "balance_before": "12000",
         "balance_after": "13000",
-        "created_at": "2026-08-28 12:30:00",
+        "created_at": "2026-08-28T12:30:00",
         "status": "POSTED"
       },
       {
@@ -3349,7 +4014,7 @@
         "currency": "ETB",
         "balance_before": "13000",
         "balance_after": "12000",
-        "created_at": "2026-08-28 12:00:00",
+        "created_at": "2026-08-28T12:00:00",
         "status": "POSTED"
       },
       {
@@ -3361,7 +4026,7 @@
         "currency": "ETB",
         "balance_before": "8000",
         "balance_after": "13000",
-        "created_at": "2026-08-27 09:15:00",
+        "created_at": "2026-08-27T09:15:00",
         "status": "POSTED"
       },
       {
@@ -3373,62 +4038,32 @@
         "currency": "ETB",
         "balance_before": "9500",
         "balance_after": "8000",
-        "created_at": "2026-08-25 11:30:00",
+        "created_at": "2026-08-25T11:30:00",
         "status": "POSTED"
       }
     ],
-    "balance_reconciliation": {
-      "opening_balance": "8000",
-      "current_balance": "13000",
+    "balance_comparison": {
+      "account_id": "ACC-1002",
+      "as_of": "2026-08-28T15:15:00",
+      "reported_balance": "15500",
+      "reported_balance_source": "latest_posted_ledger_balance",
       "expected_balance": "14000",
-      "difference": "-1000",
-      "consistent": false
-    },
-    "suspected_duplicates": [],
-    "reversals": [
-      {
-        "transaction_id": "TX-1007",
-        "debit_amount": "1000",
-        "credit_amount": "1000",
-        "fully_reversed": true,
-        "ledger_entries": [
-          {
-            "ledger_entry_id": "LED-012",
-            "transaction_id": "TX-1007",
-            "account_id": "ACC-1002",
-            "entry_type": "CREDIT",
-            "amount": "1000",
-            "currency": "ETB",
-            "balance_before": "12000",
-            "balance_after": "13000",
-            "created_at": "2026-08-28 12:30:00",
-            "status": "POSTED"
-          },
-          {
-            "ledger_entry_id": "LED-010",
-            "transaction_id": "TX-1007",
-            "account_id": "ACC-1002",
-            "entry_type": "DEBIT",
-            "amount": "1000",
-            "currency": "ETB",
-            "balance_before": "13000",
-            "balance_after": "12000",
-            "created_at": "2026-08-28 12:00:00",
-            "status": "POSTED"
-          }
-        ]
-      }
-    ],
-    "failed_transactions_without_debit": []
+      "difference": "1500",
+      "consistent": false,
+      "posted_ledger_entries": 5,
+      "total_ledger_entries": 5,
+      "suspected_duplicate_debit": null
+    }
   },
   {
     "case_id": "CASE-020",
+    "as_of": "2026-08-28T15:30:00",
     "case": {
       "case_id": "CASE-020",
       "customer_id": "CUST-001",
       "account_id": "ACC-1001",
       "complaint": "I made two 5,000 ETB transfers to the same account within minutes of each other. Please determine whether both transactions were successfully processed and how they affected my balance.",
-      "submitted_at": "2026-08-28 15:30:00",
+      "submitted_at": "2026-08-28T15:30:00",
       "status": "OPEN"
     },
     "customer": {
@@ -3464,11 +4099,11 @@
         "amount": "5000",
         "currency": "ETB",
         "transaction_type": "TRANSFER",
-        "transaction_date": "2026-08-27 09:17:00",
+        "transaction_date": "2026-08-27T09:17:00",
         "status": "SUCCESS",
         "reference": "REF-004",
-        "created_at": "2026-08-27 09:17:00",
-        "completed_at": "2026-08-27 09:17:00"
+        "created_at": "2026-08-27T09:17:00",
+        "completed_at": "2026-08-27T09:17:00"
       },
       {
         "transaction_id": "TX-1001",
@@ -3477,21 +4112,26 @@
         "amount": "5000",
         "currency": "ETB",
         "transaction_type": "TRANSFER",
-        "transaction_date": "2026-08-27 09:15:00",
+        "transaction_date": "2026-08-27T09:15:00",
         "status": "SUCCESS",
         "reference": "REF-001",
-        "created_at": "2026-08-27 09:15:00",
-        "completed_at": "2026-08-27 09:15:00"
+        "created_at": "2026-08-27T09:15:00",
+        "completed_at": "2026-08-27T09:15:00"
       }
     ],
     "transaction_facts": [
       {
         "transaction_id": "TX-1004",
-        "amount": "5000",
-        "currency": "ETB",
-        "status": "SUCCESS",
         "from_account_id": "ACC-1001",
         "to_account_id": "ACC-1002",
+        "amount": "5000",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-27T09:17:00",
+        "status": "SUCCESS",
+        "reference": "REF-004",
+        "created_at": "2026-08-27T09:17:00",
+        "completed_at": "2026-08-27T09:17:00",
         "direction": "OUTGOING",
         "ledger_entries": [
           {
@@ -3503,18 +4143,23 @@
             "currency": "ETB",
             "balance_before": "20000",
             "balance_after": "15000",
-            "created_at": "2026-08-27 09:17:00",
+            "created_at": "2026-08-27T09:17:00",
             "status": "POSTED"
           }
         ]
       },
       {
         "transaction_id": "TX-1001",
-        "amount": "5000",
-        "currency": "ETB",
-        "status": "SUCCESS",
         "from_account_id": "ACC-1001",
         "to_account_id": "ACC-1002",
+        "amount": "5000",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-27T09:15:00",
+        "status": "SUCCESS",
+        "reference": "REF-001",
+        "created_at": "2026-08-27T09:15:00",
+        "completed_at": "2026-08-27T09:15:00",
         "direction": "OUTGOING",
         "ledger_entries": [
           {
@@ -3526,10 +4171,77 @@
             "currency": "ETB",
             "balance_before": "25000",
             "balance_after": "20000",
-            "created_at": "2026-08-27 09:15:00",
+            "created_at": "2026-08-27T09:15:00",
             "status": "POSTED"
           }
         ]
+      }
+    ],
+    "transactions": [
+      {
+        "transaction_id": "TX-1006",
+        "from_account_id": "ACC-1004",
+        "to_account_id": "ACC-1001",
+        "amount": "2000",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-28T10:10:00",
+        "status": "SUCCESS",
+        "reference": "REF-006",
+        "created_at": "2026-08-28T10:10:00",
+        "completed_at": "2026-08-28T10:10:00"
+      },
+      {
+        "transaction_id": "TX-1004",
+        "from_account_id": "ACC-1001",
+        "to_account_id": "ACC-1002",
+        "amount": "5000",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-27T09:17:00",
+        "status": "SUCCESS",
+        "reference": "REF-004",
+        "created_at": "2026-08-27T09:17:00",
+        "completed_at": "2026-08-27T09:17:00"
+      },
+      {
+        "transaction_id": "TX-1001",
+        "from_account_id": "ACC-1001",
+        "to_account_id": "ACC-1002",
+        "amount": "5000",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-27T09:15:00",
+        "status": "SUCCESS",
+        "reference": "REF-001",
+        "created_at": "2026-08-27T09:15:00",
+        "completed_at": "2026-08-27T09:15:00"
+      },
+      {
+        "transaction_id": "TX-1002",
+        "from_account_id": "ACC-1001",
+        "to_account_id": "ACC-1003",
+        "amount": "2000",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-26T14:20:00",
+        "status": "SUCCESS",
+        "reference": "REF-002",
+        "created_at": "2026-08-26T14:20:00",
+        "completed_at": "2026-08-26T14:20:00"
+      },
+      {
+        "transaction_id": "TX-1003",
+        "from_account_id": "ACC-1002",
+        "to_account_id": "ACC-1001",
+        "amount": "1500",
+        "currency": "ETB",
+        "transaction_type": "TRANSFER",
+        "transaction_date": "2026-08-25T11:30:00",
+        "status": "SUCCESS",
+        "reference": "REF-003",
+        "created_at": "2026-08-25T11:30:00",
+        "completed_at": "2026-08-25T11:30:00"
       }
     ],
     "ledger_entries": [
@@ -3542,7 +4254,7 @@
         "currency": "ETB",
         "balance_before": "15000",
         "balance_after": "17000",
-        "created_at": "2026-08-28 10:10:00",
+        "created_at": "2026-08-28T10:10:00",
         "status": "POSTED"
       },
       {
@@ -3554,7 +4266,7 @@
         "currency": "ETB",
         "balance_before": "20000",
         "balance_after": "15000",
-        "created_at": "2026-08-27 09:17:00",
+        "created_at": "2026-08-27T09:17:00",
         "status": "POSTED"
       },
       {
@@ -3566,7 +4278,7 @@
         "currency": "ETB",
         "balance_before": "25000",
         "balance_after": "20000",
-        "created_at": "2026-08-27 09:15:00",
+        "created_at": "2026-08-27T09:15:00",
         "status": "POSTED"
       },
       {
@@ -3578,7 +4290,7 @@
         "currency": "ETB",
         "balance_before": "20000",
         "balance_after": "18000",
-        "created_at": "2026-08-26 14:20:00",
+        "created_at": "2026-08-26T14:20:00",
         "status": "POSTED"
       },
       {
@@ -3590,30 +4302,29 @@
         "currency": "ETB",
         "balance_before": "18500",
         "balance_after": "20000",
-        "created_at": "2026-08-25 11:30:00",
+        "created_at": "2026-08-25T11:30:00",
         "status": "POSTED"
       }
     ],
-    "balance_reconciliation": {
-      "opening_balance": "25000",
-      "current_balance": "20000",
+    "balance_comparison": {
+      "account_id": "ACC-1001",
+      "as_of": "2026-08-28T15:30:00",
+      "reported_balance": "17000",
+      "reported_balance_source": "latest_posted_ledger_balance",
       "expected_balance": "16500",
-      "difference": "3500",
-      "consistent": false
-    },
-    "suspected_duplicates": [
-      {
-        "recipient_account_id": "ACC-1002",
+      "difference": "500",
+      "consistent": false,
+      "posted_ledger_entries": 5,
+      "total_ledger_entries": 5,
+      "suspected_duplicate_debit": {
         "amount": "5000",
-        "currency": "ETB",
+        "recipient_account_id": "ACC-1002",
+        "duplicate_count": 2,
         "transaction_ids": [
           "TX-1004",
           "TX-1001"
-        ],
-        "count": 2
+        ]
       }
-    ],
-    "reversals": [],
-    "failed_transactions_without_debit": []
+    }
   }
 ]

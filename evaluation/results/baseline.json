@@ -1,554 +1,631 @@
-[
-  {
-    "case_id": "CASE-001",
-    "passed": 7,
-    "total": 7,
-    "score": 1.0,
-    "criteria": [
-      {
-        "name": "Identifies TX-1001",
-        "passed": true
-      },
-      {
-        "name": "Identifies TX-1004",
-        "passed": true
-      },
-      {
-        "name": "Identifies 5,000 ETB transfers",
-        "passed": true
-      },
-      {
-        "name": "Identifies successful transactions",
-        "passed": true
-      },
-      {
-        "name": "Identifies suspected duplicate",
-        "passed": true
-      },
-      {
-        "name": "Identifies balance discrepancy",
-        "passed": true
-      },
-      {
-        "name": "Does not claim confirmed fraud",
-        "passed": true
-      }
-    ]
+{
+  "metadata": {
+    "artifact_schema_version": 2,
+    "system": "baseline",
+    "generated_at": "2026-09-25T19:57:35.612736+00:00",
+    "rubric_hash": "ea4ddaa70e538910ad10d6e7ca68be099f4076daa706338c7e564c4ed2f14b68",
+    "ground_truth_hash": "bfa8af0877de3fcf8887b4c600cc9069026e596635e74d4fe7c5fa34be957afc",
+    "provider": null,
+    "model": null,
+    "prompt_hash": null,
+    "implementation_hash": "cab96acb6f43e7de49dbf1ce8060799960d747d85ecc3cda545f6333ee2cef90",
+    "generation_config": null,
+    "python_version": "3.14.6",
+    "git_commit": "f0720251fc8ea4f792740b1c0dfcea06721e3784",
+    "git_dirty": true
   },
-  {
-    "case_id": "CASE-002",
-    "passed": 5,
-    "total": 5,
-    "score": 1.0,
-    "criteria": [
-      {
-        "name": "Identifies TX-1005",
-        "passed": true
-      },
-      {
-        "name": "Identifies 10,000 ETB disputed amount",
-        "passed": true
-      },
-      {
-        "name": "Identifies failed transaction",
-        "passed": true
-      },
-      {
-        "name": "Identifies no ledger debit for TX-1005",
-        "passed": true
-      },
-      {
-        "name": "Identifies balance discrepancy",
-        "passed": true
-      }
-    ]
-  },
-  {
-    "case_id": "CASE-003",
-    "passed": 5,
-    "total": 5,
-    "score": 1.0,
-    "criteria": [
-      {
-        "name": "Identifies TX-1007",
-        "passed": true
-      },
-      {
-        "name": "Identifies reversed transaction",
-        "passed": true
-      },
-      {
-        "name": "Identifies 1,000 ETB reversal",
-        "passed": true
-      },
-      {
-        "name": "Identifies debit and reversal credit",
-        "passed": true
-      },
-      {
-        "name": "Identifies balance discrepancy",
-        "passed": true
-      }
-    ]
-  },
-  {
-    "case_id": "CASE-004",
-    "passed": 4,
-    "total": 4,
-    "score": 1.0,
-    "criteria": [
-      {
-        "name": "Identifies TX-1001",
-        "passed": true
-      },
-      {
-        "name": "Identifies 5,000 ETB transaction",
-        "passed": true
-      },
-      {
-        "name": "Identifies successful transaction",
-        "passed": true
-      },
-      {
-        "name": "Identifies account balance discrepancy",
-        "passed": true
-      }
-    ]
-  },
-  {
-    "case_id": "CASE-005",
-    "passed": 4,
-    "total": 4,
-    "score": 1.0,
-    "criteria": [
-      {
-        "name": "Identifies TX-1002",
-        "passed": true
-      },
-      {
-        "name": "Identifies 2,000 ETB transaction",
-        "passed": true
-      },
-      {
-        "name": "Identifies successful transaction",
-        "passed": true
-      },
-      {
-        "name": "Identifies balance discrepancy",
-        "passed": true
-      }
-    ]
-  },
-  {
-    "case_id": "CASE-006",
-    "passed": 4,
-    "total": 4,
-    "score": 1.0,
-    "criteria": [
-      {
-        "name": "Identifies TX-1002",
-        "passed": true
-      },
-      {
-        "name": "Identifies 2,000 ETB transaction",
-        "passed": true
-      },
-      {
-        "name": "Identifies successful transaction",
-        "passed": true
-      },
-      {
-        "name": "Identifies balance discrepancy",
-        "passed": true
-      }
-    ]
-  },
-  {
-    "case_id": "CASE-007",
-    "passed": 4,
-    "total": 4,
-    "score": 1.0,
-    "criteria": [
-      {
-        "name": "Identifies TX-1003",
-        "passed": true
-      },
-      {
-        "name": "Identifies 1,500 ETB transaction",
-        "passed": true
-      },
-      {
-        "name": "Identifies successful transaction",
-        "passed": true
-      },
-      {
-        "name": "Identifies balance discrepancy",
-        "passed": true
-      }
-    ]
-  },
-  {
-    "case_id": "CASE-008",
-    "passed": 4,
-    "total": 4,
-    "score": 1.0,
-    "criteria": [
-      {
-        "name": "Identifies TX-1003",
-        "passed": true
-      },
-      {
-        "name": "Identifies 1,500 ETB transaction",
-        "passed": true
-      },
-      {
-        "name": "Identifies successful transaction",
-        "passed": true
-      },
-      {
-        "name": "Identifies balance discrepancy",
-        "passed": true
-      }
-    ]
-  },
-  {
-    "case_id": "CASE-009",
-    "passed": 5,
-    "total": 5,
-    "score": 1.0,
-    "criteria": [
-      {
-        "name": "Identifies TX-1001",
-        "passed": true
-      },
-      {
-        "name": "Identifies TX-1004",
-        "passed": true
-      },
-      {
-        "name": "Identifies both transactions as successful",
-        "passed": true
-      },
-      {
-        "name": "Identifies suspected duplicate",
-        "passed": true
-      },
-      {
-        "name": "Identifies 5,000 ETB amount",
-        "passed": true
-      }
-    ]
-  },
-  {
-    "case_id": "CASE-010",
-    "passed": 5,
-    "total": 5,
-    "score": 1.0,
-    "criteria": [
-      {
-        "name": "Identifies TX-1005",
-        "passed": true
-      },
-      {
-        "name": "Identifies failed status",
-        "passed": true
-      },
-      {
-        "name": "Identifies 10,000 ETB amount",
-        "passed": true
-      },
-      {
-        "name": "Identifies absence of ledger debit",
-        "passed": true
-      },
-      {
-        "name": "Identifies balance discrepancy",
-        "passed": true
-      }
-    ]
-  },
-  {
-    "case_id": "CASE-011",
-    "passed": 4,
-    "total": 4,
-    "score": 1.0,
-    "criteria": [
-      {
-        "name": "Identifies TX-1005",
-        "passed": true
-      },
-      {
-        "name": "Identifies failed transaction",
-        "passed": true
-      },
-      {
-        "name": "Identifies 10,000 ETB amount",
-        "passed": true
-      },
-      {
-        "name": "Identifies no ledger debit",
-        "passed": true
-      }
-    ]
-  },
-  {
-    "case_id": "CASE-012",
-    "passed": 4,
-    "total": 4,
-    "score": 1.0,
-    "criteria": [
-      {
-        "name": "Identifies TX-1006",
-        "passed": true
-      },
-      {
-        "name": "Identifies 2,000 ETB transaction",
-        "passed": true
-      },
-      {
-        "name": "Identifies successful transaction",
-        "passed": true
-      },
-      {
-        "name": "Identifies balance discrepancy",
-        "passed": true
-      }
-    ]
-  },
-  {
-    "case_id": "CASE-013",
-    "passed": 4,
-    "total": 4,
-    "score": 1.0,
-    "criteria": [
-      {
-        "name": "Identifies TX-1006",
-        "passed": true
-      },
-      {
-        "name": "Identifies successful transaction",
-        "passed": true
-      },
-      {
-        "name": "Identifies 2,000 ETB amount",
-        "passed": true
-      },
-      {
-        "name": "Identifies account balance is consistent",
-        "passed": true
-      }
-    ]
-  },
-  {
-    "case_id": "CASE-014",
-    "passed": 5,
-    "total": 5,
-    "score": 1.0,
-    "criteria": [
-      {
-        "name": "Identifies TX-1007",
-        "passed": true
-      },
-      {
-        "name": "Identifies reversed status",
-        "passed": true
-      },
-      {
-        "name": "Identifies reversal",
-        "passed": true
-      },
-      {
-        "name": "Identifies debit and credit",
-        "passed": true
-      },
-      {
-        "name": "Identifies 1,000 ETB amount",
-        "passed": true
-      }
-    ]
-  },
-  {
-    "case_id": "CASE-015",
-    "passed": 5,
-    "total": 5,
-    "score": 1.0,
-    "criteria": [
-      {
-        "name": "Identifies TX-1007",
-        "passed": true
-      },
-      {
-        "name": "Identifies reversed transaction",
-        "passed": true
-      },
-      {
-        "name": "Identifies debit and reversal credit",
-        "passed": true
-      },
-      {
-        "name": "Identifies reversal amount",
-        "passed": true
-      },
-      {
-        "name": "Identifies balance discrepancy",
-        "passed": true
-      }
-    ]
-  },
-  {
-    "case_id": "CASE-016",
-    "passed": 4,
-    "total": 4,
-    "score": 1.0,
-    "criteria": [
-      {
-        "name": "Identifies TX-1008",
-        "passed": true
-      },
-      {
-        "name": "Identifies 2,500 ETB amount",
-        "passed": true
-      },
-      {
-        "name": "Identifies successful transaction",
-        "passed": true
-      },
-      {
-        "name": "Identifies balance discrepancy",
-        "passed": true
-      }
-    ]
-  },
-  {
-    "case_id": "CASE-017",
-    "passed": 4,
-    "total": 4,
-    "score": 1.0,
-    "criteria": [
-      {
-        "name": "Identifies TX-1008",
-        "passed": true
-      },
-      {
-        "name": "Identifies 2,500 ETB amount",
-        "passed": true
-      },
-      {
-        "name": "Identifies successful transaction",
-        "passed": true
-      },
-      {
-        "name": "Identifies balance discrepancy",
-        "passed": true
-      }
-    ]
-  },
-  {
-    "case_id": "CASE-018",
-    "passed": 8,
-    "total": 8,
-    "score": 1.0,
-    "criteria": [
-      {
-        "name": "Identifies TX-1001",
-        "passed": true
-      },
-      {
-        "name": "Identifies TX-1002",
-        "passed": true
-      },
-      {
-        "name": "Identifies TX-1003",
-        "passed": true
-      },
-      {
-        "name": "Identifies TX-1004",
-        "passed": true
-      },
-      {
-        "name": "Identifies TX-1006",
-        "passed": true
-      },
-      {
-        "name": "Identifies successful transactions",
-        "passed": true
-      },
-      {
-        "name": "Identifies duplicate pair",
-        "passed": true
-      },
-      {
-        "name": "Identifies balance discrepancy",
-        "passed": true
-      }
-    ]
-  },
-  {
-    "case_id": "CASE-019",
-    "passed": 7,
-    "total": 7,
-    "score": 1.0,
-    "criteria": [
-      {
-        "name": "Identifies TX-1001",
-        "passed": true
-      },
-      {
-        "name": "Identifies TX-1003",
-        "passed": true
-      },
-      {
-        "name": "Identifies TX-1007",
-        "passed": true
-      },
-      {
-        "name": "Identifies TX-1008",
-        "passed": true
-      },
-      {
-        "name": "Identifies reversed transaction",
-        "passed": true
-      },
-      {
-        "name": "Identifies reversal debit and credit",
-        "passed": true
-      },
-      {
-        "name": "Identifies balance discrepancy",
-        "passed": true
-      }
-    ]
-  },
-  {
-    "case_id": "CASE-020",
-    "passed": 6,
-    "total": 6,
-    "score": 1.0,
-    "criteria": [
-      {
-        "name": "Identifies TX-1001",
-        "passed": true
-      },
-      {
-        "name": "Identifies TX-1004",
-        "passed": true
-      },
-      {
-        "name": "Identifies 5,000 ETB amount",
-        "passed": true
-      },
-      {
-        "name": "Identifies successful status",
-        "passed": true
-      },
-      {
-        "name": "Identifies suspected duplicate",
-        "passed": true
-      },
-      {
-        "name": "Identifies balance discrepancy",
-        "passed": true
-      }
-    ]
-  }
-]
+  "results": [
+    {
+      "case_id": "CASE-001",
+      "output": "Investigation case: CASE-001\nTransaction TX-1004: 5000 ETB, status SUCCESS.\nTransaction TX-1004 is an outgoing transfer from the account.\nThe account has a posted DEBIT ledger entry of 5000 ETB for transaction TX-1004.\nThe 5000 ETB debit decreased the account balance.\nTransaction TX-1001: 5000 ETB, status SUCCESS.\nTransaction TX-1001 is an outgoing transfer from the account.\nThe account has a posted DEBIT ledger entry of 5000 ETB for transaction TX-1001.\nThe 5000 ETB debit decreased the account balance.\nTransaction TX-1002: 2000 ETB, status SUCCESS.\nTransaction TX-1002 is an outgoing transfer from the account.\nThe account has a posted DEBIT ledger entry of 2000 ETB for transaction TX-1002.\nThe 2000 ETB debit decreased the account balance.\nTransaction TX-1003: 1500 ETB, status SUCCESS.\nTransaction TX-1003 is an incoming transfer to the account.\nThe account has a posted CREDIT ledger entry of 1500 ETB for transaction TX-1003.\nThe 1500 ETB credit increased the account balance.\nTransactions TX-1004 and TX-1001 are suspected duplicate transactions of 5000 ETB.\nThe account balance has a discrepancy between the reported balance and expected balance.",
+      "passed": 7,
+      "total": 7,
+      "score": 1.0,
+      "criteria": [
+        {
+          "name": "Identifies TX-1001",
+          "passed": true
+        },
+        {
+          "name": "Identifies TX-1004",
+          "passed": true
+        },
+        {
+          "name": "Identifies 5,000 ETB transfers",
+          "passed": true
+        },
+        {
+          "name": "Identifies successful transactions",
+          "passed": true
+        },
+        {
+          "name": "Identifies suspected duplicate",
+          "passed": true
+        },
+        {
+          "name": "Identifies balance discrepancy",
+          "passed": true
+        },
+        {
+          "name": "Does not claim confirmed fraud",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "case_id": "CASE-002",
+      "output": "Investigation case: CASE-002\nTransaction TX-1008: 2500 ETB, status SUCCESS.\nTransaction TX-1008 is an outgoing transfer from the account.\nThe account has a posted DEBIT ledger entry of 2500 ETB for transaction TX-1008.\nThe 2500 ETB debit decreased the account balance.\nTransaction TX-1007: 1000 ETB, status REVERSED.\nTransaction TX-1007 is an incoming transfer to the account.\nThe account has a posted DEBIT ledger entry of 1000 ETB for transaction TX-1007.\nThe 1000 ETB debit decreased the account balance.\nThe account has a posted CREDIT ledger entry of 1000 ETB for transaction TX-1007.\nThe 1000 ETB credit increased the account balance.\nTransaction TX-1007 was REVERSED with a debit and reversal credit.\nThe reversal amount is 1000 ETB.\nThe balance was fully restored and the reversal has a net effect of 0 ETB.\nTransaction TX-1005: 10000 ETB, status FAILED.\nTransaction TX-1005 is an outgoing transfer from the account.\nTransaction TX-1005 is FAILED and has no ledger debit.\nTransaction TX-1002: 2000 ETB, status SUCCESS.\nTransaction TX-1002 is an incoming transfer to the account.\nThe account has a posted CREDIT ledger entry of 2000 ETB for transaction TX-1002.\nThe 2000 ETB credit increased the account balance.\nThe account balance has a discrepancy between the reported balance and expected balance.",
+      "passed": 5,
+      "total": 5,
+      "score": 1.0,
+      "criteria": [
+        {
+          "name": "Identifies TX-1005",
+          "passed": true
+        },
+        {
+          "name": "Identifies 10,000 ETB disputed amount",
+          "passed": true
+        },
+        {
+          "name": "Identifies failed transaction",
+          "passed": true
+        },
+        {
+          "name": "Identifies no ledger debit for TX-1005",
+          "passed": true
+        },
+        {
+          "name": "Identifies balance discrepancy",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "case_id": "CASE-003",
+      "output": "Investigation case: CASE-003\nTransaction TX-1008: 2500 ETB, status SUCCESS.\nTransaction TX-1008 is an incoming transfer to the account.\nThe account has a posted CREDIT ledger entry of 2500 ETB for transaction TX-1008.\nThe 2500 ETB credit increased the account balance.\nTransaction TX-1007: 1000 ETB, status REVERSED.\nTransaction TX-1007 is an outgoing transfer from the account.\nThe account has a posted CREDIT ledger entry of 1000 ETB for transaction TX-1007.\nThe 1000 ETB credit increased the account balance.\nThe account has a posted DEBIT ledger entry of 1000 ETB for transaction TX-1007.\nThe 1000 ETB debit decreased the account balance.\nTransaction TX-1007 was REVERSED with a debit and reversal credit.\nThe reversal amount is 1000 ETB.\nThe balance was fully restored and the reversal has a net effect of 0 ETB.\nTransaction TX-1004: 5000 ETB, status SUCCESS.\nTransaction TX-1004 is an incoming transfer to the account.\nTransaction TX-1001: 5000 ETB, status SUCCESS.\nTransaction TX-1001 is an incoming transfer to the account.\nThe account has a posted CREDIT ledger entry of 5000 ETB for transaction TX-1001.\nThe 5000 ETB credit increased the account balance.\nTransaction TX-1003: 1500 ETB, status SUCCESS.\nTransaction TX-1003 is an outgoing transfer from the account.\nThe account has a posted DEBIT ledger entry of 1500 ETB for transaction TX-1003.\nThe 1500 ETB debit decreased the account balance.\nTransactions TX-1004 and TX-1001 are suspected duplicate transactions of 5000 ETB.\nThe account balance has a discrepancy between the reported balance and expected balance.",
+      "passed": 6,
+      "total": 6,
+      "score": 1.0,
+      "criteria": [
+        {
+          "name": "Identifies TX-1007",
+          "passed": true
+        },
+        {
+          "name": "Identifies reversed transaction",
+          "passed": true
+        },
+        {
+          "name": "Identifies 1,000 ETB reversal",
+          "passed": true
+        },
+        {
+          "name": "Identifies debit and reversal credit",
+          "passed": true
+        },
+        {
+          "name": "Identifies balance was restored",
+          "passed": true
+        },
+        {
+          "name": "Identifies balance discrepancy",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "case_id": "CASE-004",
+      "output": "Investigation case: CASE-004\nTransaction TX-1004: 5000 ETB, status SUCCESS.\nTransaction TX-1004 is an incoming transfer to the account.\nTransaction TX-1001: 5000 ETB, status SUCCESS.\nTransaction TX-1001 is an incoming transfer to the account.\nThe account has a posted CREDIT ledger entry of 5000 ETB for transaction TX-1001.\nThe 5000 ETB credit increased the account balance.\nTransaction TX-1003: 1500 ETB, status SUCCESS.\nTransaction TX-1003 is an outgoing transfer from the account.\nThe account has a posted DEBIT ledger entry of 1500 ETB for transaction TX-1003.\nThe 1500 ETB debit decreased the account balance.\nTransactions TX-1004 and TX-1001 are suspected duplicate transactions of 5000 ETB.\nThe account balance has a discrepancy between the reported balance and expected balance.",
+      "passed": 7,
+      "total": 7,
+      "score": 1.0,
+      "criteria": [
+        {
+          "name": "Identifies TX-1001",
+          "passed": true
+        },
+        {
+          "name": "Identifies 5,000 ETB transaction",
+          "passed": true
+        },
+        {
+          "name": "Identifies successful transaction",
+          "passed": true
+        },
+        {
+          "name": "Identifies incoming credit",
+          "passed": true
+        },
+        {
+          "name": "Identifies 5,000 ETB credited",
+          "passed": true
+        },
+        {
+          "name": "Identifies ledger-backed balance impact",
+          "passed": true
+        },
+        {
+          "name": "Identifies balance discrepancy",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "case_id": "CASE-005",
+      "output": "Investigation case: CASE-005\nTransaction TX-1004: 5000 ETB, status SUCCESS.\nTransaction TX-1004 is an outgoing transfer from the account.\nThe account has a posted DEBIT ledger entry of 5000 ETB for transaction TX-1004.\nThe 5000 ETB debit decreased the account balance.\nTransaction TX-1001: 5000 ETB, status SUCCESS.\nTransaction TX-1001 is an outgoing transfer from the account.\nThe account has a posted DEBIT ledger entry of 5000 ETB for transaction TX-1001.\nThe 5000 ETB debit decreased the account balance.\nTransaction TX-1002: 2000 ETB, status SUCCESS.\nTransaction TX-1002 is an outgoing transfer from the account.\nThe account has a posted DEBIT ledger entry of 2000 ETB for transaction TX-1002.\nThe 2000 ETB debit decreased the account balance.\nTransaction TX-1003: 1500 ETB, status SUCCESS.\nTransaction TX-1003 is an incoming transfer to the account.\nThe account has a posted CREDIT ledger entry of 1500 ETB for transaction TX-1003.\nThe 1500 ETB credit increased the account balance.\nTransactions TX-1004 and TX-1001 are suspected duplicate transactions of 5000 ETB.\nThe account balance has a discrepancy between the reported balance and expected balance.",
+      "passed": 7,
+      "total": 7,
+      "score": 1.0,
+      "criteria": [
+        {
+          "name": "Identifies TX-1002",
+          "passed": true
+        },
+        {
+          "name": "Identifies 2,000 ETB transaction",
+          "passed": true
+        },
+        {
+          "name": "Identifies successful transaction",
+          "passed": true
+        },
+        {
+          "name": "Identifies outgoing transfer",
+          "passed": true
+        },
+        {
+          "name": "Identifies account debit",
+          "passed": true
+        },
+        {
+          "name": "Identifies 2,000 ETB debit",
+          "passed": true
+        },
+        {
+          "name": "Identifies balance discrepancy",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "case_id": "CASE-006",
+      "output": "Investigation case: CASE-006\nTransaction TX-1005: 10000 ETB, status FAILED.\nTransaction TX-1005 is an outgoing transfer from the account.\nTransaction TX-1005 is FAILED and has no ledger debit.\nTransaction TX-1002: 2000 ETB, status SUCCESS.\nTransaction TX-1002 is an incoming transfer to the account.\nThe account has a posted CREDIT ledger entry of 2000 ETB for transaction TX-1002.\nThe 2000 ETB credit increased the account balance.\nThe account balance has a discrepancy between the reported balance and expected balance.",
+      "passed": 7,
+      "total": 7,
+      "score": 1.0,
+      "criteria": [
+        {
+          "name": "Identifies TX-1002",
+          "passed": true
+        },
+        {
+          "name": "Identifies 2,000 ETB transaction",
+          "passed": true
+        },
+        {
+          "name": "Identifies successful transaction",
+          "passed": true
+        },
+        {
+          "name": "Identifies incoming credit",
+          "passed": true
+        },
+        {
+          "name": "Identifies 2,000 ETB credited",
+          "passed": true
+        },
+        {
+          "name": "Identifies account balance discrepancy",
+          "passed": true
+        },
+        {
+          "name": "Does not claim TX-1002 credit was missing",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "case_id": "CASE-007",
+      "output": "Investigation case: CASE-007\nTransaction TX-1004: 5000 ETB, status SUCCESS.\nTransaction TX-1004 is an incoming transfer to the account.\nTransaction TX-1001: 5000 ETB, status SUCCESS.\nTransaction TX-1001 is an incoming transfer to the account.\nThe account has a posted CREDIT ledger entry of 5000 ETB for transaction TX-1001.\nThe 5000 ETB credit increased the account balance.\nTransaction TX-1003: 1500 ETB, status SUCCESS.\nTransaction TX-1003 is an outgoing transfer from the account.\nThe account has a posted DEBIT ledger entry of 1500 ETB for transaction TX-1003.\nThe 1500 ETB debit decreased the account balance.\nTransactions TX-1004 and TX-1001 are suspected duplicate transactions of 5000 ETB.\nThe account balance has a discrepancy between the reported balance and expected balance.",
+      "passed": 4,
+      "total": 4,
+      "score": 1.0,
+      "criteria": [
+        {
+          "name": "Identifies TX-1003",
+          "passed": true
+        },
+        {
+          "name": "Identifies 1,500 ETB transaction",
+          "passed": true
+        },
+        {
+          "name": "Identifies successful transaction",
+          "passed": true
+        },
+        {
+          "name": "Identifies balance discrepancy",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "case_id": "CASE-008",
+      "output": "Investigation case: CASE-008\nTransaction TX-1006: 2000 ETB, status SUCCESS.\nTransaction TX-1006 is an incoming transfer to the account.\nThe account has a posted CREDIT ledger entry of 2000 ETB for transaction TX-1006.\nThe 2000 ETB credit increased the account balance.\nTransaction TX-1004: 5000 ETB, status SUCCESS.\nTransaction TX-1004 is an outgoing transfer from the account.\nThe account has a posted DEBIT ledger entry of 5000 ETB for transaction TX-1004.\nThe 5000 ETB debit decreased the account balance.\nTransaction TX-1001: 5000 ETB, status SUCCESS.\nTransaction TX-1001 is an outgoing transfer from the account.\nThe account has a posted DEBIT ledger entry of 5000 ETB for transaction TX-1001.\nThe 5000 ETB debit decreased the account balance.\nTransaction TX-1002: 2000 ETB, status SUCCESS.\nTransaction TX-1002 is an outgoing transfer from the account.\nThe account has a posted DEBIT ledger entry of 2000 ETB for transaction TX-1002.\nThe 2000 ETB debit decreased the account balance.\nTransaction TX-1003: 1500 ETB, status SUCCESS.\nTransaction TX-1003 is an incoming transfer to the account.\nThe account has a posted CREDIT ledger entry of 1500 ETB for transaction TX-1003.\nThe 1500 ETB credit increased the account balance.\nTransactions TX-1004 and TX-1001 are suspected duplicate transactions of 5000 ETB.\nThe account balance has a discrepancy between the reported balance and expected balance.",
+      "passed": 4,
+      "total": 4,
+      "score": 1.0,
+      "criteria": [
+        {
+          "name": "Identifies TX-1003",
+          "passed": true
+        },
+        {
+          "name": "Identifies 1,500 ETB transaction",
+          "passed": true
+        },
+        {
+          "name": "Identifies successful transaction",
+          "passed": true
+        },
+        {
+          "name": "Identifies balance discrepancy",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "case_id": "CASE-009",
+      "output": "Investigation case: CASE-009\nTransaction TX-1006: 2000 ETB, status SUCCESS.\nTransaction TX-1006 is an incoming transfer to the account.\nThe account has a posted CREDIT ledger entry of 2000 ETB for transaction TX-1006.\nThe 2000 ETB credit increased the account balance.\nTransaction TX-1004: 5000 ETB, status SUCCESS.\nTransaction TX-1004 is an outgoing transfer from the account.\nThe account has a posted DEBIT ledger entry of 5000 ETB for transaction TX-1004.\nThe 5000 ETB debit decreased the account balance.\nTransaction TX-1001: 5000 ETB, status SUCCESS.\nTransaction TX-1001 is an outgoing transfer from the account.\nThe account has a posted DEBIT ledger entry of 5000 ETB for transaction TX-1001.\nThe 5000 ETB debit decreased the account balance.\nTransaction TX-1002: 2000 ETB, status SUCCESS.\nTransaction TX-1002 is an outgoing transfer from the account.\nThe account has a posted DEBIT ledger entry of 2000 ETB for transaction TX-1002.\nThe 2000 ETB debit decreased the account balance.\nTransaction TX-1003: 1500 ETB, status SUCCESS.\nTransaction TX-1003 is an incoming transfer to the account.\nThe account has a posted CREDIT ledger entry of 1500 ETB for transaction TX-1003.\nThe 1500 ETB credit increased the account balance.\nTransactions TX-1004 and TX-1001 are suspected duplicate transactions of 5000 ETB.\nThe account balance has a discrepancy between the reported balance and expected balance.",
+      "passed": 5,
+      "total": 5,
+      "score": 1.0,
+      "criteria": [
+        {
+          "name": "Identifies TX-1001",
+          "passed": true
+        },
+        {
+          "name": "Identifies TX-1004",
+          "passed": true
+        },
+        {
+          "name": "Identifies both transactions as successful",
+          "passed": true
+        },
+        {
+          "name": "Identifies suspected duplicate",
+          "passed": true
+        },
+        {
+          "name": "Identifies 5,000 ETB amount",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "case_id": "CASE-010",
+      "output": "Investigation case: CASE-010\nTransaction TX-1005: 10000 ETB, status FAILED.\nTransaction TX-1005 is an outgoing transfer from the account.\nTransaction TX-1005 is FAILED and has no ledger debit.\nTransaction TX-1002: 2000 ETB, status SUCCESS.\nTransaction TX-1002 is an incoming transfer to the account.\nThe account has a posted CREDIT ledger entry of 2000 ETB for transaction TX-1002.\nThe 2000 ETB credit increased the account balance.\nThe account balance has a discrepancy between the reported balance and expected balance.",
+      "passed": 5,
+      "total": 5,
+      "score": 1.0,
+      "criteria": [
+        {
+          "name": "Identifies TX-1005",
+          "passed": true
+        },
+        {
+          "name": "Identifies failed status",
+          "passed": true
+        },
+        {
+          "name": "Identifies 10,000 ETB amount",
+          "passed": true
+        },
+        {
+          "name": "Identifies absence of ledger debit",
+          "passed": true
+        },
+        {
+          "name": "Identifies balance discrepancy",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "case_id": "CASE-011",
+      "output": "Investigation case: CASE-011\nTransaction TX-1006: 2000 ETB, status SUCCESS.\nTransaction TX-1006 is an outgoing transfer from the account.\nThe account has a posted DEBIT ledger entry of 2000 ETB for transaction TX-1006.\nThe 2000 ETB debit decreased the account balance.\nTransaction TX-1005: 10000 ETB, status FAILED.\nTransaction TX-1005 is an incoming transfer to the account.\nTransaction TX-1005 is FAILED and has no ledger credit.",
+      "passed": 4,
+      "total": 4,
+      "score": 1.0,
+      "criteria": [
+        {
+          "name": "Identifies TX-1005",
+          "passed": true
+        },
+        {
+          "name": "Identifies failed transaction",
+          "passed": true
+        },
+        {
+          "name": "Identifies 10,000 ETB amount",
+          "passed": true
+        },
+        {
+          "name": "Identifies no ledger credit",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "case_id": "CASE-012",
+      "output": "Investigation case: CASE-012\nTransaction TX-1006: 2000 ETB, status SUCCESS.\nTransaction TX-1006 is an incoming transfer to the account.\nThe account has a posted CREDIT ledger entry of 2000 ETB for transaction TX-1006.\nThe 2000 ETB credit increased the account balance.\nTransaction TX-1004: 5000 ETB, status SUCCESS.\nTransaction TX-1004 is an outgoing transfer from the account.\nThe account has a posted DEBIT ledger entry of 5000 ETB for transaction TX-1004.\nThe 5000 ETB debit decreased the account balance.\nTransaction TX-1001: 5000 ETB, status SUCCESS.\nTransaction TX-1001 is an outgoing transfer from the account.\nThe account has a posted DEBIT ledger entry of 5000 ETB for transaction TX-1001.\nThe 5000 ETB debit decreased the account balance.\nTransaction TX-1002: 2000 ETB, status SUCCESS.\nTransaction TX-1002 is an outgoing transfer from the account.\nThe account has a posted DEBIT ledger entry of 2000 ETB for transaction TX-1002.\nThe 2000 ETB debit decreased the account balance.\nTransaction TX-1003: 1500 ETB, status SUCCESS.\nTransaction TX-1003 is an incoming transfer to the account.\nThe account has a posted CREDIT ledger entry of 1500 ETB for transaction TX-1003.\nThe 1500 ETB credit increased the account balance.\nTransactions TX-1004 and TX-1001 are suspected duplicate transactions of 5000 ETB.\nThe account balance has a discrepancy between the reported balance and expected balance.",
+      "passed": 4,
+      "total": 4,
+      "score": 1.0,
+      "criteria": [
+        {
+          "name": "Identifies TX-1006",
+          "passed": true
+        },
+        {
+          "name": "Identifies 2,000 ETB transaction",
+          "passed": true
+        },
+        {
+          "name": "Identifies successful transaction",
+          "passed": true
+        },
+        {
+          "name": "Identifies balance discrepancy",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "case_id": "CASE-013",
+      "output": "Investigation case: CASE-013\nTransaction TX-1006: 2000 ETB, status SUCCESS.\nTransaction TX-1006 is an outgoing transfer from the account.\nThe account has a posted DEBIT ledger entry of 2000 ETB for transaction TX-1006.\nThe 2000 ETB debit decreased the account balance.\nTransaction TX-1005: 10000 ETB, status FAILED.\nTransaction TX-1005 is an incoming transfer to the account.\nTransaction TX-1005 is FAILED and has no ledger credit.",
+      "passed": 4,
+      "total": 4,
+      "score": 1.0,
+      "criteria": [
+        {
+          "name": "Identifies TX-1006",
+          "passed": true
+        },
+        {
+          "name": "Identifies successful transaction",
+          "passed": true
+        },
+        {
+          "name": "Identifies 2,000 ETB amount",
+          "passed": true
+        },
+        {
+          "name": "Identifies account balance is consistent",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "case_id": "CASE-014",
+      "output": "Investigation case: CASE-014\nTransaction TX-1008: 2500 ETB, status SUCCESS.\nTransaction TX-1008 is an incoming transfer to the account.\nThe account has a posted CREDIT ledger entry of 2500 ETB for transaction TX-1008.\nThe 2500 ETB credit increased the account balance.\nTransaction TX-1007: 1000 ETB, status REVERSED.\nTransaction TX-1007 is an outgoing transfer from the account.\nThe account has a posted CREDIT ledger entry of 1000 ETB for transaction TX-1007.\nThe 1000 ETB credit increased the account balance.\nThe account has a posted DEBIT ledger entry of 1000 ETB for transaction TX-1007.\nThe 1000 ETB debit decreased the account balance.\nTransaction TX-1007 was REVERSED with a debit and reversal credit.\nThe reversal amount is 1000 ETB.\nThe balance was fully restored and the reversal has a net effect of 0 ETB.\nTransaction TX-1004: 5000 ETB, status SUCCESS.\nTransaction TX-1004 is an incoming transfer to the account.\nTransaction TX-1001: 5000 ETB, status SUCCESS.\nTransaction TX-1001 is an incoming transfer to the account.\nThe account has a posted CREDIT ledger entry of 5000 ETB for transaction TX-1001.\nThe 5000 ETB credit increased the account balance.\nTransaction TX-1003: 1500 ETB, status SUCCESS.\nTransaction TX-1003 is an outgoing transfer from the account.\nThe account has a posted DEBIT ledger entry of 1500 ETB for transaction TX-1003.\nThe 1500 ETB debit decreased the account balance.\nTransactions TX-1004 and TX-1001 are suspected duplicate transactions of 5000 ETB.\nThe account balance has a discrepancy between the reported balance and expected balance.",
+      "passed": 5,
+      "total": 5,
+      "score": 1.0,
+      "criteria": [
+        {
+          "name": "Identifies TX-1007",
+          "passed": true
+        },
+        {
+          "name": "Identifies reversed status",
+          "passed": true
+        },
+        {
+          "name": "Identifies reversal",
+          "passed": true
+        },
+        {
+          "name": "Identifies debit and credit",
+          "passed": true
+        },
+        {
+          "name": "Identifies 1,000 ETB amount",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "case_id": "CASE-015",
+      "output": "Investigation case: CASE-015\nTransaction TX-1008: 2500 ETB, status SUCCESS.\nTransaction TX-1008 is an outgoing transfer from the account.\nThe account has a posted DEBIT ledger entry of 2500 ETB for transaction TX-1008.\nThe 2500 ETB debit decreased the account balance.\nTransaction TX-1007: 1000 ETB, status REVERSED.\nTransaction TX-1007 is an incoming transfer to the account.\nThe account has a posted DEBIT ledger entry of 1000 ETB for transaction TX-1007.\nThe 1000 ETB debit decreased the account balance.\nThe account has a posted CREDIT ledger entry of 1000 ETB for transaction TX-1007.\nThe 1000 ETB credit increased the account balance.\nTransaction TX-1007 was REVERSED with a debit and reversal credit.\nThe reversal amount is 1000 ETB.\nThe balance was fully restored and the reversal has a net effect of 0 ETB.\nTransaction TX-1005: 10000 ETB, status FAILED.\nTransaction TX-1005 is an outgoing transfer from the account.\nTransaction TX-1005 is FAILED and has no ledger debit.\nTransaction TX-1002: 2000 ETB, status SUCCESS.\nTransaction TX-1002 is an incoming transfer to the account.\nThe account has a posted CREDIT ledger entry of 2000 ETB for transaction TX-1002.\nThe 2000 ETB credit increased the account balance.\nThe account balance has a discrepancy between the reported balance and expected balance.",
+      "passed": 5,
+      "total": 5,
+      "score": 1.0,
+      "criteria": [
+        {
+          "name": "Identifies TX-1007",
+          "passed": true
+        },
+        {
+          "name": "Identifies reversed transaction",
+          "passed": true
+        },
+        {
+          "name": "Identifies debit and reversal credit",
+          "passed": true
+        },
+        {
+          "name": "Identifies reversal amount",
+          "passed": true
+        },
+        {
+          "name": "Identifies balance discrepancy",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "case_id": "CASE-016",
+      "output": "Investigation case: CASE-016\nTransaction TX-1008: 2500 ETB, status SUCCESS.\nTransaction TX-1008 is an outgoing transfer from the account.\nThe account has a posted DEBIT ledger entry of 2500 ETB for transaction TX-1008.\nThe 2500 ETB debit decreased the account balance.\nTransaction TX-1007: 1000 ETB, status REVERSED.\nTransaction TX-1007 is an incoming transfer to the account.\nThe account has a posted DEBIT ledger entry of 1000 ETB for transaction TX-1007.\nThe 1000 ETB debit decreased the account balance.\nThe account has a posted CREDIT ledger entry of 1000 ETB for transaction TX-1007.\nThe 1000 ETB credit increased the account balance.\nTransaction TX-1007 was REVERSED with a debit and reversal credit.\nThe reversal amount is 1000 ETB.\nThe balance was fully restored and the reversal has a net effect of 0 ETB.\nTransaction TX-1005: 10000 ETB, status FAILED.\nTransaction TX-1005 is an outgoing transfer from the account.\nTransaction TX-1005 is FAILED and has no ledger debit.\nTransaction TX-1002: 2000 ETB, status SUCCESS.\nTransaction TX-1002 is an incoming transfer to the account.\nThe account has a posted CREDIT ledger entry of 2000 ETB for transaction TX-1002.\nThe 2000 ETB credit increased the account balance.\nThe account balance has a discrepancy between the reported balance and expected balance.",
+      "passed": 4,
+      "total": 4,
+      "score": 1.0,
+      "criteria": [
+        {
+          "name": "Identifies TX-1008",
+          "passed": true
+        },
+        {
+          "name": "Identifies 2,500 ETB amount",
+          "passed": true
+        },
+        {
+          "name": "Identifies successful transaction",
+          "passed": true
+        },
+        {
+          "name": "Identifies balance discrepancy",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "case_id": "CASE-017",
+      "output": "Investigation case: CASE-017\nTransaction TX-1008: 2500 ETB, status SUCCESS.\nTransaction TX-1008 is an incoming transfer to the account.\nThe account has a posted CREDIT ledger entry of 2500 ETB for transaction TX-1008.\nThe 2500 ETB credit increased the account balance.\nTransaction TX-1007: 1000 ETB, status REVERSED.\nTransaction TX-1007 is an outgoing transfer from the account.\nThe account has a posted CREDIT ledger entry of 1000 ETB for transaction TX-1007.\nThe 1000 ETB credit increased the account balance.\nThe account has a posted DEBIT ledger entry of 1000 ETB for transaction TX-1007.\nThe 1000 ETB debit decreased the account balance.\nTransaction TX-1007 was REVERSED with a debit and reversal credit.\nThe reversal amount is 1000 ETB.\nThe balance was fully restored and the reversal has a net effect of 0 ETB.\nTransaction TX-1004: 5000 ETB, status SUCCESS.\nTransaction TX-1004 is an incoming transfer to the account.\nTransaction TX-1001: 5000 ETB, status SUCCESS.\nTransaction TX-1001 is an incoming transfer to the account.\nThe account has a posted CREDIT ledger entry of 5000 ETB for transaction TX-1001.\nThe 5000 ETB credit increased the account balance.\nTransaction TX-1003: 1500 ETB, status SUCCESS.\nTransaction TX-1003 is an outgoing transfer from the account.\nThe account has a posted DEBIT ledger entry of 1500 ETB for transaction TX-1003.\nThe 1500 ETB debit decreased the account balance.\nTransactions TX-1004 and TX-1001 are suspected duplicate transactions of 5000 ETB.\nThe account balance has a discrepancy between the reported balance and expected balance.",
+      "passed": 4,
+      "total": 4,
+      "score": 1.0,
+      "criteria": [
+        {
+          "name": "Identifies TX-1008",
+          "passed": true
+        },
+        {
+          "name": "Identifies 2,500 ETB amount",
+          "passed": true
+        },
+        {
+          "name": "Identifies successful transaction",
+          "passed": true
+        },
+        {
+          "name": "Identifies balance discrepancy",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "case_id": "CASE-018",
+      "output": "Investigation case: CASE-018\nTransaction TX-1006: 2000 ETB, status SUCCESS.\nTransaction TX-1006 is an incoming transfer to the account.\nThe account has a posted CREDIT ledger entry of 2000 ETB for transaction TX-1006.\nThe 2000 ETB credit increased the account balance.\nTransaction TX-1004: 5000 ETB, status SUCCESS.\nTransaction TX-1004 is an outgoing transfer from the account.\nThe account has a posted DEBIT ledger entry of 5000 ETB for transaction TX-1004.\nThe 5000 ETB debit decreased the account balance.\nTransaction TX-1001: 5000 ETB, status SUCCESS.\nTransaction TX-1001 is an outgoing transfer from the account.\nThe account has a posted DEBIT ledger entry of 5000 ETB for transaction TX-1001.\nThe 5000 ETB debit decreased the account balance.\nTransaction TX-1002: 2000 ETB, status SUCCESS.\nTransaction TX-1002 is an outgoing transfer from the account.\nThe account has a posted DEBIT ledger entry of 2000 ETB for transaction TX-1002.\nThe 2000 ETB debit decreased the account balance.\nTransaction TX-1003: 1500 ETB, status SUCCESS.\nTransaction TX-1003 is an incoming transfer to the account.\nThe account has a posted CREDIT ledger entry of 1500 ETB for transaction TX-1003.\nThe 1500 ETB credit increased the account balance.\nTransactions TX-1004 and TX-1001 are suspected duplicate transactions of 5000 ETB.\nThe account balance has a discrepancy between the reported balance and expected balance.",
+      "passed": 8,
+      "total": 8,
+      "score": 1.0,
+      "criteria": [
+        {
+          "name": "Identifies TX-1001",
+          "passed": true
+        },
+        {
+          "name": "Identifies TX-1002",
+          "passed": true
+        },
+        {
+          "name": "Identifies TX-1003",
+          "passed": true
+        },
+        {
+          "name": "Identifies TX-1004",
+          "passed": true
+        },
+        {
+          "name": "Identifies TX-1006",
+          "passed": true
+        },
+        {
+          "name": "Identifies successful transactions",
+          "passed": true
+        },
+        {
+          "name": "Identifies duplicate pair",
+          "passed": true
+        },
+        {
+          "name": "Identifies balance discrepancy",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "case_id": "CASE-019",
+      "output": "Investigation case: CASE-019\nTransaction TX-1008: 2500 ETB, status SUCCESS.\nTransaction TX-1008 is an incoming transfer to the account.\nThe account has a posted CREDIT ledger entry of 2500 ETB for transaction TX-1008.\nThe 2500 ETB credit increased the account balance.\nTransaction TX-1007: 1000 ETB, status REVERSED.\nTransaction TX-1007 is an outgoing transfer from the account.\nThe account has a posted CREDIT ledger entry of 1000 ETB for transaction TX-1007.\nThe 1000 ETB credit increased the account balance.\nThe account has a posted DEBIT ledger entry of 1000 ETB for transaction TX-1007.\nThe 1000 ETB debit decreased the account balance.\nTransaction TX-1007 was REVERSED with a debit and reversal credit.\nThe reversal amount is 1000 ETB.\nThe balance was fully restored and the reversal has a net effect of 0 ETB.\nTransaction TX-1004: 5000 ETB, status SUCCESS.\nTransaction TX-1004 is an incoming transfer to the account.\nTransaction TX-1001: 5000 ETB, status SUCCESS.\nTransaction TX-1001 is an incoming transfer to the account.\nThe account has a posted CREDIT ledger entry of 5000 ETB for transaction TX-1001.\nThe 5000 ETB credit increased the account balance.\nTransaction TX-1003: 1500 ETB, status SUCCESS.\nTransaction TX-1003 is an outgoing transfer from the account.\nThe account has a posted DEBIT ledger entry of 1500 ETB for transaction TX-1003.\nThe 1500 ETB debit decreased the account balance.\nTransactions TX-1004 and TX-1001 are suspected duplicate transactions of 5000 ETB.\nThe account balance has a discrepancy between the reported balance and expected balance.",
+      "passed": 7,
+      "total": 7,
+      "score": 1.0,
+      "criteria": [
+        {
+          "name": "Identifies TX-1001",
+          "passed": true
+        },
+        {
+          "name": "Identifies TX-1003",
+          "passed": true
+        },
+        {
+          "name": "Identifies TX-1007",
+          "passed": true
+        },
+        {
+          "name": "Identifies TX-1008",
+          "passed": true
+        },
+        {
+          "name": "Identifies reversed transaction",
+          "passed": true
+        },
+        {
+          "name": "Identifies reversal debit and credit",
+          "passed": true
+        },
+        {
+          "name": "Identifies balance discrepancy",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "case_id": "CASE-020",
+      "output": "Investigation case: CASE-020\nTransaction TX-1006: 2000 ETB, status SUCCESS.\nTransaction TX-1006 is an incoming transfer to the account.\nThe account has a posted CREDIT ledger entry of 2000 ETB for transaction TX-1006.\nThe 2000 ETB credit increased the account balance.\nTransaction TX-1004: 5000 ETB, status SUCCESS.\nTransaction TX-1004 is an outgoing transfer from the account.\nThe account has a posted DEBIT ledger entry of 5000 ETB for transaction TX-1004.\nThe 5000 ETB debit decreased the account balance.\nTransaction TX-1001: 5000 ETB, status SUCCESS.\nTransaction TX-1001 is an outgoing transfer from the account.\nThe account has a posted DEBIT ledger entry of 5000 ETB for transaction TX-1001.\nThe 5000 ETB debit decreased the account balance.\nTransaction TX-1002: 2000 ETB, status SUCCESS.\nTransaction TX-1002 is an outgoing transfer from the account.\nThe account has a posted DEBIT ledger entry of 2000 ETB for transaction TX-1002.\nThe 2000 ETB debit decreased the account balance.\nTransaction TX-1003: 1500 ETB, status SUCCESS.\nTransaction TX-1003 is an incoming transfer to the account.\nThe account has a posted CREDIT ledger entry of 1500 ETB for transaction TX-1003.\nThe 1500 ETB credit increased the account balance.\nTransactions TX-1004 and TX-1001 are suspected duplicate transactions of 5000 ETB.\nThe account balance has a discrepancy between the reported balance and expected balance.",
+      "passed": 6,
+      "total": 6,
+      "score": 1.0,
+      "criteria": [
+        {
+          "name": "Identifies TX-1001",
+          "passed": true
+        },
+        {
+          "name": "Identifies TX-1004",
+          "passed": true
+        },
+        {
+          "name": "Identifies 5,000 ETB amount",
+          "passed": true
+        },
+        {
+          "name": "Identifies successful status",
+          "passed": true
+        },
+        {
+          "name": "Identifies suspected duplicate",
+          "passed": true
+        },
+        {
+          "name": "Identifies balance discrepancy",
+          "passed": true
+        }
+      ]
+    }
+  ]
+}

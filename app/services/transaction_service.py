@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from app.core.exceptions import DatabaseError, TransactionNotFoundError
 from app.core.logging import get_logger
 from app.data.database import Database
@@ -35,10 +37,18 @@ class TransactionService:
                 f"Failed to retrieve transaction {transaction_id}"
             ) from exc
 
-    def get_transactions_for_account(self, account_id: str) -> list[Transaction]:
+    def get_transactions_for_account(
+        self,
+        account_id: str,
+        as_of: datetime | None = None,
+    ) -> list[Transaction]:
         """Retrieve all transactions associated with an account."""
         try:
-            transactions = self.database.get_transactions(account_id)
+            transactions = (
+                self.database.get_transactions(account_id)
+                if as_of is None
+                else self.database.get_transactions(account_id, as_of)
+            )
             logger.info(
                 "Retrieved %d transactions for account: %s",
                 len(transactions),

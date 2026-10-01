@@ -17,6 +17,7 @@ class LLMClient:
         self._provider = GeminiProvider(
             api_key=settings.gemini_api_key,
             model=settings.gemini_model,
+            temperature=settings.gemini_temperature,
         )
 
     async def generate(

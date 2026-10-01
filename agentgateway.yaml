@@ -1,0 +1,21 @@
+gateways:
+  financial:
+    port: 3000
+    basicAuth:
+      mode: strict
+      realm: financial-investigation
+      htpasswd:
+        file: /run/secrets/agentgateway_htpasswd
+
+mcp:
+  gateways: [financial]
+  prefixMode: never
+  failureMode: failClosed
+  policies:
+    mcpAuthorization:
+      rules:
+        - 'mcp.tool.name in ["get_customer", "get_account", "get_transactions", "get_ledger_entries", "compare_account_balance"]'
+  targets:
+    - name: financial
+      mcp:
+        host: http://mcp:8000/mcp

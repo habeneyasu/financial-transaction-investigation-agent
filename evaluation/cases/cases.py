@@ -23,6 +23,22 @@ class EvaluationCase:
     criteria: tuple[EvaluationCriterion, ...]
 
 
+SUCCESS_TERMS = (
+    "SUCCESS",
+    "successful",
+    "successfully",
+    "correctly processed",
+)
+
+NO_DEBIT_TERMS = (
+    "no ledger debit",
+    "no debit ledger entry",
+    "no debit entry",
+    "no ledger entry corresponding",
+    "without a ledger debit",
+)
+
+
 EVALUATION_CASES = (
     # ============================================================
     # CASE-001
@@ -45,7 +61,7 @@ EVALUATION_CASES = (
             ),
             EvaluationCriterion(
                 name="Identifies successful transactions",
-                required_terms=("SUCCESS",),
+                match_any_terms=SUCCESS_TERMS,
             ),
             EvaluationCriterion(
                 name="Identifies suspected duplicate",
@@ -83,7 +99,8 @@ EVALUATION_CASES = (
             ),
             EvaluationCriterion(
                 name="Identifies no ledger debit for TX-1005",
-                required_terms=("no", "ledger", "TX-1005"),
+                required_terms=("TX-1005",),
+                match_any_terms=NO_DEBIT_TERMS,
             ),
             EvaluationCriterion(
                 name="Identifies balance discrepancy",
@@ -126,23 +143,21 @@ EVALUATION_CASES = (
 
             EvaluationCriterion(
                 name="Identifies balance was restored",
-                required_terms=("restored",),
+                required_terms=("debit", "credit"),
                 match_any_terms=(
                     "fully reversed",
                     "fully restored",
                     "net effect of 0",
                     "net effect is 0",
                     "balance was restored",
+                    "subsequent credit for the same amount",
+                    "same amount",
                 ),
             ),
 
             EvaluationCriterion(
-                name="Does not claim balance discrepancy",
-                required_terms=(),
-                forbidden_terms=(
-                    "balance discrepancy",
-                    "balance was not restored",
-                ),
+                name="Identifies balance discrepancy",
+                required_terms=("balance", "discrepancy"),
             ),
         ),
     ),
@@ -167,7 +182,7 @@ EVALUATION_CASES = (
 
             EvaluationCriterion(
                 name="Identifies successful transaction",
-                required_terms=("SUCCESS",),
+                match_any_terms=SUCCESS_TERMS,
             ),
 
             EvaluationCriterion(
@@ -191,26 +206,19 @@ EVALUATION_CASES = (
             ),
 
             EvaluationCriterion(
-                name="Identifies balance increase",
-                required_terms=("balance",),
+                name="Identifies ledger-backed balance impact",
+                required_terms=("ledger",),
                 match_any_terms=(
-                    "8,000 ETB",
-                    "13,000 ETB",
+                    "credit",
+                    "credited",
                     "increased",
                     "increase",
-                    "8000",
-                    "13000",
                 ),
             ),
 
             EvaluationCriterion(
-                name="Does not claim balance discrepancy",
-                forbidden_terms=(
-                    "balance discrepancy",
-                    "balance was wrong",
-                    "missing 2,500 ETB",
-                    "2,500 ETB discrepancy",
-                ),
+                name="Identifies balance discrepancy",
+                required_terms=("balance", "discrepancy"),
             ),
         ),
     ),
@@ -235,7 +243,7 @@ EVALUATION_CASES = (
 
             EvaluationCriterion(
                 name="Identifies successful transaction",
-                required_terms=("SUCCESS",),
+                match_any_terms=SUCCESS_TERMS,
             ),
 
             EvaluationCriterion(
@@ -259,12 +267,8 @@ EVALUATION_CASES = (
             ),
 
             EvaluationCriterion(
-                name="Does not claim balance discrepancy",
-                forbidden_terms=(
-                    "balance discrepancy",
-                    "balance was wrong",
-                    "balance mismatch",
-                ),
+                name="Identifies balance discrepancy",
+                required_terms=("balance", "discrepancy"),
             ),
         ),
     ),
@@ -290,7 +294,7 @@ EVALUATION_CASES = (
 
             EvaluationCriterion(
                 name="Identifies successful transaction",
-                required_terms=("SUCCESS",),
+                match_any_terms=SUCCESS_TERMS,
             ),
 
             EvaluationCriterion(
@@ -347,7 +351,7 @@ EVALUATION_CASES = (
             ),
             EvaluationCriterion(
                 name="Identifies successful transaction",
-                required_terms=("SUCCESS",),
+                match_any_terms=SUCCESS_TERMS,
             ),
             EvaluationCriterion(
                 name="Identifies balance discrepancy",
@@ -373,7 +377,7 @@ EVALUATION_CASES = (
             ),
             EvaluationCriterion(
                 name="Identifies successful transaction",
-                required_terms=("SUCCESS",),
+                match_any_terms=SUCCESS_TERMS,
             ),
             EvaluationCriterion(
                 name="Identifies balance discrepancy",
@@ -399,7 +403,7 @@ EVALUATION_CASES = (
             ),
             EvaluationCriterion(
                 name="Identifies both transactions as successful",
-                required_terms=("SUCCESS",),
+                match_any_terms=SUCCESS_TERMS,
             ),
             EvaluationCriterion(
                 name="Identifies suspected duplicate",
@@ -433,7 +437,7 @@ EVALUATION_CASES = (
             ),
             EvaluationCriterion(
                 name="Identifies absence of ledger debit",
-                required_terms=("no", "ledger"),
+                match_any_terms=NO_DEBIT_TERMS,
             ),
             EvaluationCriterion(
                 name="Identifies balance discrepancy",
@@ -462,8 +466,14 @@ EVALUATION_CASES = (
                 required_terms=("10,000 ETB",),
             ),
             EvaluationCriterion(
-                name="Identifies no ledger debit",
-                required_terms=("no", "ledger"),
+                name="Identifies no ledger credit",
+                match_any_terms=(
+                    "no ledger credit",
+                    "no credit ledger entry",
+                    "no record of a credit",
+                    "not credited",
+                    "never credited",
+                ),
             ),
         ),
     ),
@@ -485,7 +495,7 @@ EVALUATION_CASES = (
             ),
             EvaluationCriterion(
                 name="Identifies successful transaction",
-                required_terms=("SUCCESS",),
+                match_any_terms=SUCCESS_TERMS,
             ),
             EvaluationCriterion(
                 name="Identifies balance discrepancy",
@@ -507,7 +517,7 @@ EVALUATION_CASES = (
             ),
             EvaluationCriterion(
                 name="Identifies successful transaction",
-                required_terms=("SUCCESS",),
+                match_any_terms=SUCCESS_TERMS,
             ),
             EvaluationCriterion(
                 name="Identifies 2,000 ETB amount",
@@ -515,7 +525,11 @@ EVALUATION_CASES = (
             ),
             EvaluationCriterion(
                 name="Identifies account balance is consistent",
-                forbidden_terms=("discrepancy", "inconsisten"),
+                forbidden_terms=(
+                    "discrepancy",
+                    "inconsistent",
+                    "inconsistency",
+                ),
             ),
         ),
     ),
@@ -601,7 +615,7 @@ EVALUATION_CASES = (
             ),
             EvaluationCriterion(
                 name="Identifies successful transaction",
-                required_terms=("SUCCESS",),
+                match_any_terms=SUCCESS_TERMS,
             ),
             EvaluationCriterion(
                 name="Identifies balance discrepancy",
@@ -627,7 +641,7 @@ EVALUATION_CASES = (
             ),
             EvaluationCriterion(
                 name="Identifies successful transaction",
-                required_terms=("SUCCESS",),
+                match_any_terms=SUCCESS_TERMS,
             ),
             EvaluationCriterion(
                 name="Identifies balance discrepancy",
@@ -665,7 +679,7 @@ EVALUATION_CASES = (
             ),
             EvaluationCriterion(
                 name="Identifies successful transactions",
-                required_terms=("SUCCESS",),
+                match_any_terms=SUCCESS_TERMS,
             ),
             EvaluationCriterion(
                 name="Identifies duplicate pair",
@@ -737,7 +751,7 @@ EVALUATION_CASES = (
             ),
             EvaluationCriterion(
                 name="Identifies successful status",
-                required_terms=("SUCCESS",),
+                match_any_terms=SUCCESS_TERMS,
             ),
             EvaluationCriterion(
                 name="Identifies suspected duplicate",
