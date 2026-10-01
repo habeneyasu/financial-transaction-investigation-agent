@@ -2,12 +2,21 @@
 
 from typing import Any
 
-from fastapi import APIRouter, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException, status
 from pydantic import BaseModel
 
 from app.mcp.client import McpClient, McpClientRequestError
+from app.config.settings import settings
 
-router = APIRouter(prefix="/mcp", tags=["mcp"])
+
+def require_tool_testing_mode():
+    if settings.mcp_transport == "gateway":
+        raise HTTPException(status_code=404, detail="Tool-testing routes are disabled")
+
+
+router = APIRouter(
+    prefix="/mcp", tags=["mcp"], dependencies=[Depends(require_tool_testing_mode)]
+)
 
 
 class ToolCallRequest(BaseModel):

@@ -35,7 +35,7 @@ This project explores whether an agent can make financial investigations more sy
 
 The **Financial Transaction Investigation Agent** acts as an investigation coordinator.
 
-It interprets the complaint, determines what evidence is relevant, uses controlled MCP capabilities to retrieve that evidence, correlates the results, and produces a structured investigation report.
+It retrieves evidence through a fixed sequence of MCP calls, then supplies the complaint and evidence to an LLM for correlation and a structured investigation report. Tool selection is controlled by application code, not by the model.
 
 The architecture deliberately separates **probabilistic reasoning** from **deterministic financial logic**.
 
@@ -45,13 +45,14 @@ Customer Complaint
         ▼
 Investigation Agent
         │
-        │ Interpret investigation objective
-        │ Determine relevant evidence
-        │ Select permitted capabilities
-        │ Correlate evidence
+        │ Collect evidence in a fixed sequence
         ▼
     MCP Client
         │
+        │ Streamable HTTP (Compose)
+        ▼
+    agentgateway
+        │ Strict authentication + tool allowlist
         ▼
     MCP Server
         │
@@ -68,7 +69,10 @@ Deterministic Business Services
 Synthetic Financial Data
 ```
 
-The agent **never accesses the database directly**.
+Financial evidence is retrieved through MCP tools and deterministic services.
+Case metadata is loaded through the existing investigation service; LLM reasoning
+does not query the database. Outside Compose, the default MCP client connects to
+an in-process server without the gateway.
 
 ```text
 Agent reasoning
@@ -84,20 +88,17 @@ This creates a clear boundary between what the agent can reason about and what t
 
 ---
 
-# What Makes It Agentic?
+# Investigation Workflow
 
-The investigation is designed around an agent that works with an investigation objective and available evidence rather than generating a fixed financial decision.
+The investigation combines a deterministic evidence-collection workflow with
+LLM analysis. It is not an autonomous tool-selection loop.
 
 ```text
 Complaint
     ↓
-Interpret investigation objective
+Load investigation case
     ↓
-Determine relevant evidence
-    ↓
-Select permitted MCP capability
-    ↓
-Gather evidence
+Gather evidence through five predefined MCP calls
     ↓
 Correlate and analyze evidence
     ↓
@@ -111,8 +112,7 @@ Human checkpoint
 The agent can:
 
 * interpret an unstructured complaint;
-* identify relevant evidence;
-* select permitted MCP capabilities;
+* analyze the evidence supplied by the predefined MCP workflow;
 * correlate customer, account, transaction, and ledger information;
 * identify inconsistencies and potential anomalies; and
 * produce evidence-backed findings and recommendations.
@@ -216,6 +216,24 @@ MCP provides the controlled capability boundary between the agent and financial 
 
 The MCP layer does not expose financial write operations.
 
+The implementation reuses [McpClient](app/mcp/client.py) and
+[create_mcp_server](app/mcp/server.py), backed by MCP Python SDK **2.2.0**.
+The client uses MCP tool discovery and calls, not the REST tool-testing routes.
+Those REST routes are disabled in gateway mode.
+
+## MCP, agentgateway, and AGENTS.md
+
+| Component | Role in this repository |
+| --- | --- |
+| MCP | Protocol connecting the investigation workflow to five read-only financial tools. |
+| agentgateway **v1.5.0** | Runtime proxy enforcing strict Basic authentication and the tool allowlist in Compose, with no direct-access fallback. |
+| [AGENTS.md](AGENTS.md) | Development instructions for coding assistants: preserve architecture, financial safety, testing discipline, and evaluation integrity. |
+
+These roles are distinct: AGENTS.md is not a runtime prompt or security control,
+and MCP alone does not supply operator authorization. Adoption does not imply
+AAIF certification or production readiness. See [gateway setup](#agentgateway)
+and [coding-agent guidance](#coding-agent-instructions).
+
 ---
 
 # Structured Results
@@ -262,7 +280,7 @@ A trajectory captures:
 * workflow start, including the investigation objective and instructions;
 * case retrieval;
 * each MCP tool call, including parameters and return values;
-* the investigation prompt assembled from evidence;
+* prompt-construction metadata identifying evidence sources, not raw prompt text;
 * LLM request and response confirmation;
 * result validation;
 * the mandatory `human_checkpoint` event; and
@@ -314,26 +332,24 @@ The goal is not simply to produce plausible investigation narratives.
 | System                 | Correct | Accuracy |
 | ---------------------- | ------: | -------: |
 | Deterministic baseline | **20 / 20** | **100%** |
-| Investigation agent    | **15 / 20** | **75%** |
+| Investigation agent    | **17 / 20** | **85%** |
 
-Across the 98 evaluated criteria, the agent satisfied 93 criteria, achieving an overall criteria-level score of **95%**.
+Across the 108 evaluated criteria, the agent satisfied 103 criteria, achieving an overall criteria-level score of **95.4%**.
 
-At the case level, it produced the expected investigation outcome for **15 of 20 cases (75%)**.
+At the case level, it produced the expected investigation outcome for **17 of 20 cases (85%)**.
 
 These are two different evaluation views:
 
-- **Criteria level:** 93 / 98 (95%) measures individual evaluation criteria across all 20 cases.
-- **Case level:** 15 / 20 (75%) measures whether the complete investigation outcome for each case was correct.
+- **Criteria level:** 103 / 108 (95.4%) measures individual evaluation criteria across all 20 cases.
+- **Case level:** 17 / 20 (85%) measures whether the complete investigation outcome for each case was correct.
 
 ## Agent Failure Cases
 
 | Case     | Score | Failing Criterion                 |
 | -------- | ----: | --------------------------------- |
-| CASE-003 |   80% | Identifies 1,000 ETB reversal     |
-| CASE-005 |   75% | Identifies TX-1002                |
-| CASE-006 |   75% | Identifies successful transaction |
-| CASE-008 |   75% | Identifies successful transaction |
-| CASE-009 |   80% | Identifies suspected duplicate    |
+| CASE-005 |   86% | Identifies outgoing transfer      |
+| CASE-018 |   75% | Identifies TX-1002 and TX-1003    |
+| CASE-019 |   71% | Identifies TX-1001 and TX-1003    |
 
 The deterministic baseline currently outperforms the agent on correctness.
 
@@ -344,7 +360,7 @@ The project does **not** claim that adding an LLM automatically improves financi
 Instead, the experiment evaluates where an agent can provide value beyond deterministic rules:
 
 * interpreting complaints;
-* adapting evidence collection;
+* analyzing the collected evidence;
 * correlating information;
 * explaining relationships between records; and
 * reducing investigation effort.
@@ -365,10 +381,10 @@ The evaluation demonstrated this directly:
 
 ```text
 Deterministic baseline: 20/20  (100%)
-Investigation agent:    15/20   (75%)
+Investigation agent:    17/20   (85%)
 ```
 
-The **15/20 versus 20/20** result is part of the project's evidence—not something to hide.
+The **17/20 versus 20/20** result is part of the project's evidence—not something to hide.
 
 It demonstrates where probabilistic reasoning can help and where deterministic authority is still required.
 
@@ -378,7 +394,7 @@ The agent is useful when the task requires:
 
 * interpreting ambiguous or unstructured complaints;
 * deciding which evidence is relevant;
-* navigating permitted capabilities;
+* working with evidence retrieved through permitted capabilities;
 * correlating evidence across multiple sources;
 * explaining relationships between records; and
 * producing an investigation narrative for a human reviewer.
@@ -399,7 +415,7 @@ That includes:
 
 The agent can produce an incorrect investigation result even when the underlying evidence is available.
 
-The five failing cases — **CASE-003, CASE-005, CASE-006, CASE-008, and CASE-009** — involved evidence that was present in the tool responses but was not correctly identified or attributed in the LLM output.
+The three failing cases — **CASE-005, CASE-018, and CASE-019** — involved evidence that was present in the tool responses but was not correctly identified or attributed in the LLM output.
 
 The response to an agent failure should **not** be to give the agent more financial authority.
 
@@ -432,7 +448,9 @@ The project was developed incrementally rather than starting with the final arch
 | **Iteration 4** | Added structured Pydantic investigation results                                                                   | Reduced unconstrained agent output                                          | Kept                                                                      |
 | **Iteration 5** | Added mandatory human checkpoint enforcement                                                                      | Prevented the agent from becoming an autonomous financial decision-maker    | Kept                                                                      |
 | **Iteration 6** | Added trajectory recording and genuine MCP retry tracking                                                         | Made agent behavior and failures auditable                                  | Kept                                                                      |
-| **Final**       | Combined controlled MCP access, deterministic financial logic, structured results, trajectories, and human review | **15/20 — 75%** agent accuracy                                              | Keep the agent as an investigation coordinator, not a financial authority |
+| **Final**       | Added case-time evidence, versioned artifacts, auditable outputs, and corrected evaluation criteria | **17/20 — 85%** agent case accuracy | Keep the agent as an investigation coordinator, not a financial authority |
+| **MCP transport** | Updated to MCP Python SDK 2.2.0 and added agentgateway v1.5.0 in Compose | Isolated gateway tests cover authentication, tool restrictions, evidence parity, outage behavior, and read-only database access | Reuse the existing tools and services; keep financial rules unchanged |
+| **Coding guidance** | Adopted root [AGENTS.md](AGENTS.md) | Documents repository scope, safety boundaries, and validation requirements | Guide coding assistants without treating instructions as runtime enforcement |
 
 ### Removed Experiment
 
@@ -470,7 +488,8 @@ A new evaluator should be able to:
 * Python 3.11+
 * Docker / Docker Compose
 * `uv`
-* A Gemini API key
+* A Gemini API key for live agent investigations/evaluation (not routine tests)
+* Apache `htpasswd` for creating gateway credentials when using Compose
 
 ---
 
@@ -484,10 +503,10 @@ git clone <repository-url>
 cd financial-transaction-investigation-agent
 ```
 
-Create the environment file:
+Create the environment file only if it does not already exist:
 
 ```bash
-cp .env.example .env
+cp -n .env.example .env
 ```
 
 Configure the required values:
@@ -498,17 +517,99 @@ GEMINI_API_KEY=your_api_key
 GEMINI_MODEL=gemini-2.5-flash
 ```
 
-Start the application:
+Before starting Compose, configure the gateway credentials below. For local
+test and evaluation commands, install the project dependencies with `uv sync`.
+
+## Agentgateway
+
+Compose routes financial evidence calls through agentgateway **v1.5.0** using
+MCP Python SDK **2.2.0** and Streamable HTTP:
+
+```text
+Investigation -> McpClient -> agentgateway -> MCPServer -> Services -> SQLite
+```
+
+The existing five tools, financial rules, and database schema are unchanged.
+The API initializes/seeds the existing `banking-data` volume; the MCP service
+starts after API health succeeds and mounts the same volume read-only. Only
+agentgateway shares the MCP backend network with that service.
+
+The database singleton now honors `DATABASE_PATH`. Earlier versions ignored
+that setting and could store data at `/app/core_banking.db` inside the API
+container rather than the volume. Before recreating an existing deployment,
+back up and inspect that file and the volume. This change does not migrate or
+delete either database; an empty configured database is seeded with synthetic data.
+
+### Credentials and Startup
+
+Create a bcrypt htpasswd file using Apache's `htpasswd` utility. Enter a strong,
+unique password at its prompt; do not put the password in shell arguments:
 
 ```bash
-docker compose up --build
+mkdir -p .secrets
+htpasswd -cB .secrets/agentgateway.htpasswd investigation
+```
+
+Use `-c` only for initial creation; omit it when updating an existing file.
+Set `MCP_GATEWAY_PASSWORD` in your existing `.env` to that same password. Do not
+overwrite the file or expose its other credentials. `.secrets/` is gitignored,
+and Compose mounts the htpasswd file as a secret. Restart the API and gateway
+after rotating the password.
+
+Compose sets `MCP_TRANSPORT=gateway`, the username `investigation`, and
+`MCP_GATEWAY_URL=http://agentgateway:3000/mcp`. Missing credentials or an invalid
+URL fail configuration validation. Connection failures never fall back to local
+tools. REST tool-testing routes return 404 in gateway mode.
+
+Run `docker compose up --build`, then open http://localhost:8080. The API is at
+http://localhost:8001. These ports bind to loopback; gateway, backend, and gateway
+admin ports are not published. API `/health` checks startup, not gateway readiness.
+
+### Policies and Limits
+
+[agentgateway.yaml](agentgateway.yaml) requires Basic authentication and allows
+only the five existing read-only tool names. Tool names are not prefixed, and
+backend initialization fails closed. Protocol-level denials are not retried;
+the existing client retains bounded retries for underlying failures.
+
+This is a local synthetic-data deployment. Internal HTTP is not encrypted;
+configure TLS and managed identity before remote deployment. Gateway service
+credentials are not operator authentication or per-account authorization. The
+API and console still require those controls before production use. Do not
+publish the MCP backend or enable payload logging. Existing sanitized application
+trajectories remain the investigation audit record; gateway access logs are not
+a substitute for them. LLM-provider routing is unchanged.
+
+Outside Compose, `MCP_TRANSPORT` defaults to `in-process`. Tests can explicitly
+inject `create_mcp_server(test_database)` for isolation. Gateway deployment does
+not make the fixed evidence-collection sequence adaptive.
+
+### Gateway Verification
+
+Routine tests do not require Docker or paid LLM calls. On Linux with Docker
+available, run the opt-in real-gateway test:
+
+```bash
+docker pull ghcr.io/agentgateway/agentgateway:v1.5.0
+RUN_GATEWAY_TESTS=1 uv run pytest tests/integration/test_agentgateway.py -v
+```
+
+The test uses temporary synthetic data and credentials, starts an isolated MCP
+server and gateway, and cleans them up. It checks all five tool results against
+direct MCP calls, rejects missing/invalid credentials, checks non-retryable tool
+denials, and confirms that an outage cannot trigger direct-access fallback.
+It does not exercise the LLM or certify production security.
+
+After building the application image, also verify Compose startup, private
+backend networking, and database write rejection with a disposable volume:
+
+```bash
+RUN_GATEWAY_TESTS=1 RUN_COMPOSE_TESTS=1 uv run pytest tests/integration/test_agentgateway.py -v
 ```
 
 ---
 
-# Running Tests
-
-## Coding Agent Instructions
+# Coding Agent Instructions
 
 This repository adopts [AGENTS.md](https://agents.md/), the open Markdown format
 for coding-agent instructions stewarded by the Agentic AI Foundation. Read the
@@ -517,7 +618,7 @@ architecture, development checks, financial safety, and evaluation integrity.
 
 These instructions guide development assistants, not the running financial
 investigation agent. They do not enforce security or imply AAIF certification.
-The existing MCP integration remains unchanged; agentgateway is not yet integrated.
+The existing financial MCP tools are reused by the gateway integration described above.
 
 AGENTS.md has no required fields or YAML frontmatter. Our root file follows the
 official format and includes scoped guidance and task-specific validation.
@@ -525,7 +626,7 @@ Instruction discovery depends on the coding agent and its configuration; when
 testing adoption, have the agent identify the instructions it loaded and report
 the checks it actually performed.
 
-### Adoption Smoke Test
+## Adoption Smoke Test
 
 On 2026-10-01, a separate GitHub Copilot coding-agent session explicitly discovered
 and read AGENTS.md, preserved the existing MCP/database architecture in its review,
@@ -540,7 +641,7 @@ calls were made by the test. This is a limited instruction-following smoke test,
 not proof of automatic discovery across tools, future compliance, gateway
 security, or full-suite correctness.
 
-## Regression Suite
+# Running Tests
 
 Run the complete test suite:
 
@@ -548,15 +649,19 @@ Run the complete test suite:
 uv run pytest tests/ -v
 ```
 
-Test suite result:
-
-```text
-53 passed
-```
+Docker gateway checks are opt-in; see [Gateway Verification](#gateway-verification).
+Report results from the command actually run rather than treating historical
+test counts as a current pass. Routine tests do not invoke paid LLM services.
 
 ---
 
 # Running the Evaluation
+
+See [Evaluation Methodology](docs/EVALUATION.md) for scoring, artifact identity,
+and regeneration rules. Both runners use `McpClient`: local runs default to
+in-process mode, while gateway runs require the gateway settings and access to
+the same synthetic database. Existing scores are not evidence of a fresh gateway
+evaluation. Live agent evaluation makes external LLM calls and may incur costs.
 
 Run the deterministic baseline:
 
@@ -573,7 +678,13 @@ uv run python -m evaluation.agent.run_evaluation
 Compare baseline and agent results:
 
 ```bash
-uv run python evaluation/compare.py
+uv run python -m evaluation.compare
+```
+
+Regenerate the case-time ground truth:
+
+```bash
+uv run python -m evaluation.generate_ground_truth
 ```
 
 ---
@@ -651,6 +762,8 @@ financial-transaction-investigation-agent/
 │   └── integration/
 │
 ├── frontend/               # Operations investigation console
+├── AGENTS.md               # Coding-assistant instructions
+├── agentgateway.yaml       # Gateway authentication and tool policy
 ├── docker-compose.yml
 ├── pyproject.toml
 └── README.md
@@ -664,7 +777,9 @@ financial-transaction-investigation-agent/
 * **FastAPI**
 * **Pydantic**
 * **SQLite**
-* **Model Context Protocol (MCP)**
+* **Model Context Protocol (MCP), Python SDK 2.2.0**
+* **agentgateway v1.5.0** (Compose MCP proxy)
+* **AGENTS.md** (coding-assistant guidance)
 * **Gemini / `google-genai`**
 * **Docker / Docker Compose**
 * **Pytest**
@@ -688,6 +803,9 @@ It does not use LangGraph or multi-agent orchestration because additional orches
 * Deterministic business services
 * Deterministic evaluation baseline
 * MCP server and client with retry handling
+* Authenticated agentgateway transport in Compose, reusing existing MCP tools
+* Private MCP backend network and read-only database mount
+* Root AGENTS.md instructions for development assistants
 * Read-only financial investigation capabilities
 * Investigation agent
 * Structured agent result schema
@@ -702,14 +820,15 @@ It does not use LangGraph or multi-agent orchestration because additional orches
 ## Submission Evidence
 
 ```text
-Unit + integration tests:   53 passing
-
 Baseline:                   20 / 20  (100%)
 
-Investigation agent:        15 / 20   (75%)
+Investigation agent:        17 / 20   (85%)
 
-Criteria:                   93 / 98   (95%)
+Criteria:                   103 / 108 (95.4%)
 ```
+
+These are stored evaluation results, not a fresh run or a gateway security
+certification. Use the test commands above to verify the current checkout.
 
 ---
 

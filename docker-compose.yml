@@ -15,6 +15,10 @@ services:
       API_PORT: 8001
       MCP_SERVER_HOST: localhost
       MCP_SERVER_PORT: 8000
+      MCP_TRANSPORT: gateway
+      MCP_GATEWAY_URL: http://agentgateway:3000/mcp
+      MCP_GATEWAY_USERNAME: investigation
+      MCP_GATEWAY_PASSWORD: ${MCP_GATEWAY_PASSWORD:?Set MCP_GATEWAY_PASSWORD in .env}
       DEBUG: "false"
 
     env_file:
@@ -22,7 +26,7 @@ services:
         required: false
 
     ports:
-      - "8001:8001"
+      - "127.0.0.1:8001:8001"
 
     volumes:
       - banking-data:/app/data
@@ -42,6 +46,50 @@ services:
 
     init: true
 
+    networks:
+      - default
+      - mcp-client
+
+  mcp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: financial-transaction-investigation-agent:latest
+    command: ["python", "-m", "app.mcp.server", "--transport", "streamable-http"]
+    restart: unless-stopped
+    environment:
+      DATABASE_PATH: /app/data/core_banking.db
+      MCP_SERVER_HOST: 0.0.0.0
+      MCP_SERVER_PORT: 8000
+    volumes:
+      - banking-data:/app/data:ro
+    depends_on:
+      api:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import socket; socket.create_connection(('localhost', 8000), timeout=3).close()"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    networks:
+      - mcp-backend
+    init: true
+
+  agentgateway:
+    image: ghcr.io/agentgateway/agentgateway:v1.5.0
+    command: ["-f", "/etc/agentgateway/config.yaml"]
+    restart: unless-stopped
+    volumes:
+      - ./agentgateway.yaml:/etc/agentgateway/config.yaml:ro
+    secrets:
+      - agentgateway_htpasswd
+    depends_on:
+      mcp:
+        condition: service_healthy
+    networks:
+      - mcp-client
+      - mcp-backend
+
   frontend:
     build:
       context: ./frontend
@@ -51,11 +99,23 @@ services:
     restart: unless-stopped
 
     ports:
-      - "8080:7860"
+      - "127.0.0.1:8080:7860"
 
     depends_on:
       api:
         condition: service_healthy
+      agentgateway:
+        condition: service_started
+
+secrets:
+  agentgateway_htpasswd:
+    file: ./.secrets/agentgateway.htpasswd
+
+networks:
+  mcp-client:
+    internal: true
+  mcp-backend:
+    internal: true
 
 volumes:
   banking-data:

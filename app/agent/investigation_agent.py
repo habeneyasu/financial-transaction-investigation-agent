@@ -145,6 +145,7 @@ class InvestigationAgent:
                 action="get_account",
                 details={
                     "account_id": case.account_id,
+                    "as_of": _serialize(case.submitted_at),
                     "source": "MCP",
                 },
             )
@@ -182,7 +183,8 @@ class InvestigationAgent:
 
             state.transactions = (
                 await self._mcp_client.get_transactions(
-                    case.account_id
+                    case.account_id,
+                    as_of=case.submitted_at,
                 )
             )
 
@@ -210,13 +212,15 @@ class InvestigationAgent:
                 action="get_ledger_entries",
                 details={
                     "account_id": case.account_id,
+                    "as_of": _serialize(case.submitted_at),
                     "source": "MCP",
                 },
             )
 
             state.ledger_entries = (
                 await self._mcp_client.get_ledger_entries(
-                    case.account_id
+                    case.account_id,
+                    as_of=case.submitted_at,
                 )
             )
 
@@ -244,6 +248,7 @@ class InvestigationAgent:
                 action="compare_account_balance",
                 details={
                     "account_id": case.account_id,
+                    "as_of": _serialize(case.submitted_at),
                     "source": "MCP",
                     "deterministic": True,
                 },
@@ -251,7 +256,8 @@ class InvestigationAgent:
 
             state.balance_comparison = (
                 await self._mcp_client.compare_account_balance(
-                    case.account_id
+                    case.account_id,
+                    as_of=case.submitted_at,
                 )
             )
 

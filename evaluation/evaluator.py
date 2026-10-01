@@ -1,4 +1,6 @@
 from dataclasses import dataclass
+import json
+import re
 from typing import Any
 
 from evaluation.cases.cases import EvaluationCase
@@ -56,9 +58,31 @@ def _collect_result_text(result: dict[str, Any]) -> str:
 
 
 def _contains_term(text: str, term: str) -> bool:
-    """Check whether a term exists in normalized text."""
+    """Check whether a non-negated whole term exists in normalized text."""
 
-    return term.lower() in text
+    normalized_text = re.sub(r"(?<=\d),(?=\d)", "", text.lower())
+    normalized_term = re.sub(r"(?<=\d),(?=\d)", "", term.lower()).strip()
+    pattern = re.compile(
+        rf"(?<!\w){re.escape(normalized_term)}(?!\w)"
+    )
+
+    for match in pattern.finditer(normalized_text):
+        context_start = max(
+            normalized_text.rfind(separator, 0, match.start())
+            for separator in (".", ";", ":", "!", "?", "\n")
+        )
+        preceding_words = re.findall(
+            r"\b[\w']+\b",
+            normalized_text[
+                max(context_start + 1, match.start() - 60):match.start()
+            ],
+        )[-4:]
+        if not {"no", "not", "never", "without"}.intersection(
+            preceding_words
+        ):
+            return True
+
+    return False
 
 
 def evaluate_case(
@@ -68,14 +92,21 @@ def evaluate_case(
     """
     Evaluate an investigation result.
 
-    The result is expected to be the structured InvestigationResult
-    serialized as JSON, although a dictionary is also accepted.
+    Structured results may be supplied as a dictionary or serialized JSON.
+    Plain text is accepted for deterministic baseline compatibility.
     """
 
     if isinstance(investigation_result, str):
-        import json
-
-        result = json.loads(investigation_result)
+        try:
+            parsed_result = json.loads(investigation_result)
+        except json.JSONDecodeError:
+            result = {"conclusion": investigation_result}
+        else:
+            if not isinstance(parsed_result, dict):
+                raise ValueError(
+                    "Serialized investigation result must be a JSON object."
+                )
+            result = parsed_result
     else:
         result = investigation_result
 

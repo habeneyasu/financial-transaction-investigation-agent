@@ -4,6 +4,8 @@ from decimal import Decimal
 from pathlib import Path
 from typing import Optional
 
+from app.config.settings import settings
+
 sqlite3.register_adapter(date, lambda d: d.isoformat())
 sqlite3.register_adapter(datetime, lambda dt: dt.isoformat())
 
@@ -251,18 +253,33 @@ class Database:
             )
         return None
 
-    def get_transactions(self, account_id: str) -> list[Transaction]:
+    def get_transactions(
+        self,
+        account_id: str,
+        as_of: datetime | None = None,
+    ) -> list[Transaction]:
         """Retrieve transactions for an account."""
         conn = self.connect()
         cursor = conn.cursor()
-        cursor.execute(
-            """
-            SELECT * FROM transactions 
-            WHERE from_account_id = ? OR to_account_id = ?
-            ORDER BY transaction_date DESC
-            """,
-            (account_id, account_id),
-        )
+        if as_of is None:
+            cursor.execute(
+                """
+                SELECT * FROM transactions
+                WHERE from_account_id = ? OR to_account_id = ?
+                ORDER BY transaction_date DESC
+                """,
+                (account_id, account_id),
+            )
+        else:
+            cursor.execute(
+                """
+                SELECT * FROM transactions
+                WHERE (from_account_id = ? OR to_account_id = ?)
+                  AND created_at <= ?
+                ORDER BY transaction_date DESC
+                """,
+                (account_id, account_id, as_of.isoformat()),
+            )
         rows = cursor.fetchall()
         transactions = []
         for row in rows:
@@ -299,18 +316,32 @@ class Database:
             completed_at=datetime.fromisoformat(row["completed_at"]) if row["completed_at"] else None,
         )
 
-    def get_ledger_entries(self, account_id: str) -> list[LedgerEntry]:
+    def get_ledger_entries(
+        self,
+        account_id: str,
+        as_of: datetime | None = None,
+    ) -> list[LedgerEntry]:
         """Retrieve ledger entries for an account."""
         conn = self.connect()
         cursor = conn.cursor()
-        cursor.execute(
-            """
-            SELECT * FROM ledger_entries 
-            WHERE account_id = ?
-            ORDER BY created_at DESC
-            """,
-            (account_id,),
-        )
+        if as_of is None:
+            cursor.execute(
+                """
+                SELECT * FROM ledger_entries
+                WHERE account_id = ?
+                ORDER BY created_at DESC
+                """,
+                (account_id,),
+            )
+        else:
+            cursor.execute(
+                """
+                SELECT * FROM ledger_entries
+                WHERE account_id = ? AND created_at <= ?
+                ORDER BY created_at DESC
+                """,
+                (account_id, as_of.isoformat()),
+            )
         rows = cursor.fetchall()
         entries = []
         for row in rows:
@@ -370,4 +401,4 @@ class Database:
 
 
 # Global database instance
-db = Database()
+db = Database(settings.database_path)

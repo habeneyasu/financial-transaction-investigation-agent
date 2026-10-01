@@ -1,10 +1,14 @@
 import asyncio
 import json
 from collections.abc import Callable
+from contextlib import asynccontextmanager
+from datetime import datetime
 from typing import Any
 
-from mcp import Client
+import httpx2
+from mcp import Client, MCPError
 from mcp.client.stdio import StdioServerParameters
+from mcp.client.streamable_http import streamable_http_client
 from mcp.server.mcpserver import MCPServer
 
 from app.config.settings import settings
@@ -55,8 +59,21 @@ class McpClient:
 
         self._on_retry = on_retry
 
+        if server is None:
+            if settings.mcp_transport == "gateway":
+                if settings.mcp_gateway_url is None or settings.mcp_gateway_password is None:
+                    raise McpClientError("MCP gateway URL and credentials are required")
+                server = _gateway_transport(
+                    str(settings.mcp_gateway_url),
+                    settings.mcp_gateway_username,
+                    settings.mcp_gateway_password.get_secret_value(),
+                    self._read_timeout_seconds,
+                )
+            else:
+                server = create_mcp_server()
+
         self._client = Client(
-            server or create_mcp_server(),
+            server,
             read_timeout_seconds=self._read_timeout_seconds,
         )
 
@@ -163,6 +180,11 @@ class McpClient:
                 # This is not a transient transport failure.
                 raise
 
+            except MCPError as exc:
+                raise McpClientRequestError(
+                    f"Tool {name!r} rejected by MCP server (code {exc.code})."
+                ) from exc
+
             except Exception as exc:
                 # Actual underlying MCP/client failure.
                 # Retry only while retry attempts remain.
@@ -217,29 +239,53 @@ class McpClient:
     async def get_transactions(
         self,
         account_id: str,
+        as_of: datetime | None = None,
     ) -> list[dict[str, Any]]:
         return await self.call_tool(
             "get_transactions",
-            {"account_id": account_id},
+            _evidence_arguments(account_id, as_of),
         )
 
     async def get_ledger_entries(
         self,
         account_id: str,
+        as_of: datetime | None = None,
     ) -> list[dict[str, Any]]:
         return await self.call_tool(
             "get_ledger_entries",
-            {"account_id": account_id},
+            _evidence_arguments(account_id, as_of),
         )
 
     async def compare_account_balance(
         self,
         account_id: str,
+        as_of: datetime | None = None,
     ) -> dict[str, Any]:
         return await self.call_tool(
             "compare_account_balance",
-            {"account_id": account_id},
+            _evidence_arguments(account_id, as_of),
         )
+
+
+@asynccontextmanager
+async def _gateway_transport(url: str, username: str, password: str, timeout: float):
+    async with httpx2.AsyncClient(
+        auth=httpx2.BasicAuth(username, password),
+        timeout=httpx2.Timeout(timeout),
+        trust_env=False,
+    ) as http_client:
+        async with streamable_http_client(url, http_client=http_client) as streams:
+            yield streams
+
+
+def _evidence_arguments(
+    account_id: str,
+    as_of: datetime | None,
+) -> dict[str, Any]:
+    arguments: dict[str, Any] = {"account_id": account_id}
+    if as_of is not None:
+        arguments["as_of"] = as_of.isoformat()
+    return arguments
 
 
 def _extract_text(result: Any) -> str:

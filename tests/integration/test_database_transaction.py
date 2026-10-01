@@ -1,4 +1,5 @@
 import pytest
+from datetime import datetime
 from decimal import Decimal
 
 from app.data.database import Database
@@ -31,3 +32,18 @@ class TestDatabaseTransactionLookup:
         account_tx = {t.transaction_id for t in database.get_transactions("ACC-1001")}
         assert "TX-1001" in account_tx
         assert database.get_transaction("TX-1001").transaction_id in account_tx
+
+    def test_account_evidence_can_be_limited_to_case_time(self, database):
+        cutoff = datetime.fromisoformat("2026-08-28 09:00:00")
+
+        transaction_ids = {
+            transaction.transaction_id
+            for transaction in database.get_transactions("ACC-1001", cutoff)
+        }
+        ledger_ids = {
+            entry.ledger_entry_id
+            for entry in database.get_ledger_entries("ACC-1001", cutoff)
+        }
+
+        assert "TX-1006" not in transaction_ids
+        assert "LED-009" not in ledger_ids

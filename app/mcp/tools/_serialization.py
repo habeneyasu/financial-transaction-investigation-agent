@@ -30,3 +30,8 @@ def jsonable(value):
         return [jsonable(item) for item in value]
 
     return str(value)
+
+
+def parse_optional_datetime(value: str | None) -> datetime | None:
+    """Parse an optional ISO 8601 timestamp supplied to an MCP tool."""
+    return datetime.fromisoformat(value) if value is not None else None

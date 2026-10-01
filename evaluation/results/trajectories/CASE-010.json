@@ -2,8 +2,8 @@
   "case_id": "CASE-010",
   "agent": "financial_investigation_agent",
   "workflow_version": "1.0",
-  "started_at": "2026-08-31T06:51:37.922797+00:00",
-  "completed_at": "2026-08-31T06:51:42.154087+00:00",
+  "started_at": "2026-09-25T19:51:21.168717+00:00",
+  "completed_at": "2026-09-25T19:51:26.524188+00:00",
   "steps": [
     {
       "step": "workflow_start",
@@ -15,7 +15,7 @@
         "instructions": "Collect relevant case, account, transaction and ledger evidence. Use deterministic checks where available. Produce an evidence-backed investigation result. Do not execute consequential actions without human approval.",
         "evaluation_case": true
       },
-      "timestamp": "2026-08-31T06:51:37.922804+00:00"
+      "timestamp": "2026-09-25T19:51:21.168763+00:00"
     },
     {
       "step": "case_retrieval",
@@ -28,7 +28,7 @@
         "submitted_at": "2026-08-28T11:15:00",
         "status": "OPEN"
       },
-      "timestamp": "2026-08-31T06:51:37.923396+00:00"
+      "timestamp": "2026-09-25T19:51:21.171068+00:00"
     },
     {
       "step": "customer_evidence_request",
@@ -37,7 +37,7 @@
         "customer_id": "CUST-003",
         "source": "MCP"
       },
-      "timestamp": "2026-08-31T06:51:37.923403+00:00"
+      "timestamp": "2026-09-25T19:51:21.171094+00:00"
     },
     {
       "step": "customer_evidence_response",
@@ -52,16 +52,17 @@
           "status": "ACTIVE"
         }
       },
-      "timestamp": "2026-08-31T06:51:37.925735+00:00"
+      "timestamp": "2026-09-25T19:51:21.174291+00:00"
     },
     {
       "step": "account_evidence_request",
       "action": "get_account",
       "details": {
         "account_id": "ACC-1003",
+        "as_of": "2026-08-28T11:15:00",
         "source": "MCP"
       },
-      "timestamp": "2026-08-31T06:51:37.925750+00:00"
+      "timestamp": "2026-09-25T19:51:21.174319+00:00"
     },
     {
       "step": "account_evidence_response",
@@ -81,7 +82,7 @@
           "status": "ACTIVE"
         }
       },
-      "timestamp": "2026-08-31T06:51:37.927930+00:00"
+      "timestamp": "2026-09-25T19:51:21.177175+00:00"
     },
     {
       "step": "transaction_evidence_request",
@@ -90,7 +91,7 @@
         "account_id": "ACC-1003",
         "source": "MCP"
       },
-      "timestamp": "2026-08-31T06:51:37.927944+00:00"
+      "timestamp": "2026-09-25T19:51:21.177200+00:00"
     },
     {
       "step": "transaction_evidence_response",
@@ -98,34 +99,8 @@
       "details": {
         "account_id": "ACC-1003",
         "source": "MCP",
-        "result_count": 4,
+        "result_count": 2,
         "result": [
-          {
-            "transaction_id": "TX-1008",
-            "from_account_id": "ACC-1003",
-            "to_account_id": "ACC-1002",
-            "amount": "2500",
-            "currency": "ETB",
-            "transaction_type": "TRANSFER",
-            "transaction_date": "2026-08-28T13:30:00",
-            "status": "SUCCESS",
-            "reference": "REF-008",
-            "created_at": "2026-08-28T13:30:00",
-            "completed_at": "2026-08-28T13:30:00"
-          },
-          {
-            "transaction_id": "TX-1007",
-            "from_account_id": "ACC-1002",
-            "to_account_id": "ACC-1003",
-            "amount": "1000",
-            "currency": "ETB",
-            "transaction_type": "TRANSFER",
-            "transaction_date": "2026-08-28T12:00:00",
-            "status": "REVERSED",
-            "reference": "REF-007",
-            "created_at": "2026-08-28T12:00:00",
-            "completed_at": "2026-08-28T12:30:00"
-          },
           {
             "transaction_id": "TX-1005",
             "from_account_id": "ACC-1003",
@@ -154,16 +129,17 @@
           }
         ]
       },
-      "timestamp": "2026-08-31T06:51:37.930328+00:00"
+      "timestamp": "2026-09-25T19:51:21.181115+00:00"
     },
     {
       "step": "ledger_evidence_request",
       "action": "get_ledger_entries",
       "details": {
         "account_id": "ACC-1003",
+        "as_of": "2026-08-28T11:15:00",
         "source": "MCP"
       },
-      "timestamp": "2026-08-31T06:51:37.930339+00:00"
+      "timestamp": "2026-09-25T19:51:21.181140+00:00"
     },
     {
       "step": "ledger_evidence_response",
@@ -171,44 +147,8 @@
       "details": {
         "account_id": "ACC-1003",
         "source": "MCP",
-        "result_count": 4,
+        "result_count": 1,
         "result": [
-          {
-            "ledger_entry_id": "LED-014",
-            "transaction_id": "TX-1008",
-            "account_id": "ACC-1003",
-            "entry_type": "DEBIT",
-            "amount": "2500",
-            "currency": "ETB",
-            "balance_before": "48000",
-            "balance_after": "45500",
-            "created_at": "2026-08-28T13:30:00",
-            "status": "POSTED"
-          },
-          {
-            "ledger_entry_id": "LED-013",
-            "transaction_id": "TX-1007",
-            "account_id": "ACC-1003",
-            "entry_type": "DEBIT",
-            "amount": "1000",
-            "currency": "ETB",
-            "balance_before": "49000",
-            "balance_after": "48000",
-            "created_at": "2026-08-28T12:30:00",
-            "status": "POSTED"
-          },
-          {
-            "ledger_entry_id": "LED-011",
-            "transaction_id": "TX-1007",
-            "account_id": "ACC-1003",
-            "entry_type": "CREDIT",
-            "amount": "1000",
-            "currency": "ETB",
-            "balance_before": "48000",
-            "balance_after": "49000",
-            "created_at": "2026-08-28T12:00:00",
-            "status": "POSTED"
-          },
           {
             "ledger_entry_id": "LED-004",
             "transaction_id": "TX-1002",
@@ -223,17 +163,18 @@
           }
         ]
       },
-      "timestamp": "2026-08-31T06:51:37.931969+00:00"
+      "timestamp": "2026-09-25T19:51:21.184130+00:00"
     },
     {
       "step": "balance_comparison_request",
       "action": "compare_account_balance",
       "details": {
         "account_id": "ACC-1003",
+        "as_of": "2026-08-28T11:15:00",
         "source": "MCP",
         "deterministic": true
       },
-      "timestamp": "2026-08-31T06:51:37.931978+00:00"
+      "timestamp": "2026-09-25T19:51:21.184154+00:00"
     },
     {
       "step": "balance_comparison_response",
@@ -244,16 +185,18 @@
         "deterministic": true,
         "result": {
           "account_id": "ACC-1003",
-          "reported_balance": "48500",
-          "expected_balance": "49500",
-          "difference": "-1000",
+          "as_of": "2026-08-28T11:15:00",
+          "reported_balance": "50000",
+          "reported_balance_source": "latest_posted_ledger_balance",
+          "expected_balance": "52000",
+          "difference": "-2000",
           "consistent": false,
-          "posted_ledger_entries": 4,
-          "total_ledger_entries": 4,
+          "posted_ledger_entries": 1,
+          "total_ledger_entries": 1,
           "suspected_duplicate_debit": null
         }
       },
-      "timestamp": "2026-08-31T06:51:37.933983+00:00"
+      "timestamp": "2026-09-25T19:51:21.188979+00:00"
     },
     {
       "step": "investigation_prompt",
@@ -268,7 +211,7 @@
           "balance_comparison"
         ]
       },
-      "timestamp": "2026-08-31T06:51:37.934047+00:00"
+      "timestamp": "2026-09-25T19:51:21.189104+00:00"
     },
     {
       "step": "llm_request",
@@ -284,7 +227,7 @@
           "balance_comparison"
         ]
       },
-      "timestamp": "2026-08-31T06:51:37.934052+00:00"
+      "timestamp": "2026-09-25T19:51:21.189114+00:00"
     },
     {
       "step": "llm_response",
@@ -292,7 +235,7 @@
       "details": {
         "response_received": true
       },
-      "timestamp": "2026-08-31T06:51:42.153832+00:00"
+      "timestamp": "2026-09-25T19:51:26.523858+00:00"
     },
     {
       "step": "result_validation",
@@ -300,7 +243,7 @@
       "details": {
         "schema": "InvestigationResult"
       },
-      "timestamp": "2026-08-31T06:51:42.153853+00:00"
+      "timestamp": "2026-09-25T19:51:26.523887+00:00"
     },
     {
       "step": "human_checkpoint",
@@ -312,7 +255,7 @@
         "consequential_action_executed": false,
         "message": "Investigation recommendation requires qualified human review before any consequential action."
       },
-      "timestamp": "2026-08-31T06:51:42.153924+00:00"
+      "timestamp": "2026-09-25T19:51:26.523969+00:00"
     },
     {
       "step": "final_result",
@@ -322,33 +265,32 @@
           "case_id": "CASE-010",
           "findings": [
             {
-              "description": "Transaction TX-1005 for 10,000 ETB, which the customer is disputing, is marked with a status of FAILED.",
+              "description": "Transaction TX-1005 for 10,000 ETB is marked as FAILED in the transaction records.",
               "evidence": [
-                "Transaction entry: {'transaction_id': 'TX-1005', 'status': 'FAILED', 'amount': '10000', ...}"
+                "Transaction record TX-1005 status: 'FAILED'"
               ]
             },
             {
-              "description": "There is no record of a ledger entry corresponding to transaction TX-1005, indicating that no debit was posted to the account for this failed transaction.",
+              "description": "There is no ledger entry corresponding to a debit for transaction TX-1005.",
               "evidence": [
-                "Ledger entries list does not contain an entry for 'TX-1005'.",
-                "Total ledger entries count is 4, which matches the number of ledger entries provided for other transactions (TX-1008, TX-1007, TX-1002)."
+                "Ledger entries list contains only LED-004, which relates to transaction TX-1002."
               ]
             },
             {
-              "description": "A balance discrepancy exists for the account, where the reported balance (48,500 ETB) does not match the expected balance (49,500 ETB), resulting in a difference of -1,000 ETB.",
+              "description": "The balance comparison tool indicates an inconsistency between the reported balance and the expected balance.",
               "evidence": [
-                "Balance comparison result: {'reported_balance': '48500', 'expected_balance': '49500', 'difference': '-1000', 'consistent': False}"
+                "Balance comparison: reported_balance '50000', expected_balance '52000', difference '-2000', consistent 'False'"
               ]
             }
           ],
-          "conclusion": "The evidence does not support the claim that the account was permanently debited for the failed 10,000 ETB transfer (TX-1005), as there is no corresponding ledger entry for that transaction. However, the account shows a 1,000 ETB discrepancy between the reported and expected balances, the cause of which cannot be determined from the available evidence.",
+          "conclusion": "The evidence confirms that transaction TX-1005 is marked as FAILED and there is no ledger entry indicating that the 10,000 ETB was debited from the account. While there is a discrepancy between the reported and expected balance, the available evidence does not link this discrepancy to the failed transaction TX-1005, and the cause of the balance inconsistency cannot be determined from the provided data.",
           "confidence": "HIGH",
-          "recommendation": "Conduct a manual review of the account's ledger history to identify the root cause of the 1,000 ETB balance discrepancy.",
+          "recommendation": "Conduct a manual review of the account's full transaction and ledger history to identify the cause of the 2,000 ETB balance discrepancy.",
           "requires_human_review": true,
           "status": "PENDING_REVIEW"
         }
       },
-      "timestamp": "2026-08-31T06:51:42.154012+00:00"
+      "timestamp": "2026-09-25T19:51:26.524090+00:00"
     }
   ]
 }

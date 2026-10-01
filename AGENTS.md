@@ -30,13 +30,16 @@ and the project overview.
 
 MCP is already implemented. Reuse `McpClient`, `create_mcp_server`, and the
 existing tools rather than creating a parallel implementation. The default
-client uses an in-process server. The REST tool-testing routes are not a
-Streamable HTTP MCP endpoint.
+client uses an in-process server outside Compose. Compose selects authenticated
+gateway mode over Streamable HTTP. REST tool-testing routes are not an MCP
+endpoint and are disabled in gateway mode.
 
-Agentgateway is not currently integrated. Do not document gateway routing,
-authentication, or authorization as implemented until configured and tested.
-Adding a gateway must not require replacing the existing database or financial
-services. Keep transport changes separate from financial behavior changes.
+Agentgateway configuration lives in `agentgateway.yaml`. Preserve its strict
+authentication, five-tool allowlist, private backend network, and no-fallback
+behavior. The API owns initialization of the existing database volume; the MCP
+service mounts it read-only. Keep transport changes separate from financial
+behavior changes. This local synthetic-data deployment does not provide operator
+identity, per-account authorization, or TLS; do not claim production readiness.
 
 The investigation currently collects evidence in a fixed sequence before LLM
 analysis. Do not describe this as model-selected or adaptive tool execution.
@@ -77,6 +80,9 @@ uv run pytest tests/ -v
 uv run pytest tests/unit/tools/ -v
 uv run pytest tests/unit/agent/test_investigation_agent.py -v
 uv run pytest tests/evaluation/ -v
+
+# Opt-in real gateway test on Linux with Docker; uses disposable synthetic data.
+RUN_GATEWAY_TESTS=1 uv run pytest tests/integration/test_agentgateway.py -v
 ```
 
 - Start with the smallest relevant test, then run broader checks when shared
